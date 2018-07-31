@@ -8,6 +8,7 @@ public class TabelaEmprestimoPojo {
 	private String dataDevolucao;
 	private String titulo;
 	private String tipoMaterial;
+	private String t;
 
 	public String getUsuario() {
 		return usuario;
