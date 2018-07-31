@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="800.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TabelaLivrosController">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="800.0">
+         <children>
+            <TableView fx:id="tabelaLivros" layoutX="-1.0" layoutY="-1.0" prefHeight="656.0" prefWidth="800.0">
+              <columns>
+                <TableColumn fx:id="colunaID" prefWidth="58.0" text="ID" />
+                  <TableColumn fx:id="colunaTitulo" prefWidth="128.0" text="Titulo" />
+                <TableColumn fx:id="colunaCodBarras" prefWidth="83.0" text="Cod Barras" />
+                  <TableColumn fx:id="colunaEstante" prefWidth="63.0" text="Estante" />
+                  <TableColumn fx:id="colunaExemplares" text="Exemplares" />
+                  <TableColumn fx:id="colunaDisponiveis" prefWidth="75.0" text="Disponíveis" />
+                  <TableColumn fx:id="colunaISBN" prefWidth="90.0" text="ISBN" />
+                  <TableColumn fx:id="colunaAno" prefWidth="73.0" text="Ano" />
+                  <TableColumn fx:id="colunaEdicao" prefWidth="76.0" text="Edição" />
+                  <TableColumn fx:id="colunaEditora" prefWidth="73.0" text="Editora" />
+              </columns>
+            </TableView>
+            <Button fx:id="botaoSelecionar" layoutX="208.0" layoutY="707.0" mnemonicParsing="false" onAction="#selecionarLivro" prefHeight="25.0" prefWidth="159.0" text="Selecionar livro" />
+            <Button layoutX="400.0" layoutY="707.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="159.0" text="Fechar" />
+            <Label fx:id="labelTeste" layoutX="77.0" layoutY="699.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

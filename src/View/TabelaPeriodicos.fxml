@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TabelaPeriodicosController">
+   <children>
+      <Pane layoutX="2.0" layoutY="2.0" prefHeight="800.0" prefWidth="800.0">
+         <children>
+            <TableView fx:id="tabelaPeriodico" layoutX="-1.0" layoutY="-1.0" prefHeight="656.0" prefWidth="800.0">
+               <columns>
+                  <TableColumn fx:id="colunaID" prefWidth="58.0" text="ID" />
+                  <TableColumn fx:id="colunaTitulo" prefWidth="170.0" text="Titulo" />
+                  <TableColumn fx:id="colunaCodBarras" prefWidth="76.0" text="Cod Barras" />
+                  <TableColumn fx:id="colunaEstante" prefWidth="73.0" text="Estante" />
+                  <TableColumn fx:id="colunaExemplares" prefWidth="91.0" text="Exemplares" />
+                  <TableColumn fx:id="colunaDisponiveis" prefWidth="98.0" text="Disponíveis" />
+                  <TableColumn fx:id="colunaISSN" prefWidth="69.0" text="ISSN" />
+                  <TableColumn fx:id="colunaAno" prefWidth="66.0" text="Ano" />
+                  <TableColumn fx:id="colunaVolume" prefWidth="98.0" text="Volume" />
+               </columns>
+            </TableView>
+            <Button fx:id="botaoSelecionar" layoutX="208.0" layoutY="707.0" mnemonicParsing="false" onAction="#selecionarLivro" prefHeight="25.0" prefWidth="159.0" text="Selecionar livro" />
+            <Button layoutX="400.0" layoutY="707.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="159.0" text="Fechar" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

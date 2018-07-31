@@ -1,0 +1,25 @@
+* {
+    -fx-primary : #2A2E37;
+    -fx-secondary : #FFFF8D;
+    -fx-primarytext : #B2B2B2;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-green:#2E7D32;
+}
+
+
+.label{
+    -fx-text-fill: white;
+}
+
+
+.text-field
+{
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-size : 13pt;
+    -jfx-focus-color: -fx-secondary;
+    -fx-border-color:  rgba(187,27,27,0.6);
+    -fx-border-radius: 3px;  
+    -fx-text-fill: derive(-fx-secondary, 20%);
+}
+

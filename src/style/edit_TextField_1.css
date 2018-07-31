@@ -1,0 +1,27 @@
+* {
+    -fx-primary : #2A2E37;
+    -fx-secondary : #FFFF8D;
+    -fx-primarytext : #B2B2B2;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-green:#2E7D32;
+}
+
+
+.label{
+	-fx-text-fill: white;
+}
+
+
+.text-field
+{
+    -fx-text-fill: orange;
+    -fx-font-size : 13pt;
+    -jfx-focus-color: orange;
+    -fx-background-color: #2A2E37;
+    -fx-border-color: none;
+        
+    -fx-border-radius: 0px;
+    -fx-text-fill: derive(-fx-secondary, 20%);
+}
+

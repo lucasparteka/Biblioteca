@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PrincipalController">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #3d7cce;">
+         <children>
+            <MenuBar prefHeight="25.0" prefWidth="800.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Cadastrar">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#cadastrarPessoa" text="Pessoa" />
+                        <MenuItem mnemonicParsing="false" onAction="#cadastrarAutor" text="Autor" />
+                        <MenuItem mnemonicParsing="false" onAction="#cadastrarEditora" text="Editora" />
+                        <MenuItem mnemonicParsing="false" onAction="#cadastrarLivro" text="Livro" />
+                        <MenuItem mnemonicParsing="false" onAction="#cadastrarPeriodico" text="Periódico" />
+                        <MenuItem mnemonicParsing="false" onAction="#cadastrarMatEspecial" text="Mat. Especial" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Emprestimos">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#realizarEmprestimo" text="Realizar Emprestimo" />
+                        <MenuItem mnemonicParsing="false" onAction="#listarEmprestimos" text="Listar Emprestimos" />
+                        <MenuItem mnemonicParsing="false" onAction="#listarDevolucoes" text="Listar Devoluções" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Consultar">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#consultarPessoa" text="Consultar Pessoa" />
+                    <MenuItem mnemonicParsing="false" onAction="#consultarAutor" text="Consultar Autor" />
+                    <MenuItem mnemonicParsing="false" onAction="#consultarEditora" text="Consultar Editora" />
+                    <MenuItem mnemonicParsing="false" onAction="#consultarLivro" text="Consultar Livro" />
+                    <MenuItem mnemonicParsing="false" onAction="#consultarPeriodico" text="Consultar Periódico" />
+                    <MenuItem mnemonicParsing="false" onAction="#consultarMatEspecial" text="Consultar Mat. Especial" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Button layoutX="275.0" layoutY="207.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #0a1c33;" text="CADASTRAR" textFill="#ffe4e4">
+               <font>
+                  <Font name="Vivaldi Italic" size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="275.0" layoutY="341.0" mnemonicParsing="false" onAction="#emprestimos" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #0a1c33;" text="EMPRESTIMOS" textFill="#ffe4e4">
+               <font>
+                  <Font name="Vivaldi Italic" size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="275.0" layoutY="473.0" mnemonicParsing="false" onAction="#consultas" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #0a1c33;" text="CONSULTAS" textFill="#ffe4e4">
+               <font>
+                  <Font name="Vivaldi Italic" size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
