@@ -6,7 +6,15 @@
 	<artifactId>Biblioteca</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+
 	<dependencies>
+
+		<dependency>
+			<groupId>de.jensd</groupId>
+			<artifactId>fontawesomefx</artifactId>
+			<version>8.9</version>
+		</dependency>
+
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
