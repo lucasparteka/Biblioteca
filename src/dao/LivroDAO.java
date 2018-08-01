@@ -9,6 +9,10 @@ import Model.Livro;
 
 public class LivroDAO {
 	
+	public void salvarLivro() {
+		
+	}
+	
 	private static Map<Long, Livro> mapLivro = new HashMap<Long, Livro>();
 	
 	public Livro getLivro(long id) {
