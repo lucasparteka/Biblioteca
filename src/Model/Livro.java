@@ -7,6 +7,16 @@ public class Livro extends AbstractInformacional {
 	private Integer volume;
 	private Integer edicao;
 	private String editora;
+	private Autor autor;
+	
+
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
 
 	public Integer getISBN() {
 		return ISBN;

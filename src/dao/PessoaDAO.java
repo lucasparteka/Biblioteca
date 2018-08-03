@@ -1,29 +1,41 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
 import Model.Pessoa;
 
 public class PessoaDAO {
-	
-	public void salvarPessoa(Long idPessoa, String nomePessoa, String telefonePessoa, String cpfPessoa) {
-		String sql = "INSERT INTO pessoa (id, nome, telefone, cpf) VALUES "
-				+ "('" +idPessoa+ "', '" +nomePessoa+ "', '" +telefonePessoa+ "', '" +cpfPessoa+ "')";
+
+	private Connection conect = null;
+
+	public PessoaDAO() {
+		conect = ConectionFactory.getConexao();
 		
-		Connection conect = ConectionFactory.getConexao();
-		try {
-			Statement stat = conect.createStatement();
-			System.out.println(stat.executeUpdate(sql));
-			ConectionFactory.fecharConexao(conect, stat);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
-	
+
+	public void salvarPessoa(Pessoa pessoa) {
+
+		String sql = "INSERT INTO pessoa (id, nome, telefone, cpf) VALUES (?, ?, ?, ?)";
+		PreparedStatement stat = null;
+		try {
+			stat = conect.prepareStatement(sql);
+			stat.setLong(1, pessoa.getId());
+			stat.setString(2, pessoa.getNome());
+			stat.setString(3, pessoa.getTelefone());
+			stat.setString(4, pessoa.getCpf());
+			stat.executeUpdate();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			ConectionFactory.fecharConexao(conect, stat);
+		}
+
+	}
+
 	private static Map<String, Pessoa> mapPessoa = new HashMap<String, Pessoa>();
 
 	public Pessoa getPessoa(String cpf) {
@@ -33,5 +45,5 @@ public class PessoaDAO {
 	public void addPessoa(Pessoa pessoa) {
 		PessoaDAO.mapPessoa.put(pessoa.getCpf(), pessoa);
 	}
-	
+
 }

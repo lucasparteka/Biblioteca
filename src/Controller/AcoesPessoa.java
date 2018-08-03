@@ -31,7 +31,7 @@ public class AcoesPessoa {
 			pessoa.setNome(nome);
 			pessoa.setTelefone(celular);
 			
-			pessoaDAO.addPessoa(pessoa);
+			pessoaDAO.salvarPessoa(pessoa);
 		}
 		
 	}
