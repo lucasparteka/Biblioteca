@@ -56,7 +56,7 @@ public class InformacoesPessoaController implements Initializable {
     void pesquisarPessoa(ActionEvent event) {
         acoesPessoa = new AcoesPessoa();
         pessoa = new Pessoa();
-        pessoa = acoesPessoa.pesquisar(campoCPF.getText());
+        //pessoa = acoesPessoa.pesquisar(campoCPF.getText());
         if (pessoa == null) {
             labelStatus.setText("Cadastro não encontrado");
         } else {

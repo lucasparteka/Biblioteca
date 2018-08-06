@@ -185,7 +185,7 @@ public class RealizarEmprestimoController implements Initializable {
         } else {
             usuario = new Pessoa();
             pesquisarUsuario = new AcoesPessoa();
-            setUsuario(pesquisarUsuario.pesquisar(campoCPF.getText()));
+            //setUsuario(pesquisarUsuario.pesquisar(campoCPF.getText()));
             if (getUsuario() == null) {
                 campoCPF.getStylesheets().add(RealizarEmprestimoController.class.getResource("/style/edit_TextField.css").toExternalForm());
                 labelStatus.setText("Cpf não localizado");
