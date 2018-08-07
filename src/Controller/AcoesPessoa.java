@@ -23,8 +23,8 @@ public class AcoesPessoa {
 			pessoaDAO.salvarPessoa(pessoa);
 	}
 	
-	public Pessoa buscarPessoa(String cpf){
-		return pessoaDAO.buscarPessoa(cpf);
+	public Pessoa buscarPessoa(){
+		return null;
 	} 
 	
 }

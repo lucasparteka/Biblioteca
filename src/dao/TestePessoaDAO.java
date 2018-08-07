@@ -1,6 +1,8 @@
 package dao;
 
 
+import java.util.ArrayList;
+
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import Controller.AcoesPessoa;
@@ -9,7 +11,8 @@ import Model.Pessoa;
 class TestePessoaDAO {
 	
 	AcoesPessoa acoesPessoa = new AcoesPessoa();
-
+	PessoaDAO pessoaDAO;
+	Pessoa pessoa;
 	
 	@Ignore
 	public void inserirPessoa() {
@@ -25,14 +28,10 @@ class TestePessoaDAO {
 	
 	@Test
 	public void buscarPessoas() {
-		
-		Pessoa pessoa = new Pessoa();
-		pessoa = acoesPessoa.buscarPessoa("4567");
-		if(pessoa != null) {
-			System.out.println(pessoa.getNome());
-		} else {
-			System.out.println("CPF não encontrado");
-		}
+		pessoaDAO = new PessoaDAO();
+//		//pessoa = new Pessoa();
+//		acoesPessoa.buscarPessoa();
+		pessoaDAO.buscarPessoa();
 		
 	}
 
