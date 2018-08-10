@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import mask.ValidarNome;
-import mask.ValidarNumeros;
 
 /**
  * FXML Controller class
@@ -31,20 +30,11 @@ public class CadastrarAutorController implements Initializable {
     private JFXTextField campoSobreNome;
 
     @FXML
-    private JFXTextField campoID;
-
-    @FXML
     private Label labelStatus;
 
     @FXML
     private Button botaoCancelar;
     
-    @FXML
-    void restrictNumbersOnly(KeyEvent keyEvent) {
-        ValidarNumeros validaId = new ValidarNumeros();
-        validaId.validarQuatroDig(campoID);
-    }
-
     @FXML
     void validarLetras(KeyEvent keyEvent) {
         ValidarNome validaNome = new ValidarNome();
@@ -56,13 +46,11 @@ public class CadastrarAutorController implements Initializable {
     @FXML
     void cadastrarAutor(ActionEvent event) {
 
-        if (campoID.getText().isEmpty() || campoNome.getText().isEmpty() || campoSobreNome.getText().isEmpty()) {
+        if (campoNome.getText().isEmpty() || campoSobreNome.getText().isEmpty()) {
             labelStatus.setText("Preencha todos os campos");
         } else {
-            long idLong = Long.parseLong(campoID.getText());
-            cadastrarAutor.realizarCadastro(campoNome.getText(), campoSobreNome.getText(), idLong);
+            cadastrarAutor.realizarCadastro(campoNome.getText(), campoSobreNome.getText());
             labelStatus.setText("Cadastrado com sucesso");
-            campoID.setText("");
             campoNome.setText("");
             campoSobreNome.setText("");
         }
@@ -79,7 +67,6 @@ public class CadastrarAutorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cadastrarAutor = new AcoesAutor();
         RequiredFieldValidator validator = new RequiredFieldValidator();
-        campoID.getValidators().add(validator);
         validator.setMessage("Somente numeros!");
 
     }

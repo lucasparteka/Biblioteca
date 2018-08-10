@@ -15,11 +15,8 @@ import javafx.scene.control.TextField;
 public class InformacoesMatEspecialController implements Initializable {
 	
 	MaterialEspecial matEspecial;
-	AcoesMatEspecial cadMatEspecial;
+	AcoesMatEspecial acoesMatEspecial;
 	
-	@FXML
-    private TextField campoID;
-
     @FXML
     private TextField campoTitulo;
 
@@ -63,15 +60,21 @@ public class InformacoesMatEspecialController implements Initializable {
     @FXML
     void pesquisarMatEspecial(ActionEvent event) {
     	
-    	long idLong = Long.parseLong(campoID.getText());
-    	cadMatEspecial = new AcoesMatEspecial();
-    	matEspecial = cadMatEspecial.pesquisar(idLong);
+    	acoesMatEspecial = new AcoesMatEspecial();
+    	matEspecial = new MaterialEspecial();
+    	matEspecial = acoesMatEspecial.buscarMatEspecial(campoTitulo.getText());
     	
     	if(matEspecial == null) {
     		labelStatus.setText("Material especial não encontrado");
     	} else {
     		labelStatus.setText("");
     		campoTitulo.setText(matEspecial.getTitulo());
+    		campoCodBarras.setText(matEspecial.getCodigoBarras());
+    		campoDescricao.setText(matEspecial.getDescricao());
+    		campoDisponiveis.setText(Integer.toString(matEspecial.getDisponiveis()));
+    		campoEstante.setText(Integer.toString(matEspecial.getEstante()));
+    		campoExemplares.setText(Integer.toString(matEspecial.getExemplares()));
+    		campoTipo.setText(matEspecial.getTipo());
     	}
 
     }

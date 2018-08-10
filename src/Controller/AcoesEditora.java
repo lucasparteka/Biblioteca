@@ -1,8 +1,6 @@
 package Controller;
 
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
 import Model.Editora;
 import dao.EditoraDAO;
 
@@ -19,29 +17,22 @@ public class AcoesEditora {
 		editoraDAO = new EditoraDAO();
 	}
 
-	public void realizarCadastro(String nomeEditora, String nacionalidade, long id) {
+	public void realizarCadastro(String nomeEditora, String nacionalidade) {
 
-		if (editoraDAO.getEditora(id) != null) {
-			JOptionPane.showMessageDialog(null, "ID ja cadastrado, tente novamente");
-		} else {
 			Editora novaEditora = new Editora();
 			novaEditora.setNome(nomeEditora);
 			novaEditora.setNacionalidade(nacionalidade);
-			novaEditora.setId(id);
-			editoraDAO.addEditora(novaEditora);
+			editoraDAO.salvarEditora(novaEditora);
 
-		}
-
+		
 	}
 
 	public ArrayList<Editora> retornaEditoras() {
-		ArrayList<Editora> listEditoras = new ArrayList<>();
-		listEditoras = editoraDAO.retornaEditoras();
-		return listEditoras;
+		return editoraDAO.buscarEditoras();
 	}
 
-	public Editora pesquisar(long id) {
-		return editoraDAO.getEditora(id);
+	public Editora pesquisar(Long id) {
+		return editoraDAO.buscarEditora(id);
 	}
 
 }

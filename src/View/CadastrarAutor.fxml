@@ -7,16 +7,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarAutorController">
+<AnchorPane id="AnchorPane" prefHeight="320.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarAutorController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/application.css">
+      <Pane prefHeight="320.0" prefWidth="600.0" stylesheets="@../style/application.css">
          <children>
-            <JFXTextField fx:id="campoNome" labelFloat="true" layoutX="103.0" layoutY="80.0" onKeyPressed="#validarLetras" prefHeight="38.0" prefWidth="416.0" promptText="Nome" />
-            <Button layoutX="100.0" layoutY="280.0" mnemonicParsing="false" onAction="#cadastrarAutor" prefHeight="25.0" prefWidth="200.0" text="Cadastrar" textFill="#ffe4e4" />
-            <Button fx:id="botaoCancelar" layoutX="314.0" layoutY="280.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="200.0" text="Cancelar" textFill="#ffe4e4" />
-            <JFXTextField fx:id="campoSobreNome" labelFloat="true" layoutX="103.0" layoutY="140.0" onKeyPressed="#validarLetras" prefHeight="38.0" prefWidth="416.0" promptText="Sobrenome" />
-            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="103.0" layoutY="200.0" onKeyPressed="#restrictNumbersOnly" prefHeight="38.0" prefWidth="416.0" promptText="ID" />
-            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="346.0" prefHeight="17.0" prefWidth="600.0">
+            <JFXTextField fx:id="campoNome" labelFloat="true" layoutX="95.0" layoutY="78.0" onKeyPressed="#validarLetras" prefHeight="38.0" prefWidth="200.0" promptText="Nome" />
+            <JFXTextField fx:id="campoSobreNome" labelFloat="true" layoutX="306.0" layoutY="78.0" onKeyPressed="#validarLetras" prefHeight="38.0" prefWidth="200.0" promptText="Sobrenome" />
+            <Button layoutX="96.0" layoutY="160.0" mnemonicParsing="false" onAction="#cadastrarAutor" prefHeight="25.0" prefWidth="200.0" text="Cadastrar" textFill="#ffe4e4" />
+            <Button fx:id="botaoCancelar" layoutX="310.0" layoutY="160.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="200.0" text="Fechar" textFill="#ffe4e4" />
+            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="232.0" prefHeight="17.0" prefWidth="600.0">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>

@@ -70,7 +70,7 @@ public class TabelaDevolucoesController implements Initializable{
 		colunaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 
 		devolucoesDAO = new DevolucoesDAO();
-		setListEmprestimosTabela(devolucoesDAO.retornaDevolucoes());
+		//setListEmprestimosTabela(devolucoesDAO.retornaDevolucoes());
 		observableEmprestimo = FXCollections.observableArrayList(listEmprestimosTabela);
 		tabelaEmprestimos.setItems(observableEmprestimo);
 	}

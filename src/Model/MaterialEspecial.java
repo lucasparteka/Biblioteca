@@ -4,8 +4,17 @@ public class MaterialEspecial extends AbstractInformacional{
     
     private String descricao;
     private String tipo;
+    private int idTipo;
+    
+    public int getIdTipo() {
+		return idTipo;
+	}
 
-    public String getDescricao() {
+	public void setIdTipo(int idTipo) {
+		this.idTipo = idTipo;
+	}
+
+	public String getDescricao() {
         return descricao;
     }
 

@@ -8,21 +8,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarPeriodicoController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarPeriodicoController">
    <children>
       <Pane prefHeight="500.0" prefWidth="600.0">
          <children>
-            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="95.0" layoutY="80.0" onKeyPressed="#somenteNumeros" promptText="ID" />
-            <Button layoutX="93.0" layoutY="388.0" mnemonicParsing="false" onAction="#cadastrarPeriodico" prefHeight="25.0" prefWidth="210.0" text="Cadastrar" />
-            <Button fx:id="botaoCancelar" layoutX="317.0" layoutY="388.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="210.0" text="Cancelar" />
-            <JFXTextField fx:id="campoCodBarras" labelFloat="true" layoutX="323.0" layoutY="200.0" onKeyPressed="#somenteNumeros" promptText="Cod Barras" />
+            <JFXTextField fx:id="campoTitulo" labelFloat="true" layoutX="94.0" layoutY="80.0" prefHeight="38.0" prefWidth="423.0" promptText="Titulo" />
             <JFXTextField fx:id="campoEstante" labelFloat="true" layoutX="95.0" layoutY="140.0" onKeyPressed="#somenteNumeros" promptText="Estante" />
             <JFXTextField fx:id="campoExemplares" labelFloat="true" layoutX="323.0" layoutY="140.0" onKeyPressed="#somenteNumeros" promptText="Exemplares" />
             <JFXTextField fx:id="campoDisponiveis" labelFloat="true" layoutX="95.0" layoutY="200.0" onKeyPressed="#somenteNumeros" promptText="Disponiveis" />
-            <JFXTextField fx:id="campoTitulo" labelFloat="true" layoutX="323.0" layoutY="80.0" promptText="Titulo" />
+            <JFXTextField fx:id="campoCodBarras" labelFloat="true" layoutX="323.0" layoutY="200.0" onKeyPressed="#somenteNumeros" promptText="Cod Barras" />
             <JFXTextField fx:id="campoISSN" labelFloat="true" layoutX="95.0" layoutY="260.0" onKeyPressed="#somenteNumeros" promptText="ISSN" />
             <JFXTextField fx:id="campoVolume" labelFloat="true" layoutX="323.0" layoutY="260.0" onKeyPressed="#somenteNumeros" promptText="Volume" />
-            <JFXSlider fx:id="campoAno" blockIncrement="1.0" layoutX="95.0" layoutY="341.0" max="2018.0" min="1900.0" prefHeight="32.0" prefWidth="429.0" showTickLabels="true" value="2000.0" />
+            <JFXSlider fx:id="campoAno" blockIncrement="1.0" layoutX="95.0" layoutY="341.0" max="2018.0" min="1900.0" prefHeight="32.0" prefWidth="429.0" showTickLabels="true" showTickMarks="true" value="2000.0" />
+            <Button layoutX="93.0" layoutY="388.0" mnemonicParsing="false" onAction="#cadastrarPeriodico" prefHeight="25.0" prefWidth="210.0" text="Cadastrar" />
+            <Button fx:id="botaoCancelar" layoutX="317.0" layoutY="388.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="210.0" text="Fechar" />
             <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="452.0" prefWidth="600.0">
                <font>
                   <Font name="System Italic" size="16.0" />

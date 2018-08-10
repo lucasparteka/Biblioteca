@@ -14,7 +14,7 @@ import javafx.beans.value.ObservableValue;
  */
 public class ValidarNumeros {
 
-    public void validarCpf(JFXTextField campo) {
+    public static void validarCpf(JFXTextField campo) {
         campo.lengthProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number number2) -> {
             String mascara = "###.###.###-##";
             String alphaAndDigits = campo.getText().replaceAll("[^0-9]", "");
@@ -47,7 +47,7 @@ public class ValidarNumeros {
         //return campo;
     }
     
-    public JFXTextField validarTelefone(JFXTextField telefone) {
+    public static JFXTextField validarTelefone(JFXTextField telefone) {
         telefone.lengthProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number number2) -> {
             String mascara = "(##)####-#####";
             String alphaAndDigits = telefone.getText().replaceAll("[^0-9]", "");
@@ -78,7 +78,7 @@ public class ValidarNumeros {
         return telefone;
     }
     
-    public JFXTextField validarQuatroDig(JFXTextField valor) {
+    public static JFXTextField validarQuatroDig(JFXTextField valor) {
         valor.lengthProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number number2) -> {
             String mascara = "####";
             String alphaAndDigits = valor.getText().replaceAll("[^0-9]", "");
@@ -109,7 +109,7 @@ public class ValidarNumeros {
         return valor;
     }
     
-    public JFXTextField validarOitoDig(JFXTextField valor) {
+    public static JFXTextField validarOitoDig(JFXTextField valor) {
         valor.lengthProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number number2) -> {
             String mascara = "########";
             String alphaAndDigits = valor.getText().replaceAll("[^0-9]", "");

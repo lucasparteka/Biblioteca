@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import mask.ValidarNumeros;
 
 /**
  * FXML Controller class
@@ -22,123 +23,87 @@ import javafx.stage.Stage;
  */
 public class CadastrarPeriodicoController implements Initializable {
 
-    private AcoesPeriodico cadPeriodico;
+	private AcoesPeriodico acoesPeriodico;
 
-    @FXML
-    private JFXTextField campoID;
+	@FXML
+	private JFXTextField campoCodBarras;
 
-    @FXML
-    private JFXTextField campoCodBarras;
+	@FXML
+	private JFXTextField campoEstante;
 
-    @FXML
-    private JFXTextField campoEstante;
+	@FXML
+	private JFXTextField campoExemplares;
 
-    @FXML
-    private JFXTextField campoExemplares;
+	@FXML
+	private JFXTextField campoDisponiveis;
 
-    @FXML
-    private JFXTextField campoDisponiveis;
+	@FXML
+	private JFXTextField campoTitulo;
 
-    @FXML
-    private JFXTextField campoTitulo;
+	@FXML
+	private JFXTextField campoISSN;
 
-    @FXML
-    private JFXTextField campoISSN;
+	@FXML
+	private JFXTextField campoVolume;
 
-    @FXML
-    private JFXTextField campoVolume;
+	@FXML
+	private JFXSlider campoAno;
 
-    @FXML
-    private JFXSlider campoAno;
+	@FXML
+	private Label labelStatus;
 
-    @FXML
-    private Label labelStatus;
+	@FXML
+	private Button botaoCancelar;
 
-    @FXML
-    private Button botaoCancelar;
+	public void somenteNumeros(KeyEvent keyEvent) {
+		ValidarNumeros.validarQuatroDig(campoDisponiveis);
+		ValidarNumeros.validarQuatroDig(campoEstante);
+		ValidarNumeros.validarQuatroDig(campoExemplares);
+		ValidarNumeros.validarQuatroDig(campoVolume);
+		ValidarNumeros.validarOitoDig(campoCodBarras);
+		ValidarNumeros.validarOitoDig(campoISSN);
+	}
 
-    public void somenteNumeros(KeyEvent keyEvent) {
-        campoID.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                campoID.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-        campoCodBarras.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                campoCodBarras.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-        campoDisponiveis.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                campoDisponiveis.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-        campoEstante.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                campoEstante.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-        campoExemplares.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                campoExemplares.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-        campoISSN.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                campoISSN.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-        campoVolume.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                campoVolume.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-    }
+	@FXML
+	void cadastrarPeriodico(ActionEvent event) {
 
-    @FXML
-    void cadastrarPeriodico(ActionEvent event) {
+		if (campoCodBarras.getText().isEmpty() || campoDisponiveis.getText().isEmpty()
+				|| campoEstante.getText().isEmpty() || campoExemplares.getText().isEmpty()
+				|| campoISSN.getText().isEmpty() || campoTitulo.getText().isEmpty()
+				|| campoVolume.getText().isEmpty()) {
+			labelStatus.setText("Preencha todos os campos");
+		} else {
+			int estanteInt = Integer.parseInt(campoEstante.getText());
+			int exemplaresInt = Integer.parseInt(campoExemplares.getText());
+			int disponiveisInt = Integer.parseInt(campoDisponiveis.getText());
+			int issnInt = Integer.parseInt(campoISSN.getText());
+			int volumeInt = Integer.parseInt(campoVolume.getText());
+			double x = campoAno.getValue();
+			int anoInt = (int) x;
 
-        if (campoCodBarras.getText().isEmpty() || campoDisponiveis.getText().isEmpty()
-                || campoEstante.getText().isEmpty() || campoExemplares.getText().isEmpty()
-                || campoID.getText().isEmpty() || campoISSN.getText().isEmpty() || campoTitulo.getText().isEmpty()
-                || campoVolume.getText().isEmpty()) {
-            labelStatus.setText("Preencha todos os campos");
-        } else {
-            Long idLong = Long.parseLong(campoID.getText());
-            int estanteInt = Integer.parseInt(campoEstante.getText());
-            int exemplaresInt = Integer.parseInt(campoExemplares.getText());
-            int disponiveisInt = Integer.parseInt(campoDisponiveis.getText());
-            int issnInt = Integer.parseInt(campoISSN.getText());
-            int volumeInt = Integer.parseInt(campoVolume.getText());
-            double x = campoAno.getValue();
-            int anoInt = (int) x;
+			acoesPeriodico.realizarCadastro(campoCodBarras.getText(), estanteInt, exemplaresInt, disponiveisInt,
+					campoTitulo.getText(), issnInt, anoInt, volumeInt);
 
-            cadPeriodico.realizarCadastro(idLong, campoCodBarras.getText(), estanteInt, exemplaresInt, disponiveisInt,
-                    campoTitulo.getText(), issnInt, anoInt, volumeInt);
+			labelStatus.setText("Cadastrado com sucesso");
+			campoCodBarras.setText("");
+			campoDisponiveis.setText("");
+			campoEstante.setText("");
+			campoExemplares.setText("");
+			campoISSN.setText("");
+			campoTitulo.setText("");
+			campoVolume.setText("");
+		}
+	}
 
-            labelStatus.setText("Cadastrado com sucesso");
-            campoCodBarras.setText(null);
-            campoDisponiveis.setText(null);
-            campoEstante.setText(null);
-            campoExemplares.setText(null);
-            campoID.setText(null);
-            campoISSN.setText(null);
-            campoTitulo.setText(null);
-            campoVolume.setText(null);
+	@FXML
+	void cancelarAcao(ActionEvent event) {
+		Stage stage = (Stage) botaoCancelar.getScene().getWindow();
+		stage.close();
+	}
 
-        }
-
-    }
-
-    @FXML
-    void cancelarAcao(ActionEvent event) {
-        Stage stage = (Stage) botaoCancelar.getScene().getWindow();
-        stage.close();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        cadPeriodico = new AcoesPeriodico();
-    }
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		acoesPeriodico = new AcoesPeriodico();
+	}
 
 }

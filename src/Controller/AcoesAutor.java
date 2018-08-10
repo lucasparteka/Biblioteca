@@ -1,45 +1,33 @@
 package Controller;
 
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
 import Model.Autor;
 import dao.AutorDAO;
 
 public class AcoesAutor {
 
 	private AutorDAO autorDAO;
-	
+
 	public AcoesAutor() {
 		autorDAO = new AutorDAO();
 	}
 
-	public void realizarCadastro(String nome, String sobrenome, long id) {
+	public void realizarCadastro(String nome, String sobrenome) {
 
-		if (autorDAO.getAutor(id) != null) {
-			JOptionPane.showMessageDialog(null, "ID ja cadastrado, tente novamente");
-		} else {
-			Autor novoAutor = new Autor();
-			novoAutor.setNome(nome);
-			novoAutor.setSobreNome(sobrenome);
-			novoAutor.setId(id);
+		Autor novoAutor = new Autor();
+		novoAutor.setNome(nome);
+		novoAutor.setSobreNome(sobrenome);
 
-			autorDAO.addAutor(novoAutor);
-		}
+		autorDAO.cadastrarAutor(novoAutor);
 
 	}
-	
-	public ArrayList<Autor> retornaAutores(){
-		ArrayList<Autor> listAutores = new ArrayList<>();
-		
-		listAutores = autorDAO.retornaAutores();
-		
-		return listAutores;
+
+	public ArrayList<Autor> retornaAutores() {
+		return autorDAO.buscarAutores();
 	}
-	
-	public Autor pesquisar(Long id) {
-		return autorDAO.getAutor(id);
+
+	public Autor pesquisarAutor(Long id) {
+		return autorDAO.buscarAutor(id);
 	}
 
 }

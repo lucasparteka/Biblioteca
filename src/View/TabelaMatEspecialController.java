@@ -93,9 +93,11 @@ public class TabelaMatEspecialController implements Initializable{
     	colunaEstante.setCellValueFactory(new PropertyValueFactory<>("estante"));
     	colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
     	colunaTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+    	colunaID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	colunaExemplares.setCellValueFactory(new PropertyValueFactory<>("exemplares"));
 
     	matEspecialDAO = new MatEspecialDAO();
-    	setListMatEspecial(matEspecialDAO.retornaMatEspecial());
+    	setListMatEspecial(matEspecialDAO.buscarTodosMatEspecial());
     	observableMatEspecial = FXCollections.observableArrayList(getListMatEspecial());
     	tabelaMatEspecial.setItems(observableMatEspecial);
     	

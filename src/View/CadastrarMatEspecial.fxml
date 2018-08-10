@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarMatEspecialController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarMatEspecialController">
    <children>
-      <Pane prefHeight="450.0" prefWidth="600.0">
+      <Pane prefHeight="500.0" prefWidth="600.0">
          <children>
-            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="97.0" layoutY="83.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="ID" />
-            <Button layoutX="97.0" layoutY="343.0" mnemonicParsing="false" onAction="#cadastrarMatEspecial" prefHeight="25.0" prefWidth="210.0" text="Cadastrar" />
-            <Button fx:id="botaoCancelar" layoutX="320.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="210.0" text="Cancelar" />
-            <JFXTextField fx:id="campoCodBarras" labelFloat="true" layoutX="325.0" layoutY="83.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Cod Barras" />
-            <JFXTextField fx:id="campoEstante" labelFloat="true" layoutX="97.0" layoutY="143.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Estante" />
-            <JFXTextField fx:id="campoExemplares" labelFloat="true" layoutX="325.0" layoutY="143.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Exemplares" />
-            <JFXTextField fx:id="campoDisponiveis" labelFloat="true" layoutX="97.0" layoutY="203.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Disponiveis" />
-            <JFXTextField fx:id="campoTitulo" labelFloat="true" layoutX="325.0" layoutY="203.0" prefHeight="38.0" prefWidth="200.0" promptText="Titulo" />
-            <JFXTextField fx:id="campoDescricao" labelFloat="true" layoutX="97.0" layoutY="263.0" prefHeight="38.0" prefWidth="200.0" promptText="Descrição" />
-            <JFXTextField fx:id="campoTipo" labelFloat="true" layoutX="325.0" layoutY="263.0" prefHeight="38.0" prefWidth="200.0" promptText="Tipo" />
-            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="400.0" prefWidth="600.0">
+            <JFXTextField fx:id="campoTitulo" labelFloat="true" layoutX="93.0" layoutY="71.0" prefHeight="38.0" prefWidth="424.0" promptText="Titulo" />
+            <JFXTextField fx:id="campoEstante" labelFloat="true" layoutX="93.0" layoutY="131.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Estante" />
+            <JFXTextField fx:id="campoExemplares" labelFloat="true" layoutX="321.0" layoutY="131.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Exemplares" />
+            <JFXTextField fx:id="campoDisponiveis" labelFloat="true" layoutX="93.0" layoutY="191.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Disponiveis" />
+            <JFXTextField fx:id="campoCodBarras" labelFloat="true" layoutX="321.0" layoutY="194.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Cod Barras" />
+            <JFXTextField fx:id="campoDescricao" labelFloat="true" layoutX="93.0" layoutY="251.0" prefHeight="38.0" prefWidth="424.0" promptText="Descrição" />
+            <JFXToggleButton layoutX="84.0" layoutY="307.0" prefHeight="58.0" prefWidth="157.0" text="CD" textFill="#ffff8d">
+               <toggleGroup>
+                  <ToggleGroup fx:id="tipomaterial" />
+               </toggleGroup>
+            </JFXToggleButton>
+            <JFXToggleButton layoutX="227.0" layoutY="307.0" prefHeight="58.0" prefWidth="157.0" text="DVD" textFill="#ffff8d" toggleGroup="$tipomaterial" />
+            <JFXToggleButton layoutX="360.0" layoutY="307.0" prefHeight="58.0" prefWidth="157.0" text="FITA" textFill="#ffff8d" toggleGroup="$tipomaterial" />
+            <Button layoutX="84.0" layoutY="375.0" mnemonicParsing="false" onAction="#cadastrarMatEspecial" prefHeight="25.0" prefWidth="210.0" text="Cadastrar" />
+            <Button fx:id="botaoCancelar" layoutX="307.0" layoutY="375.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="210.0" text="Fechar" />
+            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" layoutY="439.0" prefWidth="600.0">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>

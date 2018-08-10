@@ -6,9 +6,8 @@ public class Livro extends AbstractInformacional {
 	private Integer ano;
 	private Integer volume;
 	private Integer edicao;
-	private String editora;
+	private Editora editora;
 	private Autor autor;
-	
 
 	public Autor getAutor() {
 		return autor;
@@ -50,11 +49,11 @@ public class Livro extends AbstractInformacional {
 		this.edicao = edicao;
 	}
 
-	public String getEditora() {
+	public Editora getEditora() {
 		return editora;
 	}
 
-	public void setEditora(String editora) {
+	public void setEditora(Editora editora) {
 		this.editora = editora;
 	}
 

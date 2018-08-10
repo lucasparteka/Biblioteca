@@ -4,14 +4,12 @@ import Controller.AcoesLivro;
 import Model.Livro;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
-
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -20,47 +18,50 @@ import javafx.scene.control.TextField;
  */
 public class InformacoesLivroController implements Initializable {
 
-    AcoesLivro cadastrarLivro;
+    private AcoesLivro acoesLivro;
+    private Livro livro;
 
     @FXML
-    private TextField campoTitulo;
+    private JFXTextField campoID;
 
     @FXML
-    private TextField campoISBN;
+    private JFXTextField campoTitulo;
 
     @FXML
-    private TextField campoAno;
+    private JFXTextField campoAutor;
 
     @FXML
-    private TextField campoVolume;
+    private JFXTextField campoEditora;
 
     @FXML
-    private TextField campoEdicao;
+    private JFXTextField campoAno;
 
     @FXML
-    private TextField campoEditora;
+    private JFXTextField campoExemplares;
 
     @FXML
-    private TextField campoID;
+    private JFXTextField campoDisponiveis;
 
     @FXML
-    private TextField campoCodBarras;
+    private JFXTextField campoEdicao;
 
     @FXML
-    private TextField campoEstante;
+    private JFXTextField campoVolume;
 
     @FXML
-    private TextField campoExemplares;
+    private JFXTextField campoCodBarras;
+
+    @FXML
+    private JFXTextField campoISBN;
+
+    @FXML
+    private Button botaoSalvar;
 
     @FXML
     private Button botaoEditar;
 
     @FXML
-    private TextField campoDisponiveis;
-
-    @FXML
-    private Button botaoSalvar;
-
+    private JFXTextField campoEstante;
 
     @FXML
     void cancelarAcao(ActionEvent event) {
@@ -75,37 +76,27 @@ public class InformacoesLivroController implements Initializable {
     @FXML
     void pesquisarLivro(ActionEvent event) {
 
-        Long IdLong = Long.parseLong(campoID.getText());
-        Livro livro = cadastrarLivro.pequisar(IdLong);
-
+        livro = acoesLivro.pequisar(Long.parseLong(campoID.getText()));
         if(livro == null) {
         	JOptionPane.showMessageDialog(null, "Nenhum livro encontrado com esse id");
         } else {
-        	String edicaoString = Integer.toString(livro.getEdicao());
-            String volumeString = Integer.toString(livro.getVolume());
-            String anoString = Integer.toString(livro.getAno());
-            String dispString = Integer.toString(livro.getDisponiveis());
-            String isbnString = Integer.toString(livro.getISBN());
-            String estanteString = Integer.toString(livro.getEstante());
-            String exemplaresString = Integer.toString(livro.getExemplares());
-
             campoTitulo.setText(livro.getTitulo());
             campoCodBarras.setText(livro.getCodigoBarras());
-            campoAno.setText(anoString);
+            campoAno.setText(Integer.toString(livro.getAno()));
             campoCodBarras.setText(livro.getCodigoBarras());
-            campoEdicao.setText(edicaoString);
-            campoEditora.setText(livro.getEditora());
-            campoEstante.setText(estanteString);
-            campoExemplares.setText(exemplaresString);
-            campoISBN.setText(isbnString);
+            campoEdicao.setText(Integer.toString(livro.getEdicao()));
+            campoEditora.setText(livro.getEditora().getNome());
+            campoEstante.setText(Integer.toString(livro.getEstante()));
+            campoExemplares.setText(Integer.toString(livro.getExemplares()));
+            campoISBN.setText(Integer.toString(livro.getISBN()));
             campoTitulo.setText(livro.getTitulo());
-            campoVolume.setText(volumeString);
-            campoDisponiveis.setText(dispString);
-
+            campoVolume.setText(Integer.toString(livro.getVolume()));
+            campoDisponiveis.setText(Integer.toString(livro.getDisponiveis()));
+            campoAutor.setText(livro.getAutor().getNome());
+            
             botaoEditar.setDisable(false);
+            campoID.setEditable(false);
         }
-        
-
     }
 
     @FXML
@@ -115,10 +106,9 @@ public class InformacoesLivroController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cadastrarLivro = new AcoesLivro();
+        acoesLivro = new AcoesLivro();
         botaoEditar.setDisable(true);
         botaoSalvar.setDisable(true);
-
     }
 
 }

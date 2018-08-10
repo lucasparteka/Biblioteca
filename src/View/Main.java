@@ -15,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class Main extends Application {
 
-    // Stage stage;
     public static void main(String[] args) {
         launch(args);
     }
@@ -170,7 +169,7 @@ public class Main extends Application {
                 try {
                     root = FXMLLoader.load(getClass().getClassLoader().getResource("View/InformacoesPessoa.fxml"));
                     Stage stage = new Stage();
-                    stage.setTitle("CADASTRAR NOVO LIVRO");
+                    stage.setTitle("INFORMAÇÕES USUARIO");
                     stage.setScene(new Scene(root));
                     stage.show();
                 } catch (IOException e) {
@@ -180,6 +179,102 @@ public class Main extends Application {
 
             }
         });
+        
+        s4button3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root;
+                try {
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("View/InformacoesAutor.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("INFORMAÇÕES AUTOR");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        
+        s4button4.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root;
+                try {
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("View/InformacoesLivro.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("INFORMAÇÕES LIVRO");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        
+        s4button5.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root;
+                try {
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("View/InformacoesPeriodico.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("INFORMAÇÕES PERIODICO");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        
+        s4button6.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root;
+                try {
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("View/InformacoesMatEspecial.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("INFORMAÇÕES MATERIAL ESPECIAL");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        
+        s4button7.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root;
+                try {
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("View/InformacoesEditora.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("INFORMAÇÕES EDITORA");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        
 
         JFXNodesList nodesList4 = new JFXNodesList();
         nodesList4.setSpacing(20);
@@ -194,9 +289,7 @@ public class Main extends Application {
 
         JFXButton sbutton1 = new JFXButton("EMPRESTIMOS");
         JFXButton sbutton2 = new JFXButton("NOVO EMPRESTIMO");
-        //JFXButton sbutton3 = new JFXButton("NOVA DEDOLUÇÃO");
         JFXButton sbutton4 = new JFXButton("LISTAR EMPRESTIMOS");
-        JFXButton sbutton5 = new JFXButton("LISTAR DEVOLUÇÕES");
 
         sbutton2.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -232,23 +325,6 @@ public class Main extends Application {
             }
         });
 
-        sbutton5.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Parent root;
-                try {
-                    root = FXMLLoader.load(getClass().getClassLoader().getResource("View/TabelaDevolucoes.fxml"));
-                    Stage stage = new Stage();
-                    stage.setTitle("DEVOLUÇÕES");
-                    stage.setScene(new Scene(root));
-                    stage.show();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-
         JFXNodesList nodesList2 = new JFXNodesList();
         nodesList2.setSpacing(20);
         // init nodes
@@ -256,8 +332,6 @@ public class Main extends Application {
         nodesList2.addAnimatedNode(sbutton2);
         //nodesList2.addAnimatedNode(sbutton3);
         nodesList2.addAnimatedNode(sbutton4);
-        nodesList2.addAnimatedNode(sbutton5);
-
         nodesList2.setRotate(0);
 
         JFXButton button1 = new JFXButton("VAMOS COMEÇAR");

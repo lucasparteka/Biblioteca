@@ -205,7 +205,7 @@ public class RealizarEmprestimoController implements Initializable {
 
         Long idLong = Long.parseLong(campoID.getText());
         realizarEmprestimo = new AcoesEmprestimo();
-        realizarEmprestimo.novoEmprestimo(abstractInformacional, idLong, "hoje", "Amanha", usuario);
+        //realizarEmprestimo.novoEmprestimo(abstractInformacional, idLong, "hoje", "Amanha", usuario);
 
     }
 

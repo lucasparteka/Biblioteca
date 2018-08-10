@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 public class TabelaAutoresController implements Initializable{
 	
-	private AcoesAutor autoresController;
+	private AcoesAutor acoesAutor;
 	private ObservableList<Autor> observableAutores;
 	private Autor autorSelecionado;
 	private ArrayList<Autor> listAutores = new ArrayList<>();
@@ -69,8 +69,8 @@ public class TabelaAutoresController implements Initializable{
     	colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	colunaSobrenome.setCellValueFactory(new PropertyValueFactory<>("sobreNome"));
     	
-    	autoresController = new AcoesAutor();
-    	setListAutores(autoresController.retornaAutores());
+    	acoesAutor = new AcoesAutor();
+    	setListAutores(acoesAutor.retornaAutores());
     	observableAutores = FXCollections.observableArrayList(getListAutores());
     	tabelaAutores.setItems(observableAutores);
     	

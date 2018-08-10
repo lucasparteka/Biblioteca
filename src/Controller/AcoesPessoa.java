@@ -12,19 +12,28 @@ public class AcoesPessoa {
 		pessoaDAO = new PessoaDAO();
 	}
 
-	public void realizarCadastro(long id, String nome, String celular, String cpf) {
+	public void realizarCadastro(String nome, String sobrenome, String celular, String cpf) {
 		
 			Pessoa pessoa = new Pessoa();
 			pessoa.setCpf(cpf);
-			pessoa.setId(id);
-			pessoa.setNome(nome);
+			pessoa.setNome(nome + " " + sobrenome);
 			pessoa.setTelefone(celular);
 			
 			pessoaDAO.salvarPessoa(pessoa);
+			
 	}
 	
-	public Pessoa buscarPessoa(){
-		return null;
+	public Pessoa buscarPessoa(String cpf){
+		return pessoaDAO.buscarPessoa(cpf);
 	} 
+	
+	public boolean verificarCadastro(String cpf) {
+		if(pessoaDAO.buscarPessoa(cpf) == null) {
+			return false;
+		} else {
+			return true;
+		}
+		
+	}
 	
 }

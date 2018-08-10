@@ -71,7 +71,7 @@ public class TabelaEmprestimosController implements Initializable {
     	
     	Long idLong = tabelaEmprestimos.getSelectionModel().getSelectedItem().getId();
     	AcoesEmprestimo acoesEmprestimo = new AcoesEmprestimo();
-    	acoesEmprestimo.registrarDevolucao(idLong);
+    	//acoesEmprestimo.registrarDevolucao(idLong);
     	carregarEmprestimos();
     	
     }
@@ -81,7 +81,7 @@ public class TabelaEmprestimosController implements Initializable {
     	
     	Long idLong = tabelaEmprestimos.getSelectionModel().getSelectedItem().getId();
     	AcoesEmprestimo acoesEmprestimo = new AcoesEmprestimo();
-    	acoesEmprestimo.cancelaremprestimo(idLong);
+    	//acoesEmprestimo.cancelaremprestimo(idLong);
     	carregarEmprestimos();
     }
 
@@ -95,7 +95,7 @@ public class TabelaEmprestimosController implements Initializable {
 		colunaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 
 		emprestimoDAO = new EmprestimoDAO();
-		setListEmprestimosTabela(emprestimoDAO.retornaEmprestimosTabela());
+		//setListEmprestimosTabela(emprestimoDAO.retornaEmprestimosTabela());
 		observableEmprestimo = FXCollections.observableArrayList(listEmprestimosTabela);
 		tabelaEmprestimos.setItems(observableEmprestimo);
 	}

@@ -29,6 +29,10 @@ public class Autor {
     public void setId(long id) {
         this.id = id;
     }
-    
+
+	@Override
+	public String toString() {
+		return "Autor [nome=" + nome + ", sobreNome=" + sobreNome + ", id=" + id + "]";
+	}    
 
 }

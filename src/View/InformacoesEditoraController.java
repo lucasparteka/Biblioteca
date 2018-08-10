@@ -2,6 +2,7 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.jfoenix.controls.JFXTextField;
 import Controller.AcoesEditora;
 import Model.Editora;
 import javafx.event.ActionEvent;
@@ -9,21 +10,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 public class InformacoesEditoraController implements Initializable{
 	
-	Editora editora;
-	AcoesEditora cadEditora;
+	private Editora editora;
+	private AcoesEditora acoesEditora;
 
 	@FXML
-    private TextField CampoNomeEditora;
+    private JFXTextField campoNomeEditora;
 
     @FXML
-    private TextField campoNacionalidade;
-
+    private JFXTextField campoNacionalidade;
+    
     @FXML
-    private TextField campoID;
+    private JFXTextField campoID;
 
     @FXML
     private Button botaoEditar;
@@ -47,15 +47,17 @@ public class InformacoesEditoraController implements Initializable{
     @FXML
     void pesquisarEditora(ActionEvent event) {
     	
-    	long idLong = Long.parseLong(campoID.getText());
-    	cadEditora = new AcoesEditora();
-    	editora = cadEditora.pesquisar(idLong);
+    	acoesEditora = new AcoesEditora();
+    	//editora = new Editora();
+    	editora = acoesEditora.pesquisar(Long.parseLong(campoID.getText()));
     	
     	if(editora == null) {
     		labelStatus.setText("Editora não encontrada!");
     	} else {
     		labelStatus.setText("");
-    		CampoNomeEditora.setText(editora.getNome());
+    		campoNomeEditora.setText(editora.getNome());
+    		campoNacionalidade.setText(editora.getNacionalidade());
+    		labelStatus.setText("Editora localizada");
     	}
     	
     }

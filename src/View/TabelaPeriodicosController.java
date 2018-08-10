@@ -109,7 +109,7 @@ public class TabelaPeriodicosController implements Initializable{
     	colunaVolume.setCellValueFactory(new PropertyValueFactory<>("volume"));
     	
     	periodicoDAO = new PeriodicoDAO();
-    	setListPeriodico(periodicoDAO.retornaPeriodicos());
+    	setListPeriodico(periodicoDAO.buscarPeriodicos());
     	observablePeriodico = FXCollections.observableArrayList(getListPeriodico());
     	tabelaPeriodico.setItems(observablePeriodico);
 

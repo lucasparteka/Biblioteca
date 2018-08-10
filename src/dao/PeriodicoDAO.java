@@ -1,34 +1,103 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import Model.Periodico;
 
 public class PeriodicoDAO {
 
-	private static Map<Long, Periodico> mapPeriodico = new HashMap<Long, Periodico>();
+	private Connection connect;
+	private Periodico periodico;
 
-	public Periodico getMapPeriodico(long id) {
-		return mapPeriodico.get(id);
+	public void salvarPeriodico(Periodico periodico) {
+
+		connect = ConnectionFactory.getConexao();
+		String sql = "insert into periodicos (titulo, codbarras, estante, exemplares, disponiveis, issn, volume, ano) values (?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement stat = null;
+
+		try {
+			stat = connect.prepareStatement(sql);
+			stat.setString(1, periodico.getTitulo());
+			stat.setString(2, periodico.getCodigoBarras());
+			stat.setInt(3, periodico.getEstante());
+			stat.setInt(4, periodico.getExemplares());
+			stat.setInt(5, periodico.getDisponiveis());
+			stat.setInt(6, periodico.getIssn());
+			stat.setInt(7, periodico.getVolume());
+			stat.setInt(8, periodico.getAno());
+			stat.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat);
+		}
+
 	}
 
-	public void addPeriodico(Periodico periodico) {
-		PeriodicoDAO.mapPeriodico.put(periodico.getId(), periodico);
-	}
+	public Periodico buscarPeriodico(String titulo) {
+		connect = ConnectionFactory.getConexao();
+		String sql = "select * from periodicos where titulo = ?";
+		PreparedStatement stat = null;
+		ResultSet result = null;
 
-	public ArrayList<Periodico> retornaPeriodicos(){
-		Collection<Periodico> values = mapPeriodico.values();
-		return new ArrayList<>(values);
-		                         
+		try {
+			stat = connect.prepareStatement(sql);
+			stat.setString(1, titulo);
+			result = stat.executeQuery();
+			while (result.next()) {
+				periodico = new Periodico();
+				periodico.setAno(result.getInt("ano"));
+				periodico.setCodigoBarras(result.getString("codbarras"));
+				periodico.setDisponiveis(result.getInt("disponiveis"));
+				periodico.setEstante(result.getInt("estante"));
+				periodico.setExemplares(result.getInt("exemplares"));
+				periodico.setIssn(result.getInt("issn"));
+				periodico.setTitulo(result.getString("titulo"));
+				periodico.setVolume(result.getInt("volume"));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat, result);
+		}
+
+		return periodico;
 	}
 	
-	public void reduzirDisponiveis(Long id) {
-		mapPeriodico.get(id).setDisponiveis(mapPeriodico.get(id).getDisponiveis() - 1);
-	}
-	
-	public void aumentarDisponiveis(Long id) {
-		mapPeriodico.get(id).setDisponiveis(mapPeriodico.get(id).getDisponiveis() + 1);
+	public ArrayList<Periodico> buscarPeriodicos(){
+		connect = ConnectionFactory.getConexao();
+		String sql = "select * from periodicos";
+		ArrayList<Periodico> listPeriodico = new ArrayList<>();
+		PreparedStatement stat = null;
+		ResultSet result = null;
+		
+		try {
+			stat = connect.prepareStatement(sql);
+			result = stat.executeQuery();
+			while(result.next()) {
+				periodico = new Periodico();
+				periodico.setAno(result.getInt("ano"));
+				periodico.setCodigoBarras(result.getString("codbarras"));
+				periodico.setDisponiveis(result.getInt("disponiveis"));
+				periodico.setEstante(result.getInt("estante"));
+				periodico.setExemplares(result.getInt("exemplares"));
+				periodico.setIssn(result.getInt("issn"));
+				periodico.setTitulo(result.getString("titulo"));
+				periodico.setVolume(result.getInt("volume"));
+				
+				listPeriodico.add(periodico);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat, result);
+		}
+		
+		return listPeriodico;
 	}
 }

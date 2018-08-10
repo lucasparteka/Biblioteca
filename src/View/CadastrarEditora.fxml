@@ -9,21 +9,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarEditoraController">
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarEditoraController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/application.css">
+      <Pane prefHeight="350.0" prefWidth="600.0" stylesheets="@../style/application.css">
          <children>
-            <JFXTextField fx:id="CampoNomeEditora" labelFloat="true" layoutX="185.0" layoutY="80.0" onKeyPressed="#somenteLetrasNome" prefHeight="38.0" prefWidth="232.0" promptText="Nome da editora" />
-            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="183.0" layoutY="140.0" onKeyPressed="#restrictNumbersOnly" prefHeight="38.0" prefWidth="232.0" promptText="ID" />
-            <JFXToggleButton layoutX="141.0" layoutY="200.0" selected="true" text="Nacional" textFill="#ffff8d">
+            <JFXTextField fx:id="campoNomeEditora" labelFloat="true" layoutX="184.0" layoutY="71.0" prefHeight="38.0" prefWidth="232.0" promptText="Nome da editora" />
+            <JFXToggleButton layoutX="157.0" layoutY="131.0" selected="true" text="Nacional" textFill="#ffff8d">
                <toggleGroup>
                   <ToggleGroup fx:id="nacionalidade" />
                </toggleGroup>
             </JFXToggleButton>
-            <JFXToggleButton layoutX="288.0" layoutY="200.0" text="Internacional" textFill="#ffff8d" toggleGroup="$nacionalidade" />
-            <Button fx:id="botaoCancelar" layoutX="317.0" layoutY="280.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="200.0" stylesheets="@../style/application.css" text="Cancelar" />
-            <Button layoutX="83.0" layoutY="280.0" mnemonicParsing="false" onAction="#cadastrarEditora" prefHeight="25.0" prefWidth="200.0" stylesheets="@../style/application.css" text="Cadastrar" />
-            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="348.0" prefWidth="600.0">
+            <JFXToggleButton layoutX="304.0" layoutY="131.0" text="Internacional" textFill="#ffff8d" toggleGroup="$nacionalidade" />
+            <Button layoutX="83.0" layoutY="207.0" mnemonicParsing="false" onAction="#cadastrarEditora" prefHeight="25.0" prefWidth="200.0" stylesheets="@../style/application.css" text="Cadastrar" />
+            <Button fx:id="botaoCancelar" layoutX="317.0" layoutY="207.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="200.0" stylesheets="@../style/application.css" text="Fechar" />
+            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="282.0" prefWidth="600.0">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>

@@ -9,34 +9,33 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="700.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarLivroController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="700.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CadastrarLivroController">
    <children>
       <Pane prefHeight="650.0" prefWidth="700.0">
          <children>
-            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="143.0" layoutY="80.0" onKeyPressed="#somenteNumeros" promptText="ID" />
-            <Button fx:id="botaoCancelar" layoutX="374.0" layoutY="520.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="210.0" text="Cancelar" />
-            <JFXTextField fx:id="campoCodBarras" labelFloat="true" layoutX="388.0" layoutY="80.0" onKeyPressed="#somenteNumeros" promptText="Cod Barras" />
+            <JFXTextField fx:id="campoTitulo" labelFloat="true" layoutX="143.0" layoutY="92.0" prefHeight="38.0" prefWidth="440.0" promptText="Titulo" />
             <JFXTextField fx:id="campoEstante" labelFloat="true" layoutX="143.0" layoutY="140.0" onKeyPressed="#somenteNumeros" promptText="Estante" />
             <JFXTextField fx:id="campoExemplares" labelFloat="true" layoutX="388.0" layoutY="140.0" onKeyPressed="#somenteNumeros" promptText="Exemplares" />
-            <JFXTextField fx:id="campoTitulo" labelFloat="true" layoutX="388.0" layoutY="200.0" promptText="Titulo" />
             <JFXTextField fx:id="campoDisponiveis" labelFloat="true" layoutX="143.0" layoutY="200.0" onKeyPressed="#somenteNumeros" promptText="Disponiveis" />
+            <JFXTextField fx:id="campoCodBarras" labelFloat="true" layoutX="388.0" layoutY="200.0" onKeyPressed="#somenteNumeros" promptText="Cod Barras" />
             <JFXTextField fx:id="campoISBN" labelFloat="true" layoutX="143.0" layoutY="260.0" onKeyPressed="#somenteNumeros" promptText="ISBN" />
             <JFXTextField fx:id="campoAno" labelFloat="true" layoutX="388.0" layoutY="260.0" onKeyPressed="#somenteNumeros" promptText="Ano" />
             <JFXTextField fx:id="campoVolume" labelFloat="true" layoutX="143.0" layoutY="320.0" onKeyPressed="#somenteNumeros" promptText="Volume" />
             <JFXTextField fx:id="campoEdicao" labelFloat="true" layoutX="388.0" layoutY="320.0" onKeyPressed="#somenteNumeros" promptText="Edição" />
             <JFXTextField fx:id="campoEditora" disable="true" editable="false" labelFloat="true" layoutX="143.0" layoutY="380.0" promptText="..." />
-            <JFXTextField fx:id="campoNomeAutor" disable="true" editable="false" labelFloat="true" layoutX="143.0" layoutY="440.0" promptText="..." />
             <JFXButton layoutX="355.0" layoutY="380.0" onAction="#localizarEditora" prefHeight="40.0" prefWidth="232.0" text="Selecionar uma editora">
                <graphic>
                   <FontAwesomeIconView glyphName="SEARCH" size="20" wrappingWidth="23.0" />
                </graphic>
             </JFXButton>
+            <JFXTextField fx:id="campoNomeAutor" disable="true" editable="false" labelFloat="true" layoutX="143.0" layoutY="440.0" promptText="..." />
             <JFXButton layoutX="355.0" layoutY="440.0" onAction="#localizarAutor" prefHeight="40.0" prefWidth="232.0" text="Selecionar um Autor">
                <graphic>
                   <FontAwesomeIconView glyphName="SEARCH" size="20" wrappingWidth="23.0" />
                </graphic>
             </JFXButton>
             <Button layoutX="143.0" layoutY="520.0" mnemonicParsing="false" onAction="#cadastrarLivro" prefHeight="25.0" prefWidth="210.0" text="Cadastrar" />
+            <Button fx:id="botaoCancelar" layoutX="374.0" layoutY="520.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="210.0" text="Fechar" />
             <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="593.0" prefWidth="700.0">
                <font>
                   <Font name="System Italic" size="16.0" />

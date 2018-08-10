@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import Model.Autor;
+import Model.Editora;
 import Model.Livro;
 import dao.LivroDAO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,6 +77,9 @@ public class TabelaLivrosController implements Initializable {
 
     @FXML
     private TableColumn<Livro, String> colunaEditora;
+    
+    @FXML
+    private TableColumn<Livro, String> colunaAutor;
 
     @FXML
     private Button botaoSelecionar;
@@ -96,18 +103,20 @@ public class TabelaLivrosController implements Initializable {
     public void carregarTabelaLivros() {
     	
     	colunaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-    	colunaEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
     	colunaAno.setCellValueFactory(new PropertyValueFactory<>("ano"));
     	colunaCodBarras.setCellValueFactory(new PropertyValueFactory<>("codigoBarras"));
+    	colunaExemplares.setCellValueFactory(new PropertyValueFactory<>("exemplares"));
     	colunaDisponiveis.setCellValueFactory(new PropertyValueFactory<>("disponiveis"));
     	colunaEdicao.setCellValueFactory(new PropertyValueFactory<>("edicao"));
     	colunaEstante.setCellValueFactory(new PropertyValueFactory<>("estante"));
     	colunaID.setCellValueFactory(new PropertyValueFactory<>("id"));
     	colunaISBN.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
-    	
+    	colunaAutor.setCellValueFactory(cellDataAutor -> new SimpleStringProperty(cellDataAutor.getValue().getAutor().getNome()));
+    	colunaEditora.setCellValueFactory(cellDataEditora -> new SimpleStringProperty(cellDataEditora.getValue().getEditora().getNome()));
+
     	
     	livroDAO = new LivroDAO();
-    	setListLivro(livroDAO.retornaLivros());
+    	setListLivro(livroDAO.retornaTodosLivros());
     	observableLivro = FXCollections.observableArrayList(getListLivro());
     	tabelaLivros.setItems(observableLivro);
     	

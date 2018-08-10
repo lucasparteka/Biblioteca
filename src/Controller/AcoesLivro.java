@@ -1,44 +1,45 @@
 package Controller;
 
 import Model.Livro;
+import dao.AutorDAO;
+import dao.EditoraDAO;
 import dao.LivroDAO;
-
-import javax.swing.JOptionPane;
 
 public class AcoesLivro {
 	
 	private LivroDAO livroDAO;
+	private EditoraDAO editoraDAO;
+	private AutorDAO autorDAO;
 	
 	public AcoesLivro() {
 		livroDAO  = new LivroDAO();		
 	}
 
-	public void realizarCadastro(long id, String codigoBarras, int estante, int exemplares, int disponiveis,
-			String titulo, int isbn, int ano, int volume, int edicao, String editora) {
+	public void realizarCadastro(String codigoBarras, int estante, int exemplares, int disponiveis,
+			String titulo, int isbn, int ano, int volume, int edicao, Long idEditora, Long idAutor) {
 		
-		if (livroDAO.getLivro(id) != null) {
-			JOptionPane.showMessageDialog(null, "Esse Id ja existe");
-		} else { 
 			Livro novoLivro = new Livro();
+			editoraDAO = new EditoraDAO();
+			autorDAO = new AutorDAO();
+			
 			novoLivro.setCodigoBarras(codigoBarras);
 			novoLivro.setEstante(estante);
 			novoLivro.setExemplares(exemplares);
 			novoLivro.setDisponiveis(disponiveis);
-			novoLivro.setId(id);
 			novoLivro.setTitulo(titulo);
 			novoLivro.setISBN(isbn);
 			novoLivro.setAno(ano);
 			novoLivro.setVolume(volume);
 			novoLivro.setEdicao(edicao);
-			novoLivro.setEditora(editora);
+			novoLivro.setEditora(editoraDAO.buscarEditora(idEditora));
+			novoLivro.setAutor(autorDAO.buscarAutor(idAutor));
 			
-			livroDAO.addLivro(novoLivro);
+			livroDAO.salvarLivro(novoLivro);
 		}
 
-	}
 
-	public Livro pequisar(long id) {
-		return livroDAO.getLivro(id);
+	public Livro pequisar(Long id) {
+		return livroDAO.retornaLivro(id);
 	}
 	
 

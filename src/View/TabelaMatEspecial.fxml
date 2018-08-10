@@ -6,24 +6,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TabelaMatEspecialController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TabelaMatEspecialController">
    <children>
-      <Pane layoutX="3.0" layoutY="3.0" prefHeight="800.0" prefWidth="800.0">
+      <Pane layoutX="3.0" layoutY="3.0" prefHeight="500.0" prefWidth="850.0" stylesheets="@../style/application.css">
          <children>
-            <TableView fx:id="tabelaMatEspecial" layoutX="-5.0" layoutY="-3.0" prefHeight="656.0" prefWidth="806.0">
+            <TableView fx:id="tabelaMatEspecial" layoutX="-2.0" layoutY="-6.0" prefHeight="400.0" prefWidth="855.0">
                <columns>
-                  <TableColumn fx:id="colunaID" prefWidth="58.0" text="ID" />
-                  <TableColumn fx:id="colunaTitulo" prefWidth="143.0" text="Titulo" />
-                  <TableColumn fx:id="colunaCodBarras" prefWidth="77.0" text="Cod Barras" />
+                  <TableColumn fx:id="colunaID" prefWidth="47.0" text="ID" />
+                  <TableColumn fx:id="colunaTitulo" prefWidth="130.0" text="Titulo" />
+                  <TableColumn fx:id="colunaCodBarras" prefWidth="101.0" text="Cod Barras" />
                   <TableColumn fx:id="colunaEstante" prefWidth="78.0" text="Estante" />
-                  <TableColumn fx:id="colunaExemplares" prefWidth="84.0" text="Exemplares" />
-                  <TableColumn fx:id="colunaDisponiveis" prefWidth="102.0" text="Disponíveis" />
-                  <TableColumn fx:id="colunaDescricao" prefWidth="179.0" text="Descrição" />
-                  <TableColumn fx:id="colunaTipo" prefWidth="78.0" text="Tipo" />
+                  <TableColumn fx:id="colunaExemplares" prefWidth="95.0" text="Exemplares" />
+                  <TableColumn fx:id="colunaDisponiveis" prefWidth="123.0" text="Disponíveis" />
+                  <TableColumn fx:id="colunaDescricao" prefWidth="217.0" text="Descrição" />
+                  <TableColumn fx:id="colunaTipo" prefWidth="58.0" text="Tipo" />
                </columns>
             </TableView>
-            <Button fx:id="botaoSelecionar" layoutX="208.0" layoutY="707.0" mnemonicParsing="false" onAction="#selecionarMatespecial" prefHeight="25.0" prefWidth="159.0" text="Selecionar livro" />
-            <Button layoutX="400.0" layoutY="707.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="159.0" text="Fechar" />
+            <Button fx:id="botaoSelecionar" layoutX="235.0" layoutY="425.0" mnemonicParsing="false" onAction="#selecionarMatespecial" prefHeight="40.0" prefWidth="187.0" text="Selecionar Material" />
+            <Button layoutX="446.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="159.0" text="Fechar" />
          </children>
       </Pane>
    </children>

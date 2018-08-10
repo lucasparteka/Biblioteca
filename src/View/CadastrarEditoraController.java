@@ -23,13 +23,10 @@ import javafx.stage.Stage;
  */
 public class CadastrarEditoraController implements Initializable {
 
-    AcoesEditora cadEditora;
+    AcoesEditora acoesEditora;
 
     @FXML
-    private JFXTextField CampoNomeEditora;
-
-    @FXML
-    private JFXTextField campoID;
+    private JFXTextField campoNomeEditora;
 
     @FXML
     private ToggleGroup nacionalidade;
@@ -40,36 +37,16 @@ public class CadastrarEditoraController implements Initializable {
     @FXML
     private Label labelStatus;
 
-    public void somenteLetrasNome(KeyEvent keyEvent) {
-        CampoNomeEditora.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z*")) {
-                CampoNomeEditora.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
-            }
-        });
-    }
-    
-    
-    public void restrictNumbersOnly(KeyEvent keyEvent) {
-        campoID.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                campoID.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-    }
-
     @FXML
     void cadastrarEditora(ActionEvent event) {
 
-        if (campoID.getText().isEmpty() || CampoNomeEditora.getText().isEmpty()) {
+        if (campoNomeEditora.getText().isEmpty()) {
             labelStatus.setText("Preencha todos os campos");
         } else {
-            long idLong = Long.parseLong(campoID.getText());
-            
             ToggleButton selecionado = (ToggleButton) nacionalidade.getSelectedToggle();
-            cadEditora.realizarCadastro(CampoNomeEditora.getText(), selecionado.getText(), idLong);
+            acoesEditora.realizarCadastro(campoNomeEditora.getText(), selecionado.getText());
             labelStatus.setText("Cadastrado com sucesso");
-            campoID.setText("");
-            CampoNomeEditora.setText("");
+            campoNomeEditora.setText("");
         }
 
     }
@@ -82,7 +59,7 @@ public class CadastrarEditoraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cadEditora = new AcoesEditora();
+        acoesEditora = new AcoesEditora();
     }
 
 }

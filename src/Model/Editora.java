@@ -30,4 +30,10 @@ public class Editora {
         this.id = id;
     }
 
+	@Override
+	public String toString() {
+		return "Editora [nome=" + nome + ", nacionalidade=" + nacionalidade + ", id=" + id + "]";
+	}
+    
+
 }
