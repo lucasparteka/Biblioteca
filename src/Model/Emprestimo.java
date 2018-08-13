@@ -1,12 +1,23 @@
 package Model;
 
+import java.sql.Date;
+
 public class Emprestimo {
 	
 	private AbstractInformacional informacional;
 	private Long id;
-	private String dataEmprestimo;
-	private String dataDevolucao;
+	private Date dataEmprestimo;
+	private Date dataDevolucao;
 	private Pessoa pessoa;
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -24,22 +35,6 @@ public class Emprestimo {
 		this.id = id;
 	}
 
-	public String getDataEmprestimo() {
-		return dataEmprestimo;
-	}
-
-	public void setDataEmprestimo(String dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
-	}
-
-	public String getDataDevolucao() {
-		return dataDevolucao;
-	}
-
-	public void setDataDevolucao(String dataDevolucao) {
-		this.dataDevolucao = dataDevolucao;
-	}
-
 	public AbstractInformacional getInformacional() {
 		return informacional;
 	}
@@ -47,7 +42,22 @@ public class Emprestimo {
 	public void setInformacional(AbstractInformacional informacional) {
 		this.informacional = informacional;
 	}
-	
-	
+
+	public Date getDataEmprestimo() {
+		return dataEmprestimo;
+	}
+
+	public void setDataEmprestimo(Date dataEmprestimo) {
+		this.dataEmprestimo = dataEmprestimo;
+	}
+
+	public Date getDataDevolucao() {
+		return dataDevolucao;
+	}
+
+	public void setDataDevolucao(Date dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
+	}
+
 
 }

@@ -50,6 +50,7 @@ public class PeriodicoDAO {
 			result = stat.executeQuery();
 			while (result.next()) {
 				periodico = new Periodico();
+				periodico.setId(result.getLong("id"));
 				periodico.setAno(result.getInt("ano"));
 				periodico.setCodigoBarras(result.getString("codbarras"));
 				periodico.setDisponiveis(result.getInt("disponiveis"));
@@ -81,6 +82,7 @@ public class PeriodicoDAO {
 			result = stat.executeQuery();
 			while(result.next()) {
 				periodico = new Periodico();
+				periodico.setId(result.getLong("id"));
 				periodico.setAno(result.getInt("ano"));
 				periodico.setCodigoBarras(result.getString("codbarras"));
 				periodico.setDisponiveis(result.getInt("disponiveis"));

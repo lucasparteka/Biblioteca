@@ -2,11 +2,14 @@ package View;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -15,6 +18,7 @@ import com.jfoenix.controls.JFXTextField;
 import Controller.AcoesPessoa;
 import Controller.AcoesEmprestimo;
 import Model.AbstractInformacional;
+import Model.Emprestimo;
 import Model.Pessoa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,199 +37,200 @@ import javafx.scene.Node;
 
 public class RealizarEmprestimoController implements Initializable {
 
-    private AcoesPessoa pesquisarUsuario;
-    private Pessoa usuario;
-    //private AcoesEmprestimo realizarEmprestimo;
-    private ObservableList<String> obsTipoMaterial;
-    private ArrayList<String> listTipoMaterial = new ArrayList<>();
-    private AbstractInformacional abstractInformacional;
+	private AcoesPessoa pesquisarUsuario;
+	private Pessoa usuario;
+	private AcoesEmprestimo acoesEmprestimo;
+	private ObservableList<String> obsTipoMaterial;
+	private ArrayList<String> listTipoMaterial = new ArrayList<>();
+	private AbstractInformacional abstractInformacional;
 
-    public AbstractInformacional getAbstractInformacional() {
-        return abstractInformacional;
-    }
+	public AbstractInformacional getAbstractInformacional() {
+		return abstractInformacional;
+	}
 
-    public void setAbstractInformacional(AbstractInformacional abstractInformacional) {
-        this.abstractInformacional = abstractInformacional;
-    }
+	public void setAbstractInformacional(AbstractInformacional abstractInformacional) {
+		this.abstractInformacional = abstractInformacional;
+	}
 
-    public Pessoa getUsuario() {
-        return usuario;
-    }
+	@FXML
+	private JFXTextField campoCPF;
 
-    public void setUsuario(Pessoa usuario) {
-        this.usuario = usuario;
-    }
+	@FXML
+	private Button botaoConfirmarEmp;
 
-    public AcoesPessoa getPesquisarUsuario() {
-        return pesquisarUsuario;
-    }
+	@FXML
+	private Button botaoCancelar;
 
-    public void setPesquisarUsuario(AcoesPessoa pesquisarUsuario) {
-        this.pesquisarUsuario = pesquisarUsuario;
-    }
+	@FXML
+	private Button botaoSelecionarTipo;
 
-    @FXML
-    private JFXTextField campoCPF;
+	@FXML
+	private JFXTextField campoNome;
 
-    @FXML
-    private Button botaoConfirmarEmp;
+	@FXML
+	private JFXComboBox<String> dropTipoMaterial;
 
-    @FXML
-    private Button botaoCancelar;
+	@FXML
+	private JFXTextField campoCodBarras;
 
-    @FXML
-    private Button botaoSelecionarTipo;
+	@FXML
+	private JFXTextField campoTitulo;
 
-    @FXML
-    private JFXTextField campoNome;
+	@FXML
+	private JFXTextField campoID;
 
-    @FXML
-    private JFXComboBox<String> dropTipoMaterial;
+	@FXML
+	private JFXDatePicker barraDataAtual;
 
-    @FXML
-    private JFXTextField campoCodBarras;
+	@FXML
+	private JFXDatePicker barraDataEntrega;
 
-    @FXML
-    private JFXTextField campoTitulo;
+	@FXML
+	private Label labelStatus;
 
-    @FXML
-    private JFXTextField campoID;
+	@FXML
+	public void validarCPF() {
+		ValidarNumeros.validarCpf(campoCPF);
+	}
 
-    @FXML
-    private JFXDatePicker barraDataAtual;
+	@FXML
+	void abirMaterial(ActionEvent event) throws IOException {
 
-    @FXML
-    private JFXDatePicker barraDataEntrega;
+		if (dropTipoMaterial.getSelectionModel().getSelectedItem() == null) {
 
-    @FXML
-    private Label labelStatus;
+		} else if (dropTipoMaterial.getSelectionModel().getSelectedItem().equals("Livro")) {
+			FXMLLoader loader = new FXMLLoader(TabelaLivrosController.class.getResource("TabelaLivros.fxml"));
+			Parent cadastro = loader.load();
+			TabelaLivrosController controller = loader.getController();
+			Stage dialog = new Stage();
+			dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+			dialog.initModality(Modality.WINDOW_MODAL);
+			dialog.setScene(new Scene(cadastro));
+			dialog.showAndWait();
 
-   
-    @FXML
-    public void validarCPF() {
-    	ValidarNumeros.validarCpf(campoCPF);
-    }
+			setAbstractInformacional(controller.getLivroSelecionado());
 
-    @FXML
-    void abirMaterial(ActionEvent event) throws IOException {
+			if (abstractInformacional != null) {
+				campoCodBarras.setText(controller.getLivroSelecionado().getCodigoBarras());
+				campoTitulo.setText(controller.getLivroSelecionado().getTitulo());
+			}
 
-        if (dropTipoMaterial.getSelectionModel().getSelectedItem() == null) {
+		} else if (dropTipoMaterial.getSelectionModel().getSelectedItem().equals("Periodico")) {
 
-        } else if (dropTipoMaterial.getSelectionModel().getSelectedItem().equals("Livro")) {
-            FXMLLoader loader = new FXMLLoader(TabelaLivrosController.class.getResource("TabelaLivros.fxml"));
-            Parent cadastro = loader.load();
-            TabelaLivrosController controller = loader.getController();
-            Stage dialog = new Stage();
-            dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
-            dialog.initModality(Modality.WINDOW_MODAL);
-            dialog.setScene(new Scene(cadastro));
-            dialog.showAndWait();
+			FXMLLoader loader = new FXMLLoader(TabelaPeriodicosController.class.getResource("TabelaPeriodicos.fxml"));
+			Parent cadastro = loader.load();
+			TabelaPeriodicosController controller = loader.getController();
+			Stage dialog = new Stage();
+			dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+			dialog.initModality(Modality.WINDOW_MODAL);
+			dialog.setScene(new Scene(cadastro));
+			dialog.showAndWait();
 
-            setAbstractInformacional(controller.getLivroSelecionado());
+			setAbstractInformacional(controller.getPeriodicoSelecionado());
 
-            if (abstractInformacional != null) {
-                campoCodBarras.setText(controller.getLivroSelecionado().getCodigoBarras());
-                campoTitulo.setText(controller.getLivroSelecionado().getTitulo());
-            }
+			if (abstractInformacional != null) {
+				campoCodBarras.setText(controller.getPeriodicoSelecionado().getCodigoBarras());
+				campoTitulo.setText(controller.getPeriodicoSelecionado().getTitulo());
+			}
 
-        } else if (dropTipoMaterial.getSelectionModel().getSelectedItem().equals("Periodico")) {
+		} else if (dropTipoMaterial.getSelectionModel().getSelectedItem().equals("Material Especial")) {
 
-            FXMLLoader loader = new FXMLLoader(TabelaPeriodicosController.class.getResource("TabelaPeriodicos.fxml"));
-            Parent cadastro = loader.load();
-            TabelaPeriodicosController controller = loader.getController();
-            Stage dialog = new Stage();
-            dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
-            dialog.initModality(Modality.WINDOW_MODAL);
-            dialog.setScene(new Scene(cadastro));
-            dialog.showAndWait();
+			FXMLLoader loader = new FXMLLoader(TabelaPeriodicosController.class.getResource("TabelaMatEspecial.fxml"));
+			Parent cadastro = loader.load();
+			TabelaMatEspecialController controller = loader.getController();
+			Stage dialog = new Stage();
+			dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+			dialog.initModality(Modality.WINDOW_MODAL);
+			dialog.setScene(new Scene(cadastro));
+			dialog.showAndWait();
 
-            setAbstractInformacional(controller.getPeriodicoSelecionado());
+			setAbstractInformacional(controller.getMaterialSelecionado());
 
-            if (abstractInformacional != null) {
-                campoCodBarras.setText(controller.getPeriodicoSelecionado().getCodigoBarras());
-                campoTitulo.setText(controller.getPeriodicoSelecionado().getTitulo());
-            }
+			if (abstractInformacional != null) {
+				campoCodBarras.setText(controller.getMaterialSelecionado().getCodigoBarras());
+				campoTitulo.setText(controller.getMaterialSelecionado().getTitulo());
 
-        } else if (dropTipoMaterial.getSelectionModel().getSelectedItem().equals("Material Especial")) {
+			}
 
-            FXMLLoader loader = new FXMLLoader(TabelaPeriodicosController.class.getResource("TabelaMatEspecial.fxml"));
-            Parent cadastro = loader.load();
-            TabelaMatEspecialController controller = loader.getController();
-            Stage dialog = new Stage();
-            dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
-            dialog.initModality(Modality.WINDOW_MODAL);
-            dialog.setScene(new Scene(cadastro));
-            dialog.showAndWait();
+		}
 
-            setAbstractInformacional(controller.getMaterialSelecionado());
+	}
 
-            if (abstractInformacional != null) {
-                campoCodBarras.setText(controller.getMaterialSelecionado().getCodigoBarras());
-                campoTitulo.setText(controller.getMaterialSelecionado().getTitulo());
+	@FXML
+	void cancelarAcao(ActionEvent event) {
+		Stage stage = (Stage) botaoCancelar.getScene().getWindow();
+		stage.close();
+	}
 
-            }
+	@FXML
+	void pesquisarUsuario(ActionEvent event) {
+		if (campoCPF.getText().isEmpty()) {
+			labelStatus.setText("Digite um CPF");
+		} else {
+			labelStatus.setText("");
+			usuario = new Pessoa();
+			pesquisarUsuario = new AcoesPessoa();
+			usuario = pesquisarUsuario.buscarPessoa(campoCPF.getText());
+			if (usuario == null) {
+				campoCPF.getStylesheets().add(
+						RealizarEmprestimoController.class.getResource("/style/edit_TextField.css").toExternalForm());
+				labelStatus.setText("Cpf não localizado");
+			} else {
+				campoCPF.getStylesheets().add(
+						RealizarEmprestimoController.class.getResource("/style/edit_TextField_1.css").toExternalForm());
+				labelStatus.setText("");
+				campoNome.setText(usuario.getNome());
+			}
+		}
 
-        }
+	}
 
-    }
+	@FXML
+	void realizarEmprestimo(ActionEvent event) {
+		
+		if(usuario == null || campoCodBarras.getText().isEmpty() || barraDataAtual.getValue() == null || barraDataEntrega.getValue() == null) {
+			labelStatus.setText("Preencha todos os campos");
+		} else {
+			labelStatus.setText("");
+			Date dataEmprestimo;
+			Date dataDevolucao;
+			dataEmprestimo = java.sql.Date.valueOf(barraDataAtual.getValue());
+			dataDevolucao = java.sql.Date.valueOf(barraDataEntrega.getValue());
 
-    @FXML
-    void cancelarAcao(ActionEvent event) {
-//        Stage stage = (Stage) botaoCancelar.getScene().getWindow();
-//        stage.close();
-    	//barraDataAtual.getValue().get
-//    	LocalDate localDate = barraDataAtual.getValue();
-//    	Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-//    	Date date = Date.from(instant);
-//    	System.out.println(localDate + "\n" + instant + "\n" + date);
-    }
+			// emprestimo.setDataEmprestimo(dataEmprestimo);
+			// emprestimo.setDataDevolucao(dataDevolucao);
+			// emprestimo.setInformacional(abstractInformacional);
+			// emprestimo.setPessoa(usuario);
+			// emprestimo.setStatus("Em aberto");
 
-    @FXML
-    void pesquisarUsuario(ActionEvent event) {
-        if (campoCPF.getText().isEmpty()) {
-        	labelStatus.setText("Digite um CPF");
-        } else {
-        	labelStatus.setText("");
-            usuario = new Pessoa();
-            pesquisarUsuario = new AcoesPessoa();
-            //setUsuario(pesquisarUsuario.pesquisar(campoCPF.getText()));
-            if (getUsuario() == null) {
-                campoCPF.getStylesheets().add(RealizarEmprestimoController.class.getResource("/style/edit_TextField.css").toExternalForm());
-                labelStatus.setText("Cpf não localizado");
-            } else {
-            	campoCPF.getStylesheets().add(RealizarEmprestimoController.class.getResource("/style/edit_TextField_1.css").toExternalForm());
-            	labelStatus.setText("");
-                campoNome.setText(usuario.getNome());
-                dropTipoMaterial.setDisable(false);
-                botaoSelecionarTipo.setDisable(false);
-            }
-        }
+			// System.out.println(emprestimo.getDataDevolucao());
+			// SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyy");
+			// Date sdd = emprestimo.getDataDevolucao();
+			// System.out.println(dt1.format(sdd));
+			// System.out.println(emprestimo.getDataEmprestimo());
 
-    }
+			acoesEmprestimo = new AcoesEmprestimo();
+			acoesEmprestimo.novoEmprestimo(abstractInformacional, dataEmprestimo, dataDevolucao, usuario, "Em aberto");
+			labelStatus.setText("Emprestimo cadastrado!");
+		}
 
-    @FXML
-    void realizarEmprestimo(ActionEvent event) {
-        Long idLong = Long.parseLong(campoID.getText());
-        //realizarEmprestimo = new AcoesEmprestimo();
-        //realizarEmprestimo.novoEmprestimo(abstractInformacional, idLong, "hoje", "Amanha", usuario);
-    }
+		
+	}
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // botaoConfirmarEmp.setDisable(true);
-        // campoNome.setDisable(true);
-        // campoCodBarras.setDisable(true);
-        // campoTitulo.setDisable(true);
-        // dropTipoMaterial.setDisable(true);
-        // botaoSelecionarTipo.setDisable(true);
-        listTipoMaterial.add("Livro");
-        listTipoMaterial.add("Periodico");
-        listTipoMaterial.add("Material Especial");
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// botaoConfirmarEmp.setDisable(true);
+		// campoNome.setDisable(true);
+		// campoCodBarras.setDisable(true);
+		// campoTitulo.setDisable(true);
+		// dropTipoMaterial.setDisable(true);
+		// botaoSelecionarTipo.setDisable(true);
+		listTipoMaterial.add("Livro");
+		listTipoMaterial.add("Periodico");
+		listTipoMaterial.add("Material Especial");
+		obsTipoMaterial = FXCollections.observableArrayList(listTipoMaterial);
+		dropTipoMaterial.setItems(obsTipoMaterial);
 
-        obsTipoMaterial = FXCollections.observableArrayList(listTipoMaterial);
-
-        dropTipoMaterial.setItems(obsTipoMaterial);
-
-    }
+	}
 
 }

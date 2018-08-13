@@ -1,100 +1,49 @@
 package dao;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import Model.Emprestimo;
-import Model.Livro;
-import Model.MaterialEspecial;
-import Model.Periodico;
-import Pojo.TabelaEmprestimoPojo;
 
 public class EmprestimoDAO {
 	
-	private static Map<Long, Emprestimo> mapEmprestimo = new HashMap<Long, Emprestimo>();
+	private Connection connect = null;
 	
-	public Emprestimo getEmprestimo(Long id) {
-		return mapEmprestimo.get(id);
+	public void salvaremprestimo(Emprestimo emprestimo, long tipoMaterial) {
+		
+		connect = ConnectionFactory.getConexao();
+		PreparedStatement stat = null;
+		String sql = "insert into emprestimos (id_usuario, dataemprestimo, datadevolucao, status, tipo_material, id_material ) values (?, ?, ?, ?, ?, ?)";
+		try {
+			stat = connect.prepareStatement(sql);
+			stat.setLong(1, emprestimo.getPessoa().getId());
+			stat.setDate(2, emprestimo.getDataEmprestimo());
+			stat.setDate(3, emprestimo.getDataDevolucao());
+			stat.setString(4, emprestimo.getStatus());
+			stat.setLong(5, tipoMaterial);
+			stat.setLong(6, emprestimo.getInformacional().getId());
+			stat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat);
+		}
 	}
 	
-//	public void addEmprestimo (Emprestimo emprestimo) {
-//		EmprestimoDAO.mapEmprestimo.put(emprestimo.getId(), emprestimo);
-//		diminuirDisponiveis(emprestimo);
-//	}
-	
-//	public void diminuirDisponiveis(Emprestimo emprestimo) {
-//		
-//		if (emprestimo.getInformacional() instanceof Livro) {
-//			Livro livro  = (Livro) emprestimo.getInformacional(); 
-//			LivroDAO livroDao = new LivroDAO();
-//			livroDao.reduzirDisponiveis(livro.getId());
-//			
-//		} else if(emprestimo.getInformacional() instanceof Periodico) {
-//			Periodico periodico = (Periodico) emprestimo.getInformacional();
-//			PeriodicoDAO periodicoDAO = new PeriodicoDAO();
-//			periodicoDAO.reduzirDisponiveis(periodico.getId());
-//			
-//		} else if(emprestimo.getInformacional() instanceof MaterialEspecial) {
-//			MaterialEspecial materialEspecial = (MaterialEspecial) emprestimo.getInformacional();
-//			MatEspecialDAO matEspecialDAO = new MatEspecialDAO();
-//			matEspecialDAO.reduzirDisponiveis(materialEspecial.getId());
-//		}
+	public void devolverEmprestimo(Long id) {
+		connect = ConnectionFactory.getConexao();
+		PreparedStatement stat = null;
+		String sql = "update emprestimos set status = 'Finalizado' where id = ?";
+		try {
+			stat = connect.prepareStatement(sql);
+			stat.setLong(1, id);
+			stat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat);
+		}
 		
-//	}
-	
-//	public ArrayList<Emprestimo> retornaEmprestimos() {
-//		Collection<Emprestimo> values = mapEmprestimo.values();
-//		return new ArrayList<> (values);
-//	}
-//	
-//	public ArrayList<TabelaEmprestimoPojo> retornaEmprestimosTabela() {
-//		
-//		ArrayList<TabelaEmprestimoPojo> listEmprestimosTabela = new ArrayList<>();
-//
-//		
-//		for (Emprestimo emprestimo : mapEmprestimo.values()) {
-//			
-//			String tipoMaterial = "";
-//			
-//			if (emprestimo.getInformacional() instanceof Livro) {
-//				tipoMaterial = "Livro";
-//			} else if (emprestimo.getInformacional() instanceof Periodico) {
-//				tipoMaterial = "Periodico";
-//			} else if (emprestimo.getInformacional() instanceof MaterialEspecial) {
-//				tipoMaterial = "Mat. Especial";
-//			}
-//			
-//			TabelaEmprestimoPojo tabelaEmprestimoPojo = new TabelaEmprestimoPojo();
-//
-//			tabelaEmprestimoPojo.setTitulo(emprestimo.getInformacional().getTitulo());
-//			tabelaEmprestimoPojo.setDataDevolucao(emprestimo.getDataDevolucao());
-//			tabelaEmprestimoPojo.setDataEmprestimo(emprestimo.getDataEmprestimo());
-//			tabelaEmprestimoPojo.setId(emprestimo.getId());
-//			tabelaEmprestimoPojo.setTipoMaterial(tipoMaterial);
-//			tabelaEmprestimoPojo.setUsuario(emprestimo.getPessoa().getNome());
-//
-//			listEmprestimosTabela.add(tabelaEmprestimoPojo);
-//
-//		}
-//
-//		return listEmprestimosTabela;
-//
-//	}
-//
-//	public void registarDevolucao(Long id) {
-//		DevolucoesDAO devolucoesDAO = new DevolucoesDAO();
-//		devolucoesDAO.addDevolucao(mapEmprestimo.get(id));
-//		mapEmprestimo.remove(id);
-//		
-//	}
-//	
-//	public void cancelarEmprestimo(Long id) {
-//		Emprestimo emprestimo = mapEmprestimo.get(id);
-//		DevolucoesDAO devolucoesDAO = new DevolucoesDAO();
-//		devolucoesDAO.aumentarDisponivel(emprestimo);
-//		mapEmprestimo.remove(id);
-//	}
+	}
 
 }

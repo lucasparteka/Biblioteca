@@ -77,6 +77,7 @@ public class LivroDAO {
 				livro.setId(result.getLong("id_livro"));
 				livro.setISBN(result.getInt("isbn"));
 				livro.setTitulo(result.getString("titulo"));
+				livro.setVolume(result.getInt("volume"));
 				livro.setAutor(autor);
 				livro.setEditora(editora);
 

@@ -7,23 +7,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="700.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.InformacoesPeriodicoController">
+<AnchorPane prefHeight="577.0" prefWidth="650.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.InformacoesPeriodicoController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="700.0">
+      <Pane prefHeight="578.0" prefWidth="650.0">
          <children>
-            <JFXTextField fx:id="campoTitulo" labelFloat="true" layoutX="125.0" layoutY="78.0" prefHeight="38.0" prefWidth="285.0" promptText="Titulo" />
-            <Button layoutX="444.0" layoutY="77.0" mnemonicParsing="false" onAction="#pesquisarPeriodico" prefHeight="25.0" prefWidth="160.0" text="Pesquisar" />
-            <JFXTextField fx:id="campoCodBarras" labelFloat="true" layoutX="124.0" layoutY="153.0" prefHeight="38.0" prefWidth="237.0" promptText="Cod Barras" />
-            <JFXTextField fx:id="campoEstante" editable="false" labelFloat="true" layoutX="409.0" layoutY="153.0" promptText="Estante" />
-            <JFXTextField fx:id="campoExemplares" editable="false" labelFloat="true" layoutX="124.0" layoutY="218.0" prefHeight="38.0" prefWidth="237.0" promptText="Exemplares" />
-            <JFXTextField fx:id="campoDisponiveis" editable="false" labelFloat="true" layoutX="409.0" layoutY="218.0" promptText="Disponiveis" />
-            <JFXTextField fx:id="campoISSN" editable="false" labelFloat="true" layoutX="124.0" layoutY="281.0" prefHeight="38.0" prefWidth="237.0" promptText="Issn" />
-            <JFXTextField fx:id="campoVolume" editable="false" labelFloat="true" layoutX="409.0" layoutY="281.0" promptText="Volume" />
-            <JFXTextField fx:id="campoAno" editable="false" labelFloat="true" layoutX="124.0" layoutY="345.0" promptText="Ano" />
-            <Button fx:id="botaoSalvar" layoutX="101.0" layoutY="438.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="160.0" text="Salvar" />
-            <Button fx:id="botaoEditar" layoutX="282.0" layoutY="438.0" mnemonicParsing="false" onAction="#editarPeriodico" prefHeight="25.0" prefWidth="160.0" text="Editar" />
-            <Button layoutX="462.0" layoutY="438.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="160.0" text="Fechar" />
-            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="516.0" prefHeight="26.0" prefWidth="700.0">
+            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="93.0" layoutY="78.0" prefHeight="38.0" prefWidth="288.0" promptText="ID" />
+            <Button layoutX="401.0" layoutY="77.0" mnemonicParsing="false" onAction="#pesquisarPeriodico" prefHeight="25.0" prefWidth="160.0" text="Pesquisar" />
+            <JFXTextField fx:id="campoTitulo" editable="false" labelFloat="true" layoutX="93.0" layoutY="144.0" prefHeight="38.0" prefWidth="305.0" promptText="Titulo" />
+            <JFXTextField fx:id="campoAno" editable="false" labelFloat="true" layoutX="433.0" layoutY="144.0" prefHeight="37.0" prefWidth="128.0" promptText="Ano" />
+            <JFXTextField fx:id="campoCodBarras" editable="false" labelFloat="true" layoutX="93.0" layoutY="208.0" prefHeight="38.0" prefWidth="237.0" promptText="Cod Barras" />
+            <JFXTextField fx:id="campoEstante" editable="false" labelFloat="true" layoutX="378.0" layoutY="208.0" promptText="Estante" />
+            <JFXTextField fx:id="campoExemplares" editable="false" labelFloat="true" layoutX="93.0" layoutY="273.0" prefHeight="38.0" prefWidth="237.0" promptText="Exemplares" />
+            <JFXTextField fx:id="campoDisponiveis" editable="false" labelFloat="true" layoutX="378.0" layoutY="273.0" promptText="Disponiveis" />
+            <JFXTextField fx:id="campoISSN" editable="false" labelFloat="true" layoutX="93.0" layoutY="336.0" prefHeight="38.0" prefWidth="237.0" promptText="Issn" />
+            <JFXTextField fx:id="campoVolume" editable="false" labelFloat="true" layoutX="378.0" layoutY="336.0" promptText="Volume" />
+            <Button fx:id="botaoSalvar" layoutX="70.0" layoutY="419.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="160.0" text="Salvar" />
+            <Button fx:id="botaoEditar" layoutX="251.0" layoutY="419.0" mnemonicParsing="false" onAction="#editarPeriodico" prefHeight="25.0" prefWidth="160.0" text="Editar" />
+            <Button fx:id="botaoCancelar" layoutX="431.0" layoutY="419.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="160.0" text="Fechar" />
+            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="498.0" prefHeight="26.0" prefWidth="650.0">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>
