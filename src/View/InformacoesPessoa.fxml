@@ -7,17 +7,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.InformacoesPessoaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.InformacoesPessoaController">
    <children>
       <Pane layoutY="6.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <JFXTextField fx:id="campoCPF" labelFloat="true" layoutX="80.0" layoutY="60.0" onKeyPressed="#validarCpf" promptText="CPF" />
-            <JFXTextField fx:id="campoNome" labelFloat="true" layoutX="80.0" layoutY="120.0" promptText="Nome" />
-            <JFXTextField fx:id="campoTelefone" labelFloat="true" layoutX="80.0" layoutY="180.0" promptText="Telefone" />
-            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="80.0" layoutY="240.0" promptText="ID" />
-            <Button layoutX="335.0" layoutY="65.0" mnemonicParsing="false" onAction="#pesquisarPessoa" prefHeight="25.0" prefWidth="130.0" text="Pesquisar" />
-            <Button fx:id="botaoEditar" layoutX="150.0" layoutY="300.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="25.0" prefWidth="130.0" text="Editar" />
-            <Button fx:id="botaoSalvar" layoutX="320.0" layoutY="300.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="130.0" text="Salvar" />
+            <JFXTextField fx:id="campoCPF" labelFloat="true" layoutX="80.0" layoutY="60.0" onKeyPressed="#validarCpf" prefHeight="37.0" prefWidth="271.0" promptText="CPF" />
+            <Button layoutX="385.0" layoutY="59.0" mnemonicParsing="false" onAction="#pesquisarPessoa" prefHeight="25.0" prefWidth="130.0" text="Pesquisar" />
+            <JFXTextField fx:id="campoNome" editable="false" labelFloat="true" layoutX="80.0" layoutY="125.0" prefHeight="37.0" prefWidth="205.0" promptText="Nome" />
+            <JFXTextField fx:id="campoTelefone" editable="false" labelFloat="true" layoutX="310.0" layoutY="125.0" prefHeight="37.0" prefWidth="205.0" promptText="Telefone" />
+            <JFXTextField fx:id="campoID" editable="false" labelFloat="true" layoutX="80.0" layoutY="193.0" promptText="ID" />
+            <Button fx:id="botaoEditar" layoutX="237.0" layoutY="272.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="25.0" prefWidth="130.0" text="Editar" />
+            <Button fx:id="botaoSalvar" layoutX="82.0" layoutY="272.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="130.0" text="Salvar" />
+            <Button fx:id="botaoCancelar" layoutX="387.0" layoutY="272.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="130.0" text="Fechar" />
             <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="352.0" prefHeight="17.0" prefWidth="600.0">
                <font>
                   <Font name="System Italic" size="16.0" />

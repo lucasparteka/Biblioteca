@@ -36,15 +36,15 @@ public class MatEspecialDAO {
 		}
 	}
 
-	public MaterialEspecial buscarMatEspecial(String titulo) {
+	public MaterialEspecial buscarMatEspecial(Long id) {
 		connect = ConnectionFactory.getConexao();
 		PreparedStatement stat = null;
 		ResultSet result = null;
 		String sql = "select m.id, m.codbarras, m.descricao, m.disponiveis, m.estante, m.titulo, m.exemplares, t.tipo"
-				+ " from materialespecial m" + " inner join tipomaterialesp t on t.id = m.tipo" + " where titulo = ?";
+				+ " from materialespecial m" + " inner join tipomaterialesp t on t.id = m.tipo" + " where id = ?";
 		try {
 			stat = connect.prepareStatement(sql);
-			stat.setString(1, titulo);
+			stat.setLong(1, id);
 			result = stat.executeQuery();
 			while (result.next()) {
 				materialEspecial = new MaterialEspecial();

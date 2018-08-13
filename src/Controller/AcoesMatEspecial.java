@@ -29,8 +29,8 @@ public class AcoesMatEspecial {
 			matEspecialDAO.salvarMaterialEspecial(matEspecial);
 		}
 	
-	public MaterialEspecial buscarMatEspecial(String titulo) {
-		return matEspecialDAO.buscarMatEspecial(titulo);
+	public MaterialEspecial buscarMatEspecial(Long id) {
+		return matEspecialDAO.buscarMatEspecial(id);
 	}
 	
 	public ArrayList<MaterialEspecial> buscarTodosMatespecial(){

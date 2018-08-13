@@ -2,7 +2,11 @@ package View;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -31,7 +35,7 @@ public class RealizarEmprestimoController implements Initializable {
 
     private AcoesPessoa pesquisarUsuario;
     private Pessoa usuario;
-    private AcoesEmprestimo realizarEmprestimo;
+    //private AcoesEmprestimo realizarEmprestimo;
     private ObservableList<String> obsTipoMaterial;
     private ArrayList<String> listTipoMaterial = new ArrayList<>();
     private AbstractInformacional abstractInformacional;
@@ -73,9 +77,6 @@ public class RealizarEmprestimoController implements Initializable {
     private Button botaoSelecionarTipo;
 
     @FXML
-    private Label labelTeste;
-
-    @FXML
     private JFXTextField campoNome;
 
     @FXML
@@ -102,8 +103,7 @@ public class RealizarEmprestimoController implements Initializable {
    
     @FXML
     public void validarCPF() {
-    	ValidarNumeros validar = new ValidarNumeros();
-    	validar.validarCpf(campoCPF);
+    	ValidarNumeros.validarCpf(campoCPF);
     }
 
     @FXML
@@ -171,18 +171,21 @@ public class RealizarEmprestimoController implements Initializable {
 
     @FXML
     void cancelarAcao(ActionEvent event) {
-
-        Stage stage = (Stage) botaoCancelar.getScene().getWindow();
-        stage.close();
-
+//        Stage stage = (Stage) botaoCancelar.getScene().getWindow();
+//        stage.close();
+    	//barraDataAtual.getValue().get
+//    	LocalDate localDate = barraDataAtual.getValue();
+//    	Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+//    	Date date = Date.from(instant);
+//    	System.out.println(localDate + "\n" + instant + "\n" + date);
     }
 
     @FXML
     void pesquisarUsuario(ActionEvent event) {
-
         if (campoCPF.getText().isEmpty()) {
-
+        	labelStatus.setText("Digite um CPF");
         } else {
+        	labelStatus.setText("");
             usuario = new Pessoa();
             pesquisarUsuario = new AcoesPessoa();
             //setUsuario(pesquisarUsuario.pesquisar(campoCPF.getText()));
@@ -202,16 +205,13 @@ public class RealizarEmprestimoController implements Initializable {
 
     @FXML
     void realizarEmprestimo(ActionEvent event) {
-
         Long idLong = Long.parseLong(campoID.getText());
-        realizarEmprestimo = new AcoesEmprestimo();
+        //realizarEmprestimo = new AcoesEmprestimo();
         //realizarEmprestimo.novoEmprestimo(abstractInformacional, idLong, "hoje", "Amanha", usuario);
-
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         // botaoConfirmarEmp.setDisable(true);
         // campoNome.setDisable(true);
         // campoCodBarras.setDisable(true);

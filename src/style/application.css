@@ -13,7 +13,7 @@
 
 .glyph-icon
 {
-    -fx-fill: -fx-primarytext;
+    -fx-fill: -fx-secondary;
 }
 
 .label{
@@ -35,13 +35,14 @@
     -fx-text-fill: -fx-primary;
 }
 
+
 .text-field
 {
-    -fx-text-fill: -fx-primarytext;
-    -fx-font-size : 13pt;
+    -fx-text-fill: -fx-blue;
+    -fx-font-size : 12pt;
     -jfx-focus-color: -fx-secondary;
-    -fx-text-fill: derive(-fx-secondary, 20%);
-    
+    -fx-text-fill: -fx-secondary;
+    -fx-prompt-text-fill: -fx-secondary;
 }
 
 /*Login Screen Specific*/

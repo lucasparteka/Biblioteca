@@ -1,104 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="View.InformacoesMatEspecialController">
+<AnchorPane prefHeight="530.0" prefWidth="600.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.InformacoesMatEspecialController">
    <children>
-      <Pane layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="800.0">
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="530.0" prefWidth="600.0">
          <children>
-            <Label layoutX="153.0" layoutY="59.0" prefHeight="25.0" prefWidth="23.0" text="ID:">
+            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="47.0" layoutY="81.0" prefHeight="38.0" prefWidth="337.0" promptText="ID" />
+            <Button layoutX="425.0" layoutY="80.0" mnemonicParsing="false" onAction="#pesquisarMatEspecial" prefHeight="25.0" prefWidth="131.0" text="Pesquisar" />
+            <JFXTextField fx:id="campoTitulo" editable="false" labelFloat="true" layoutX="47.0" layoutY="149.0" prefHeight="38.0" prefWidth="230.0" promptText="Titulo" />
+            <JFXTextField fx:id="campoEstante" editable="false" labelFloat="true" layoutX="326.0" layoutY="149.0" prefHeight="38.0" prefWidth="230.0" promptText="Estante" />
+            <JFXTextField fx:id="campoExemplares" editable="false" labelFloat="true" layoutX="46.0" layoutY="216.0" prefHeight="38.0" prefWidth="230.0" promptText="Exemplares" />
+            <JFXTextField fx:id="campoDisponiveis" editable="false" labelFloat="true" layoutX="325.0" layoutY="216.0" prefHeight="38.0" prefWidth="230.0" promptText="Disponiveis" />
+            <JFXTextField fx:id="campoCodBarras" editable="false" labelFloat="true" layoutX="45.0" layoutY="288.0" prefHeight="38.0" prefWidth="230.0" promptText="Codigo de Barras" />
+            <JFXTextField fx:id="campoDescricao" editable="false" labelFloat="true" layoutX="324.0" layoutY="288.0" prefHeight="38.0" prefWidth="230.0" promptText="Descrição" />
+            <Button fx:id="botaoSalvar" layoutX="46.0" layoutY="369.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="150.0" text="Salvar" />
+            <Button fx:id="botaoEditar" layoutX="227.0" layoutY="369.0" mnemonicParsing="false" onAction="#editarMatEspecial" prefHeight="25.0" prefWidth="150.0" text="Editar" />
+            <Button fx:id="botaoCancelar" layoutX="405.0" layoutY="369.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="150.0" text="Fechar" />
+            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="440.0" prefHeight="26.0" prefWidth="600.0">
                <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoID" layoutX="181.0" layoutY="59.0" prefHeight="25.0" prefWidth="131.0" promptText="digite o id...">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </TextField>
-            <Label layoutX="131.0" layoutY="311.0" prefHeight="25.0" prefWidth="45.0" text="Titulo:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoTitulo" layoutX="181.0" layoutY="311.0" prefHeight="25.0" prefWidth="416.0">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </TextField>
-            <Label layoutX="100.0" layoutY="365.0" prefHeight="25.0" prefWidth="83.0" text="Descrição:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoDescricao" layoutX="181.0" layoutY="365.0" prefHeight="25.0" prefWidth="416.0">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </TextField>
-            <Label layoutX="138.0" layoutY="415.0" prefHeight="25.0" prefWidth="45.0" text="Tipo:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoTipo" layoutX="181.0" layoutY="415.0" prefHeight="25.0" prefWidth="416.0">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </TextField>
-            <Button fx:id="botaoSalvar" layoutX="184.0" layoutY="463.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="200.0" text="Salvar" />
-            <Button layoutX="394.0" layoutY="463.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="200.0" text="Cancelar" />
-            <Label layoutX="47.0" layoutY="105.0" prefHeight="25.0" prefWidth="138.0" text="Codigo de barras:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoCodBarras" layoutX="181.0" layoutY="105.0" prefHeight="25.0" prefWidth="416.0">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </TextField>
-            <Label layoutX="118.0" layoutY="159.0" prefHeight="25.0" prefWidth="61.0" text="Estante:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoEstante" layoutX="181.0" layoutY="159.0" prefHeight="25.0" prefWidth="416.0">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </TextField>
-            <Label layoutX="86.0" layoutY="209.0" prefHeight="25.0" prefWidth="90.0" text="Exemplares:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoExemplares" layoutX="181.0" layoutY="209.0" prefHeight="25.0" prefWidth="416.0">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </TextField>
-            <Button layoutX="324.0" layoutY="59.0" mnemonicParsing="false" onAction="#pesquisarMatEspecial" prefHeight="25.0" prefWidth="131.0" text="Pesquisar" />
-            <Button fx:id="botaoEditar" layoutX="466.0" layoutY="59.0" mnemonicParsing="false" onAction="#editarMatEspecial" prefHeight="25.0" prefWidth="131.0" text="Editar" />
-            <Label layoutX="86.0" layoutY="261.0" prefHeight="25.0" prefWidth="96.0" text="Disponiveis:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoDisponiveis" layoutX="181.0" layoutY="261.0" prefHeight="25.0" prefWidth="416.0">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </TextField>
-            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="510.0" prefHeight="26.0" prefWidth="800.0">
-               <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="System Italic" size="16.0" />
                </font>
             </Label>
          </children>

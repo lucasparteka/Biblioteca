@@ -2,9 +2,7 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXTextField;
-
 import Controller.AcoesPeriodico;
 import Model.Periodico;
 import javafx.event.ActionEvent;
@@ -12,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 public class InformacoesPeriodicoController implements Initializable{
 	

@@ -19,7 +19,7 @@
             <JFXTextField fx:id="campoDisponiveis" labelFloat="true" layoutX="93.0" layoutY="191.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Disponiveis" />
             <JFXTextField fx:id="campoCodBarras" labelFloat="true" layoutX="321.0" layoutY="194.0" onKeyPressed="#somenteNumeros" prefHeight="38.0" prefWidth="200.0" promptText="Cod Barras" />
             <JFXTextField fx:id="campoDescricao" labelFloat="true" layoutX="93.0" layoutY="251.0" prefHeight="38.0" prefWidth="424.0" promptText="Descrição" />
-            <JFXToggleButton layoutX="84.0" layoutY="307.0" prefHeight="58.0" prefWidth="157.0" text="CD" textFill="#ffff8d">
+            <JFXToggleButton layoutX="84.0" layoutY="307.0" prefHeight="58.0" prefWidth="157.0" selected="true" text="CD" textFill="#ffff8d">
                <toggleGroup>
                   <ToggleGroup fx:id="tipomaterial" />
                </toggleGroup>
