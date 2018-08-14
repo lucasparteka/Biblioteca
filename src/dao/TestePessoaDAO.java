@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 import Controller.AcoesPessoa;
 import Model.MaterialEspecial;
 import Model.Pessoa;
@@ -20,12 +21,16 @@ class TestePessoaDAO {
 	
 	@Test
 	public void inserirPessoa() {
-		MatEspecialDAO matEspecialDAO = new MatEspecialDAO();
-		ArrayList<MaterialEspecial> listMat = new ArrayList<>();
-		listMat = matEspecialDAO.buscarTodosMatEspecial();
-		for (MaterialEspecial  mat : listMat) {
-			System.out.println(mat.getTitulo() + " " + mat.getTipo());
-		}
+//		MatEspecialDAO matEspecialDAO = new MatEspecialDAO();
+//		ArrayList<MaterialEspecial> listMat = new ArrayList<>();
+//		listMat = matEspecialDAO.buscarTodosMatEspecial();
+//		for (MaterialEspecial  mat : listMat) {
+//			System.out.println(mat.getTitulo() + " " + mat.getTipo());
+//		}
+		int nLinhas = 9;
+		int nLinhasPorPagina = 3;
+		int nPaginas = ( nLinhas + (nLinhasPorPagina - 1) ) / nLinhasPorPagina;
+		System.out.println(nPaginas);
 	}
 	
 	@Ignore

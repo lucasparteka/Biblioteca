@@ -11,6 +11,23 @@
     -fx-background-color: -fx-primary;
 }
 
+.combo-box .list-cell {
+	
+	-fx-font-size: 9pt;
+	-fx-prompt-text-fill: -fx-secondary;
+}
+
+.combo-box-popup .list-view {
+	
+	-fx-prompt-text-fill: -fx-secondary;
+	-fx-font-fill: -fx-secondary;
+}
+
+.combo-box-base {
+	-fx-text-fill: -fx-secondary;
+	-fx-prompt-text-fill: -fx-secondary;
+}
+
 .glyph-icon
 {
     -fx-fill: -fx-secondary;
