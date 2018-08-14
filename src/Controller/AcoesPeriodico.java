@@ -32,8 +32,12 @@ public class AcoesPeriodico {
 		return periodicoDAO.buscarPeriodico(titulo);
 	}
 
-	public ArrayList<Periodico> buscarTodos() {
-		return periodicoDAO.buscarPeriodicos();
+	public ArrayList<Periodico> retornaPeriodicos(int pageIndex) {
+		return periodicoDAO.buscarPeriodicos(pageIndex * 3);
+	}
+	
+	public int retornaQuantidade() {
+		return periodicoDAO.retornaQuantidade();
 	}
 
 }

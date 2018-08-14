@@ -90,7 +90,7 @@ public class LivroDAO {
 		return livro;
 	}
 
-	public ArrayList<Livro> retornaTodosLivros() {
+	public ArrayList<Livro> retornaLivros(int pageIndex) {
 
 		ArrayList<Livro> listLivro = new ArrayList<>();
 		connect = ConnectionFactory.getConexao();
@@ -99,10 +99,11 @@ public class LivroDAO {
 		String sql = "select l.ano, l.codbarras, l.disponiveis, l.edicao, l.estante, l.exemplares, l.id as id_livro, l.isbn, l.titulo, l.volume,"
 				+ " e.id as id_editora, e.nacionalidade, e.nome as nome_editora, a.id as id_autor, a.nome as nome_autor, a.sobrenome as sobrenome_autor"
 				+ " from livro l" + " inner join editora e on e.id = l.editora"
-				+ " inner join autor a on a.id = l.autor";
+				+ " inner join autor a on a.id = l.autor order by id_livro limit 3 offset ?";
 
 		try {
 			stat = connect.prepareStatement(sql);
+			stat.setInt(1, pageIndex);
 			result = stat.executeQuery();
 			while (result.next()) {
 				livro = new Livro();
@@ -135,5 +136,26 @@ public class LivroDAO {
 			ConnectionFactory.fecharConexao(connect, stat, result);
 		}
 		return listLivro;
+	}
+	
+	public int retornaQuantidade(){
+		int quantidade = 0;
+		connect = ConnectionFactory.getConexao();
+		String sql = "select count(*) from livro";
+		PreparedStatement stat = null;
+		ResultSet result = null;
+		try {
+			stat = connect.prepareStatement(sql);
+			result = stat.executeQuery();
+			while(result.next()) {
+				quantidade = result.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat, result);
+		}
+
+		return quantidade;
 	}
 }

@@ -65,16 +65,17 @@ public class MatEspecialDAO {
 		return materialEspecial;
 	}
 
-	public ArrayList<MaterialEspecial> buscarTodosMatEspecial() {
+	public ArrayList<MaterialEspecial> retornaMatEspeciais(int pageIndex) {
 		ArrayList<MaterialEspecial> listMatEspecial = new ArrayList<>();
 		connect = ConnectionFactory.getConexao();
 		PreparedStatement stat = null;
 		ResultSet result = null;
 		String sql = "select m.id, m.codbarras, m.descricao, m.disponiveis, m.estante, m.titulo, m.exemplares, t.tipo"
 				+ " FROM materialespecial m" + " inner join tipomaterialesp t on t.id = m.tipo"
-				+ " where m.tipo = 1 or m.tipo = 2 or m.tipo = 3";
+				+ " where m.tipo = 1 or m.tipo = 2 or m.tipo = 3  order by id limit 3 offset ?";
 		try {
 			stat = connect.prepareStatement(sql);
+			stat.setInt(1, pageIndex);
 			result = stat.executeQuery();
 			while (result.next()) {
 				materialEspecial = new MaterialEspecial();
@@ -96,6 +97,27 @@ public class MatEspecialDAO {
 			ConnectionFactory.fecharConexao(connect, stat, result);
 		}
 		return listMatEspecial;
+	}
+	
+	public int retornaQuantidade(){
+		int quantidade = 0;
+		connect = ConnectionFactory.getConexao();
+		String sql = "select count(*) from materialespecial";
+		PreparedStatement stat = null;
+		ResultSet result = null;
+		try {
+			stat = connect.prepareStatement(sql);
+			result = stat.executeQuery();
+			while(result.next()) {
+				quantidade = result.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat, result);
+		}
+
+		return quantidade;
 	}
 
 }

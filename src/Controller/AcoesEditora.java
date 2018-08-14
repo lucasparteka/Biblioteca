@@ -27,12 +27,15 @@ public class AcoesEditora {
 		
 	}
 
-	public ArrayList<Editora> retornaEditoras() {
-		return editoraDAO.buscarEditoras();
+	public ArrayList<Editora> retornaEditoras(int indexPage) {
+		return editoraDAO.buscarEditoras(indexPage * 3);
 	}
 
 	public Editora pesquisar(Long id) {
 		return editoraDAO.buscarEditora(id);
 	}
 
+	public int retornaQuantidade() {
+		return editoraDAO.retornaQuantidade();
+	}
 }

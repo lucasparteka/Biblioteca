@@ -1,5 +1,6 @@
 package Controller;
 
+import java.util.ArrayList;
 import Model.Livro;
 import dao.AutorDAO;
 import dao.EditoraDAO;
@@ -42,5 +43,12 @@ public class AcoesLivro {
 		return livroDAO.retornaLivro(id);
 	}
 	
+	public ArrayList<Livro> retornaLivros(int pageIndex) {
+		return livroDAO.retornaLivros(pageIndex * 3);
+	}
+ 
+	public int retornaQuantidade() {
+		return livroDAO.retornaQuantidade();
+	}
 
 }

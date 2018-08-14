@@ -57,16 +57,17 @@ public class EditoraDAO {
 		return editora;
 	}
 	
-	public ArrayList<Editora> buscarEditoras() {
+	public ArrayList<Editora> buscarEditoras(int indexPage) {
 		
 		ArrayList<Editora> listEditora = new ArrayList<>();
 		connect = ConnectionFactory.getConexao();
-		String sql = "select * from editora";
+		String sql = "select * from editora order by id limit 3 offset ?";
 		PreparedStatement stat = null;
 		ResultSet result = null;
 		
 		try {
 			stat = connect.prepareStatement(sql);
+			stat.setInt(1, indexPage);
 			result = stat.executeQuery();
 			while(result.next()) {
 				editora = new Editora();
@@ -82,6 +83,27 @@ public class EditoraDAO {
 			ConnectionFactory.fecharConexao(connect, stat, result);
 		}
 		return listEditora;
+	}
+	
+	public int retornaQuantidade(){
+		int quantidade = 0;
+		connect = ConnectionFactory.getConexao();
+		String sql = "select count(*) from editora";
+		PreparedStatement stat = null;
+		ResultSet result = null;
+		try {
+			stat = connect.prepareStatement(sql);
+			result = stat.executeQuery();
+			while(result.next()) {
+				quantidade = result.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat, result);
+		}
+
+		return quantidade;
 	}
 	
 }

@@ -33,8 +33,12 @@ public class AcoesMatEspecial {
 		return matEspecialDAO.buscarMatEspecial(id);
 	}
 	
-	public ArrayList<MaterialEspecial> buscarTodosMatespecial(){
-		return matEspecialDAO .buscarTodosMatEspecial();
+	public ArrayList<MaterialEspecial> retornaMatEspeciais(int pageIndex){
+		return matEspecialDAO .retornaMatEspeciais(pageIndex * 3);
+	}
+	
+	public int retornaQuantidade() {
+		return matEspecialDAO.retornaQuantidade();
 	}
 
 }

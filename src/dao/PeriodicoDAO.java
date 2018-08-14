@@ -70,15 +70,16 @@ public class PeriodicoDAO {
 		return periodico;
 	}
 	
-	public ArrayList<Periodico> buscarPeriodicos(){
+	public ArrayList<Periodico> buscarPeriodicos(int pageIndex){
 		connect = ConnectionFactory.getConexao();
-		String sql = "select * from periodicos";
+		String sql = "select * from periodicos order by id limit 3 offset ?";
 		ArrayList<Periodico> listPeriodico = new ArrayList<>();
 		PreparedStatement stat = null;
 		ResultSet result = null;
 		
 		try {
 			stat = connect.prepareStatement(sql);
+			stat.setInt(1, pageIndex);
 			result = stat.executeQuery();
 			while(result.next()) {
 				periodico = new Periodico();
@@ -101,5 +102,26 @@ public class PeriodicoDAO {
 		}
 		
 		return listPeriodico;
+	}
+	
+	public int retornaQuantidade(){
+		int quantidade = 0;
+		connect = ConnectionFactory.getConexao();
+		String sql = "select count(*) from periodicos";
+		PreparedStatement stat = null;
+		ResultSet result = null;
+		try {
+			stat = connect.prepareStatement(sql);
+			result = stat.executeQuery();
+			while(result.next()) {
+				quantidade = result.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat, result);
+		}
+
+		return quantidade;
 	}
 }

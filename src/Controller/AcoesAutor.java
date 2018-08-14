@@ -22,12 +22,16 @@ public class AcoesAutor {
 
 	}
 
-	public ArrayList<Autor> retornaAutores() {
-		return autorDAO.buscarAutores();
+	public ArrayList<Autor> retornaAutores(int pageIndex) {
+		return autorDAO.retornaAutores(pageIndex * 3);
 	}
 
 	public Autor pesquisarAutor(Long id) {
 		return autorDAO.buscarAutor(id);
+	}
+	
+	public int retornaQuantidade() {
+		return autorDAO.retornaQuantidade();
 	}
 
 }
