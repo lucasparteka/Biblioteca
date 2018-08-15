@@ -5,19 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import Model.Autor;
 import Model.Emprestimo;
-import Model.Livro;
-import Model.MaterialEspecial;
 
 public class EmprestimoDAO {
 
-	private Connection connect = null;
+	private static Connection connect = null;
 	private Emprestimo emprestimo;
 	private LivroDAO livroDAO;
 	private PeriodicoDAO periodicoDAO;
 	private MatEspecialDAO matEspecialDAO;
+	private PessoaDAO pessoaDAO;
+
+	public static final int EXCLUIR_EMPRESTIMO = 1;
+	public static final int DEVOLVER_EMPRESTIMO = 2;
 
 	public void salvaremprestimo(Emprestimo emprestimo, long tipoMaterial) {
 
@@ -40,10 +40,18 @@ public class EmprestimoDAO {
 		}
 	}
 
-	public void devolverEmprestimo(Long id) {
+	public static void alterarEmprestimo(Long id, int operacao) {
+		String sql = "";
+		switch (operacao) {
+		case DEVOLVER_EMPRESTIMO:
+			sql = "update emprestimos set status = 'Finalizado' where id = ?";
+			break;
+		case EXCLUIR_EMPRESTIMO:
+			sql = "delete from emprestimos where id = ?";
+			break;
+		}
 		connect = ConnectionFactory.getConexao();
 		PreparedStatement stat = null;
-		String sql = "update emprestimos set status = 'Finalizado' where id = ?";
 		try {
 			stat = connect.prepareStatement(sql);
 			stat.setLong(1, id);
@@ -59,33 +67,46 @@ public class EmprestimoDAO {
 	public ArrayList<Emprestimo> retornaEmprestimos(int pageIndex) {
 		ArrayList<Emprestimo> listEmprestimos = new ArrayList<>();
 		connect = ConnectionFactory.getConexao();
-		String sql = "select e.id, e.dataemprestimo, e.datadevolucao, e.status, p.nome as usuario, l.titulo, t.descricao as tipo"
+		String sql = "select e.id as id_emp, e.dataemprestimo, e.datadevolucao, e.status, p.id as usuario, l.titulo, l.id as id_mat, t.descricao as tipo"
 				+ " from emprestimos e" + " inner join pessoa p on e.id_usuario = p.id"
 				+ " inner join livro l on e.id_material = l.id" + " inner join tipomaterial t on e.tipo_material = t.id"
 				+ " where e.tipo_material = 1" + " union"
-				+ " select e.id, e.dataemprestimo, e.datadevolucao, e.status, p.nome as usuario, per.titulo, t.descricao as tipo"
+				+ " select e.id as id_emp, e.dataemprestimo, e.datadevolucao, e.status, p.id as usuario, per.titulo, per.id as id_mat, t.descricao as tipo"
 				+ " from emprestimos e " + " inner join pessoa p on e.id_usuario = p.id"
 				+ " inner join periodicos per on e.id_material = per.id"
 				+ " inner join tipomaterial t on e.tipo_material = t.id" + " where e.tipo_material = 2" + "union"
-				+ " select e.id, e.dataemprestimo, e.datadevolucao, e.status, p.nome as usuario, mat.titulo, t.descricao as tipo"
+				+ " select e.id as id_emp, e.dataemprestimo, e.datadevolucao, e.status, p.id as usuario, mat.titulo, mat.id as id_mat, t.descricao as tipo"
 				+ " from emprestimos e" + " inner join pessoa p on e.id_usuario = p.id"
 				+ " inner join materialespecial mat on e.id_material = mat.id"
 				+ " inner join tipomaterial t on e.tipo_material = t.id" + " where e.tipo_material = 3"
-				+ " order by id limit 5 offset ?";
+				+ " order by id_emp limit 3 offset ?";
+
 		PreparedStatement stat = null;
 		ResultSet result = null;
 		try {
 			stat = connect.prepareStatement(sql);
+
 			stat.setInt(1, pageIndex);
 			result = stat.executeQuery();
 			while (result.next()) {
 				emprestimo = new Emprestimo();
-				if(result.getString("tipo").equals("Livro")) {
-					//Livro livro = new Livro();
+				pessoaDAO = new PessoaDAO();
+				if (result.getString("tipo").equals("Livro")) {
 					livroDAO = new LivroDAO();
-					emprestimo.setInformacional(livroDAO.retornaLivro(result.getLong("id")));
+					emprestimo.setInformacional(livroDAO.retornaLivro(result.getLong("id_mat")));
+				} else if (result.getString("tipo").equals("Periodico")) {
+					periodicoDAO = new PeriodicoDAO();
+					emprestimo.setInformacional(periodicoDAO.buscarPeriodico(result.getLong("id_mat")));
+				} else if (result.getString("tipo").equals("Material Especial")) {
+					matEspecialDAO = new MatEspecialDAO();
+					emprestimo.setInformacional(matEspecialDAO.buscarMatEspecial(result.getLong("id_mat")));
 				}
-
+				emprestimo.setPessoa(pessoaDAO.buscarPessoaPorId(result.getLong("usuario")));
+				emprestimo.setDataDevolucao(result.getDate("datadevolucao"));
+				emprestimo.setDataEmprestimo(result.getDate("dataemprestimo"));
+				emprestimo.setStatus(result.getString("status"));
+				emprestimo.setId(result.getLong("id_emp"));
+				listEmprestimos.add(emprestimo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,6 +114,26 @@ public class EmprestimoDAO {
 			ConnectionFactory.fecharConexao(connect, stat, result);
 		}
 		return listEmprestimos;
+	}
+
+	public int retornaQuantidade() {
+		int quantidade = 0;
+		connect = ConnectionFactory.getConexao();
+		String sql = "select count(*) from emprestimos";
+		PreparedStatement stat = null;
+		ResultSet result = null;
+		try {
+			stat = connect.prepareStatement(sql);
+			result = stat.executeQuery();
+			while (result.next()) {
+				quantidade = result.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat, result);
+		}
+		return quantidade;
 	}
 
 }

@@ -85,7 +85,7 @@ public class TabelaLivrosController implements Initializable {
 	private Button botaoSelecionar;
 
 	@FXML
-	private Label labelTeste;
+	private Label labelStatus;
 
 	@FXML
 	void cancelarAcao(ActionEvent event) {
@@ -95,9 +95,13 @@ public class TabelaLivrosController implements Initializable {
 
 	@FXML
 	public void selecionarLivro(ActionEvent event) throws IOException {
-		setLivroSelecionado(tabelaLivros.getSelectionModel().getSelectedItem());
-		Stage stage = (Stage) botaoSelecionar.getScene().getWindow();
-		stage.close();
+		if (tabelaLivros.getSelectionModel().getSelectedItem().getDisponiveis() < 1) {
+			labelStatus.setText("Material selecionado não possui exemplares disponíveis");
+		} else {
+			setLivroSelecionado(tabelaLivros.getSelectionModel().getSelectedItem());
+			Stage stage = (Stage) botaoSelecionar.getScene().getWindow();
+			stage.close();
+		}
 	}
 
 	public Node createPage(int pageIndex) {
@@ -115,7 +119,7 @@ public class TabelaLivrosController implements Initializable {
 				cellDataAutor -> new SimpleStringProperty(cellDataAutor.getValue().getAutor().getNome()));
 		colunaEditora.setCellValueFactory(
 				cellDataEditora -> new SimpleStringProperty(cellDataEditora.getValue().getEditora().getNome()));
-		
+
 		tabelaLivros.setItems(FXCollections.observableArrayList(acoesLivro.retornaLivros(pageIndex)));
 
 		return tabelaLivros;

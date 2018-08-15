@@ -28,8 +28,8 @@ public class AcoesPeriodico {
 		periodicoDAO.salvarPeriodico(periodico);
 	}
 
-	public Periodico pesquisarPeriodico(String titulo) {
-		return periodicoDAO.buscarPeriodico(titulo);
+	public Periodico pesquisarPeriodico(Long id) {
+		return periodicoDAO.buscarPeriodico(id);
 	}
 
 	public ArrayList<Periodico> retornaPeriodicos(int pageIndex) {

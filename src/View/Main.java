@@ -315,11 +315,10 @@ public class Main extends Application {
                 try {
                     root = FXMLLoader.load(getClass().getClassLoader().getResource("View/TabelaEmprestimos.fxml"));
                     Stage stage = new Stage();
-                    stage.setTitle("EMPRESTIMOS EM ABERTO");
+                    stage.setTitle("REGISTROS DE EMPRESTIMOS");
                     stage.setScene(new Scene(root));
                     stage.show();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -356,6 +355,7 @@ public class Main extends Application {
         scene.getStylesheets().add(Main.class.getResource("/style/new.css").toExternalForm());
         stage.setScene(scene);
         stage.resizableProperty().setValue(false);
+        stage.setTitle("GEOMAIS GEOTECNOLOGIA");
         stage.show();
     }
 

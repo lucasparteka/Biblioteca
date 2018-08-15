@@ -58,4 +58,33 @@ public class PessoaDAO {
 		}
 		return pessoa;
 	}
+	
+	public Pessoa buscarPessoaPorId(Long id) {
+
+		connect = ConnectionFactory.getConexao();
+		String sql = "select * from pessoa where id  = ?";
+		pessoa = null;
+		PreparedStatement stat = null;
+		ResultSet result = null;
+
+		try {
+			stat = connect.prepareStatement(sql);
+			stat.setLong(1, id);
+			result = stat.executeQuery();
+			while (result.next()) {
+				pessoa = new Pessoa();
+				pessoa.setId(result.getLong("id"));
+				pessoa.setNome(result.getString("nome"));
+				pessoa.setCpf(result.getString("cpf"));
+				pessoa.setTelefone(result.getString("telefone"));
+
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Erro");
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat, result);
+		}
+		return pessoa;
+	}
 }

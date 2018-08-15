@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Label;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -86,17 +87,26 @@ public class TabelaPeriodicosController implements Initializable {
 	private Button botaoSelecionar;
 
 	@FXML
+	private Button botaoCancelar;
+
+	@FXML
+	private Label labelStatus;
+
+	@FXML
 	void cancelarAcao(ActionEvent event) {
-		Stage stage = (Stage) botaoSelecionar.getScene().getWindow();
+		Stage stage = (Stage) botaoCancelar.getScene().getWindow();
 		stage.close();
 	}
 
 	@FXML
 	void selecionarLivro(ActionEvent event) {
-		setPeriodicoSelecionado(tabelaPeriodico.getSelectionModel().getSelectedItem());
-		Stage stage = (Stage) botaoSelecionar.getScene().getWindow();
-		stage.close();
-
+		if (tabelaPeriodico.getSelectionModel().getSelectedItem().getDisponiveis() < 1) {
+			labelStatus.setText("Material selecionado não possui exemplares disponíveis");
+		} else {
+			setPeriodicoSelecionado(tabelaPeriodico.getSelectionModel().getSelectedItem());
+			Stage stage = (Stage) botaoSelecionar.getScene().getWindow();
+			stage.close();
+		}
 	}
 
 	public Node createPage(int pageIndex) {

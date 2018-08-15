@@ -9,9 +9,12 @@ import Model.Autor;
 
 public class AutorDAO {
 
-	private Connection connect = null;
+	private static Connection connect = null;
 	private Autor autor;
 	private ArrayList<Autor> listAutor;
+	
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
 	
 	public ArrayList<Autor> getListAutor() {
 		return listAutor;
@@ -21,16 +24,24 @@ public class AutorDAO {
 		this.listAutor = listAutor;
 	}
 
-	public void cadastrarAutor(Autor autor) {
+	public static void executarOperacaoAutor(Autor autor, int operacao) {
 
 		connect = ConnectionFactory.getConexao();
+		String sql = "";
 		PreparedStatement stat = null;
-		String sql = "insert into autor (nome, sobrenome) values (?, ?)";
-
+		switch(operacao) {
+		case ALTERAR_CADASTRO:
+			sql = "update autor set nome = ?, sobrenome = ? where id = " + autor.getId();
+			break;
+		case INSERIR_CADASTRO:
+			sql = "insert into autor (nome, sobrenome) values (?, ?)";
+			break;
+		}
 		try {
 			stat = connect.prepareStatement(sql);
 			stat.setString(1, autor.getNome());
 			stat.setString(2, autor.getSobreNome());
+			//stat.setLong(3, autor.getId());
 			stat.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

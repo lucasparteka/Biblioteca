@@ -11,7 +11,6 @@ public class ConnectionFactory {
 	public static Connection getConexao() {
  
 		try {
-			System.out.println("abriu conexão");
 			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/biblioteca", "postgres", "cad@1");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -23,7 +22,6 @@ public class ConnectionFactory {
 		try {
 			if (connection != null) {
 				connection.close();
-				System.out.println("fechou connection");
 
 			}
 		} catch (SQLException e) {
@@ -35,7 +33,6 @@ public class ConnectionFactory {
 		try {
 			if (stat != null) {
 				stat.close();
-				System.out.println("fechou statement");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -47,7 +44,6 @@ public class ConnectionFactory {
 		try {
 			if (result != null) {
 				result.close();
-				System.out.println("fechou resultSet");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

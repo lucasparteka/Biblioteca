@@ -20,6 +20,19 @@ public class InformacoesAutorController implements Initializable {
 	private Autor autor;
 	private AcoesAutor acoesAutor;
 
+	public InformacoesAutorController() {
+		acoesAutor = new AcoesAutor();
+		autor = new Autor();
+	}
+
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
+
 	@FXML
 	private Button botaoCancelar;
 
@@ -49,7 +62,10 @@ public class InformacoesAutorController implements Initializable {
 
 	@FXML
 	void habilitarEdicao(ActionEvent event) {
-
+		campoID.setDisable(true);
+		botaoSalvar.setDisable(false);
+		campoNome.setEditable(true);
+		campoSobrenome.setEditable(true);
 	}
 
 	@FXML
@@ -58,28 +74,38 @@ public class InformacoesAutorController implements Initializable {
 			labelStatus.setText("Digite um id");
 		} else {
 			labelStatus.setText("");
-			acoesAutor = new AcoesAutor();
-			autor = new Autor();
-			autor = acoesAutor.pesquisarAutor(Long.parseLong(campoID.getText()));
-			if (autor == null) {
+			this.setAutor(acoesAutor.pesquisarAutor(Long.parseLong(campoID.getText())));
+			if (this.getAutor() == null) {
 				labelStatus.setText("Autor não encontrado!");
 			} else {
 				labelStatus.setText("");
-				campoNome.setText(autor.getNome());
-				campoSobrenome.setText(autor.getSobreNome());
+				campoNome.setText(this.getAutor().getNome());
+				campoSobrenome.setText(this.getAutor().getSobreNome());
+				botaoEditar.setDisable(false);
 			}
 		}
-
 	}
 
 	@FXML
 	void salvarEdicao(ActionEvent event) {
-
+		if (campoNome.getText().isEmpty() || campoSobrenome.getText().isEmpty()) {
+			labelStatus.setText("Preencha todos os campos");
+		} else {
+			this.getAutor().setNome(campoNome.getText());
+			this.getAutor().setSobreNome(campoSobrenome.getText());
+			acoesAutor.executarOperacao(autor, AcoesAutor.ALTERAR_CADASTRO);
+			labelStatus.setText("Alterado com sucesso");
+			campoNome.setText("");
+			campoSobrenome.setText("");
+			campoID.setText("");
+			campoID.setDisable(false);
+			campoNome.setEditable(false);
+			campoSobrenome.setEditable(false);
+		}
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 
 	}
 

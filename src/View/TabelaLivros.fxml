@@ -7,13 +7,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="509.0" prefWidth="894.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TabelaLivrosController">
+<AnchorPane prefHeight="509.0" prefWidth="900.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TabelaLivrosController">
    <children>
-      <Pane prefHeight="509.0" prefWidth="894.0">
+      <Pane prefHeight="509.0" prefWidth="900.0">
          <children>
-            <Pagination fx:id="paginacao" maxPageIndicatorCount="3" pageCount="0" prefHeight="391.0" prefWidth="894.0" />
-            <TableView fx:id="tabelaLivros" layoutX="-1.0" layoutY="-1.0" prefHeight="293.0" prefWidth="894.0">
+            <Pagination fx:id="paginacao" maxPageIndicatorCount="3" pageCount="0" prefHeight="370.0" prefWidth="900.0" />
+            <TableView fx:id="tabelaLivros" layoutX="-1.0" layoutY="-1.0" prefHeight="293.0" prefWidth="900.0">
               <columns>
                 <TableColumn fx:id="colunaID" prefWidth="58.0" text="ID" />
                   <TableColumn fx:id="colunaTitulo" prefWidth="128.0" text="Titulo" />
@@ -28,9 +29,12 @@
                   <TableColumn fx:id="colunaAutor" prefWidth="76.0" text="Autor" />
               </columns>
             </TableView>
-            <Button fx:id="botaoSelecionar" layoutX="284.0" layoutY="408.0" mnemonicParsing="false" onAction="#selecionarLivro" prefHeight="25.0" prefWidth="150.0" text="Selecionar" />
-            <Button layoutX="461.0" layoutY="408.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="150.0" text="Fechar" />
-            <Label fx:id="labelTeste" layoutX="77.0" layoutY="699.0" />
+            <Button fx:id="botaoSelecionar" layoutX="283.0" layoutY="392.0" mnemonicParsing="false" onAction="#selecionarLivro" prefHeight="25.0" prefWidth="150.0" text="Selecionar" />
+            <Button layoutX="460.0" layoutY="392.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="150.0" text="Fechar" />
+            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" layoutY="455.0" prefWidth="900.0">
+               <font>
+                  <Font name="System Italic" size="16.0" />
+               </font></Label>
          </children>
       </Pane>
    </children>

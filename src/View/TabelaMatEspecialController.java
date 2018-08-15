@@ -3,17 +3,15 @@ package View;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import Controller.AcoesMatEspecial;
 import Model.MaterialEspecial;
-import dao.MatEspecialDAO;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,7 +42,7 @@ public class TabelaMatEspecialController implements Initializable {
 
 	@FXML
 	private Pagination paginacao;
-	
+
 	@FXML
 	private TableView<MaterialEspecial> tabelaMatEspecial;
 
@@ -76,16 +74,26 @@ public class TabelaMatEspecialController implements Initializable {
 	private Button botaoSelecionar;
 
 	@FXML
+	private Label labelStatus;
+
+	@FXML
+	private Button botaoCancelar;
+
+	@FXML
 	void cancelarAcao(ActionEvent event) {
-		Stage stage = (Stage) botaoSelecionar.getScene().getWindow();
+		Stage stage = (Stage) botaoCancelar.getScene().getWindow();
 		stage.close();
 	}
 
 	@FXML
 	void selecionarMatespecial(ActionEvent event) {
-		setMaterialSelecionado(tabelaMatEspecial.getSelectionModel().getSelectedItem());
-		Stage stage = (Stage) botaoSelecionar.getScene().getWindow();
-		stage.close();
+		if (tabelaMatEspecial.getSelectionModel().getSelectedItem().getDisponiveis() < 1) {
+			labelStatus.setText("Material selecionado não possui exemplares disponíveis");
+		} else {
+			setMaterialSelecionado(tabelaMatEspecial.getSelectionModel().getSelectedItem());
+			Stage stage = (Stage) botaoSelecionar.getScene().getWindow();
+			stage.close();
+		}
 	}
 
 	public Node createPage(int pageIndex) {
@@ -112,7 +120,7 @@ public class TabelaMatEspecialController implements Initializable {
 		paginacao.setCurrentPageIndex(0);
 		paginacao.setPageCount(nPaginas);
 		paginacao.setPageFactory((Integer pageIndex) -> createPage(pageIndex));
-		
+
 	}
 
 }

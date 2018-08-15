@@ -7,19 +7,23 @@ import dao.AutorDAO;
 public class AcoesAutor {
 
 	private AutorDAO autorDAO;
+	
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
 
 	public AcoesAutor() {
 		autorDAO = new AutorDAO();
 	}
 
-	public void realizarCadastro(String nome, String sobrenome) {
-
-		Autor novoAutor = new Autor();
-		novoAutor.setNome(nome);
-		novoAutor.setSobreNome(sobrenome);
-
-		autorDAO.cadastrarAutor(novoAutor);
-
+	public void executarOperacao(Autor autor, int operacao) {
+		switch(operacao) {
+		case ALTERAR_CADASTRO:
+			AutorDAO.executarOperacaoAutor(autor, AutorDAO.ALTERAR_CADASTRO);
+			break;
+		case INSERIR_CADASTRO:
+			AutorDAO.executarOperacaoAutor(autor, AutorDAO.INSERIR_CADASTRO);
+			break;
+		}
 	}
 
 	public ArrayList<Autor> retornaAutores(int pageIndex) {

@@ -74,7 +74,7 @@ public class InformacoesPeriodicoController implements Initializable {
 		} else {
 			labelStatus.setText("");
 			acoesPeriodico = new AcoesPeriodico();
-			periodico = acoesPeriodico.pesquisarPeriodico(campoTitulo.getText());
+			periodico = acoesPeriodico.pesquisarPeriodico(Long.parseLong(campoID.getText()));
 
 			if (periodico == null) {
 				labelStatus.setText("Periodico não encontrado");
@@ -101,7 +101,6 @@ public class InformacoesPeriodicoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 
 	}
 

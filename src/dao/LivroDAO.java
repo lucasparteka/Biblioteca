@@ -12,10 +12,13 @@ import Model.Livro;
 
 public class LivroDAO {
 
-	private Connection connect;
+	private static Connection connect;
 	private Livro livro;
 	private Editora editora;
 	private Autor autor;
+
+	public static final int INCREMENTAR = 1;
+	public static final int DECREMENTAR = 2;
 
 	public void salvarLivro(Livro livro) {
 
@@ -137,8 +140,8 @@ public class LivroDAO {
 		}
 		return listLivro;
 	}
-	
-	public int retornaQuantidade(){
+
+	public int retornaQuantidade() {
 		int quantidade = 0;
 		connect = ConnectionFactory.getConexao();
 		String sql = "select count(*) from livro";
@@ -147,7 +150,7 @@ public class LivroDAO {
 		try {
 			stat = connect.prepareStatement(sql);
 			result = stat.executeQuery();
-			while(result.next()) {
+			while (result.next()) {
 				quantidade = result.getInt("count");
 			}
 		} catch (SQLException e) {
@@ -155,7 +158,29 @@ public class LivroDAO {
 		} finally {
 			ConnectionFactory.fecharConexao(connect, stat, result);
 		}
-
 		return quantidade;
+	}
+
+	public static void alterarQuantidade(Long id, int operacao) {
+		String sql = "";
+		switch (operacao) {
+		case INCREMENTAR:
+			sql = "UPDATE livro set disponiveis = disponiveis + 1 where id = ? ";
+			break;
+		case DECREMENTAR:
+			sql = "UPDATE livro set disponiveis = disponiveis - 1 where id = ? ";
+			break;
+		}
+		connect = ConnectionFactory.getConexao();
+		PreparedStatement stat = null;
+		try {
+			stat = connect.prepareStatement(sql);
+			stat.setLong(1, id);
+			stat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat);
+		}
 	}
 }

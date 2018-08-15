@@ -15,8 +15,8 @@
             <Button layoutX="414.0" layoutY="85.0" mnemonicParsing="false" onAction="#pesquisarAutor" prefHeight="25.0" prefWidth="140.0" text="Pesquisar" />
             <JFXTextField fx:id="campoNome" editable="false" labelFloat="true" layoutX="80.0" layoutY="151.0" prefHeight="38.0" prefWidth="200.0" promptText="Nome" />
             <JFXTextField fx:id="campoSobrenome" editable="false" labelFloat="true" layoutX="306.0" layoutY="151.0" prefHeight="38.0" prefWidth="200.0" promptText="Sobrenome" />
-            <Button fx:id="botaoSalvar" layoutX="80.0" layoutY="226.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="140.0" text="Salvar" />
-            <Button fx:id="botaoEditar" layoutX="250.0" layoutY="226.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="25.0" prefWidth="140.0" text="Editar" />
+            <Button fx:id="botaoSalvar" disable="true" layoutX="80.0" layoutY="226.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="140.0" text="Salvar" />
+            <Button fx:id="botaoEditar" disable="true" layoutX="250.0" layoutY="226.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="25.0" prefWidth="140.0" text="Editar" />
             <Button fx:id="botaoCancelar" layoutX="414.0" layoutY="226.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="140.0" text="Fechar" />
             <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="300.0" prefHeight="26.0" prefWidth="600.0" textAlignment="CENTER">
                <font>

@@ -10,8 +10,11 @@ import Model.MaterialEspecial;
 
 public class MatEspecialDAO {
 
-	private Connection connect;
+	private static Connection connect;
 	private MaterialEspecial materialEspecial;
+
+	public static final int INCREMENTAR = 1;
+	public static final int DECREMENTAR = 2;
 
 	public void salvarMaterialEspecial(MaterialEspecial matEspecial) {
 
@@ -41,7 +44,7 @@ public class MatEspecialDAO {
 		PreparedStatement stat = null;
 		ResultSet result = null;
 		String sql = "select m.id, m.codbarras, m.descricao, m.disponiveis, m.estante, m.titulo, m.exemplares, t.tipo"
-				+ " from materialespecial m" + " inner join tipomaterialesp t on t.id = m.tipo" + " where id = ?";
+				+ " from materialespecial m" + " inner join tipomaterialesp t on t.id = m.tipo" + " where m.id = ?";
 		try {
 			stat = connect.prepareStatement(sql);
 			stat.setLong(1, id);
@@ -88,7 +91,6 @@ public class MatEspecialDAO {
 				materialEspecial.setTitulo(result.getString("titulo"));
 				materialEspecial.setId(result.getLong("id"));
 
-
 				listMatEspecial.add(materialEspecial);
 			}
 		} catch (SQLException e) {
@@ -98,8 +100,8 @@ public class MatEspecialDAO {
 		}
 		return listMatEspecial;
 	}
-	
-	public int retornaQuantidade(){
+
+	public int retornaQuantidade() {
 		int quantidade = 0;
 		connect = ConnectionFactory.getConexao();
 		String sql = "select count(*) from materialespecial";
@@ -108,7 +110,7 @@ public class MatEspecialDAO {
 		try {
 			stat = connect.prepareStatement(sql);
 			result = stat.executeQuery();
-			while(result.next()) {
+			while (result.next()) {
 				quantidade = result.getInt("count");
 			}
 		} catch (SQLException e) {
@@ -118,6 +120,29 @@ public class MatEspecialDAO {
 		}
 
 		return quantidade;
+	}
+
+	public static void alterarQuantidade(Long id, int operacao) {
+		String sql = "";
+		switch (operacao) {
+		case INCREMENTAR:
+			sql = "UPDATE materialespecial set disponiveis = disponiveis + 1 where id = ? ";
+			break;
+		case DECREMENTAR:
+			sql = "UPDATE materialespecial set disponiveis = disponiveis - 1 where id = ? ";
+			break;
+		}
+		connect = ConnectionFactory.getConexao();
+		PreparedStatement stat = null;
+		try {
+			stat = connect.prepareStatement(sql);
+			stat.setLong(1, id);
+			stat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionFactory.fecharConexao(connect, stat);
+		}
 	}
 
 }

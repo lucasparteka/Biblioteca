@@ -5,6 +5,16 @@ public class Autor {
     private String nome;
     private String sobreNome;
     private Long id;
+    
+    public Autor() {
+    	this(-1L,"","");
+    }
+    
+    public Autor(Long id, String nome, String sobreNome) {
+    	setId(id);
+    	setNome(nome);
+    	setSobreNome(sobreNome);    	
+    }
 
     public String getNome() {
         return nome;
