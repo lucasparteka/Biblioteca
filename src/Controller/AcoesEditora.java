@@ -12,19 +12,23 @@ import dao.EditoraDAO;
 public class AcoesEditora {
 
 	private EditoraDAO editoraDAO;
-
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
+ 
 	public AcoesEditora() {
 		editoraDAO = new EditoraDAO();
 	}
 
-	public void realizarCadastro(String nomeEditora, String nacionalidade) {
+	public void acoesEditoraController(Editora editora, int operacao) {
 
-			Editora novaEditora = new Editora();
-			novaEditora.setNome(nomeEditora);
-			novaEditora.setNacionalidade(nacionalidade);
-			editoraDAO.salvarEditora(novaEditora);
-
-		
+		switch(operacao) {
+		case ALTERAR_CADASTRO:
+			editoraDAO.acoesTabelaEditora(editora, ALTERAR_CADASTRO);
+			break;
+		case INSERIR_CADASTRO:
+			editoraDAO.acoesTabelaEditora(editora, EditoraDAO.INSERIR_CADASTRO);
+			break;
+		}
 	}
 
 	public ArrayList<Editora> retornaEditoras(int indexPage) {

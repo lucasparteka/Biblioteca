@@ -12,16 +12,27 @@ public class PessoaDAO {
 	private Connection connect = null;
 	private Pessoa pessoa;
 
-	public void salvarPessoa(Pessoa usuario) {
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
+
+	public void acoesTabelaPessoa(Pessoa usuario, int operacao) {
 
 		connect = ConnectionFactory.getConexao();
-		String sql = "INSERT INTO public.pessoa (nome, cpf, telefone) VALUES (?, ?, ?)";
+		String sql = "";
 		PreparedStatement stat = null;
+		switch (operacao) {
+		case ALTERAR_CADASTRO:
+			sql = "update pessoa set nome = ?, telefone = ? where cpf = ?";
+			break;
+		case INSERIR_CADASTRO:
+			sql = "INSERT INTO public.pessoa (nome, telefone, cpf) VALUES (?, ?, ?)";
+			break;
+		}
 		try {
 			stat = connect.prepareStatement(sql);
 			stat.setString(1, usuario.getNome());
-			stat.setString(3, usuario.getTelefone());
-			stat.setString(2, usuario.getCpf());
+			stat.setString(2, usuario.getTelefone());
+			stat.setString(3, usuario.getCpf());
 			stat.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -30,6 +41,7 @@ public class PessoaDAO {
 		}
 
 	}
+
 	public Pessoa buscarPessoa(String cpf) {
 
 		connect = ConnectionFactory.getConexao();
@@ -58,7 +70,7 @@ public class PessoaDAO {
 		}
 		return pessoa;
 	}
-	
+
 	public Pessoa buscarPessoaPorId(Long id) {
 
 		connect = ConnectionFactory.getConexao();

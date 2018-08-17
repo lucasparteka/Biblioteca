@@ -11,10 +11,10 @@
    <children>
       <Pane prefHeight="350.0" prefWidth="600.0">
          <children>
-            <JFXTextField fx:id="CampoNome" labelFloat="true" layoutX="93.0" layoutY="83.0" onKeyPressed="#validarLetras" promptText="Nome" />
-            <JFXTextField fx:id="CampoSobrenome" labelFloat="true" layoutX="310.0" layoutY="83.0" onKeyPressed="#validarLetras" promptText="Sobrenome" />
-            <JFXTextField fx:id="CampoTelefone" labelFloat="true" layoutX="93.0" layoutY="143.0" onKeyPressed="#validarNumeros" promptText="Telefone" />
-            <JFXTextField fx:id="CampoCPF" labelFloat="true" layoutX="310.0" layoutY="143.0" onKeyPressed="#validarNumeros" promptText="CPF" />
+            <JFXTextField fx:id="campoNome" labelFloat="true" layoutX="93.0" layoutY="83.0" onKeyPressed="#validarLetras" promptText="Nome" />
+            <JFXTextField fx:id="campoSobrenome" labelFloat="true" layoutX="310.0" layoutY="83.0" onKeyPressed="#validarLetras" promptText="Sobrenome" />
+            <JFXTextField fx:id="campoTelefone" labelFloat="true" layoutX="93.0" layoutY="143.0" onKeyPressed="#validarNumeros" promptText="Telefone" />
+            <JFXTextField fx:id="campoCPF" labelFloat="true" layoutX="310.0" layoutY="143.0" onKeyPressed="#validarNumeros" promptText="CPF" />
             <Button layoutX="93.0" layoutY="225.0" mnemonicParsing="false" onAction="#cadastrarPessoa" prefHeight="25.0" prefWidth="200.0" text="Cadastrar" />
             <Button fx:id="botaoCancelar" layoutX="307.0" layoutY="225.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="200.0" text="Fechar" />
             <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="300.0" prefHeight="17.0" prefWidth="600.0">

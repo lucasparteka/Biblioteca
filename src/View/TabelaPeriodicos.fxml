@@ -29,7 +29,7 @@
             </TableView>
             <Button fx:id="botaoSelecionar" layoutX="233.0" layoutY="366.0" mnemonicParsing="false" onAction="#selecionarLivro" prefHeight="25.0" prefWidth="150.0" text="Selecionar" />
             <Button fx:id="botaoCancelar" layoutX="417.0" layoutY="366.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="150.0" text="Fechar" />
-            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="440.0" prefWidth="800.0" text="Label">
+            <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="440.0" prefWidth="800.0">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>

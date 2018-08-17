@@ -15,12 +15,12 @@
 
 .text-field
 {
-    -fx-text-fill: orange;
+    /*-fx-text-fill: orange;
     -fx-font-size : 13pt;
     -jfx-focus-color: orange;
-    -fx-background-color: #2A2E37;
+    -fx-background-color: #2A2E37;*/
     -fx-border-color: none;
-        
+    -fx-promp-text: red;   
     -fx-border-radius: 0px;
     -fx-text-fill: derive(-fx-secondary, 20%);
 }

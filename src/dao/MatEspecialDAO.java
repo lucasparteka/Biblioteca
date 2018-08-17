@@ -15,13 +15,22 @@ public class MatEspecialDAO {
 
 	public static final int INCREMENTAR = 1;
 	public static final int DECREMENTAR = 2;
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
 
-	public void salvarMaterialEspecial(MaterialEspecial matEspecial) {
+	public void salvarMaterialEspecial(MaterialEspecial matEspecial, int operacao) {
 
 		connect = ConnectionFactory.getConexao();
 		PreparedStatement stat = null;
-		String sql = "insert into materialespecial (titulo, codbarras, estante, exemplares, disponiveis, tipo, descricao) values (?, ?, ?, ?, ?, ?, ?)";
-
+		String sql = "";
+		switch (operacao) {
+		case ALTERAR_CADASTRO:
+			sql = "update materialespecial set titulo = ?, codbarras = ?, estante = ?, exemplares = ?, disponiveis = ?, tipo = ?, descricao = ? where id = " + matEspecial.getId();
+			break;
+		case INSERIR_CADASTRO:
+			sql = "insert into materialespecial (titulo, codbarras, estante, exemplares, disponiveis, tipo, descricao) values (?, ?, ?, ?, ?, ?, ?)";
+			break;
+		}
 		try {
 			stat = connect.prepareStatement(sql);
 			stat.setString(1, matEspecial.getTitulo());

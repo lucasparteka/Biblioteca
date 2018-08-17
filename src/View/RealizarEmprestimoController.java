@@ -173,11 +173,11 @@ public class RealizarEmprestimoController implements Initializable {
 			usuario = pesquisarUsuario.buscarPessoa(campoCPF.getText());
 			if (usuario == null) {
 				campoCPF.getStylesheets().add(
-						RealizarEmprestimoController.class.getResource("/style/edit_TextField.css").toExternalForm());
+						RealizarEmprestimoController.class.getResource("/style/destacaTextField.css").toExternalForm());
 				labelStatus.setText("Cpf não localizado");
 			} else {
 				campoCPF.getStylesheets().add(
-						RealizarEmprestimoController.class.getResource("/style/edit_TextField_1.css").toExternalForm());
+						RealizarEmprestimoController.class.getResource("/style/normalizaTextField.css").toExternalForm());
 				labelStatus.setText("");
 				campoNome.setText(usuario.getNome());
 			}

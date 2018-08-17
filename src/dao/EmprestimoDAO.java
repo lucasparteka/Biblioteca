@@ -19,7 +19,7 @@ public class EmprestimoDAO {
 	public static final int EXCLUIR_EMPRESTIMO = 1;
 	public static final int DEVOLVER_EMPRESTIMO = 2;
 
-	public void salvaremprestimo(Emprestimo emprestimo, long tipoMaterial) {
+	public void salvaremprestimo(Emprestimo emprestimo, long idTabelaMaterialEscolhido) {
 
 		connect = ConnectionFactory.getConexao();
 		PreparedStatement stat = null;
@@ -30,7 +30,7 @@ public class EmprestimoDAO {
 			stat.setDate(2, emprestimo.getDataEmprestimo());
 			stat.setDate(3, emprestimo.getDataDevolucao());
 			stat.setString(4, emprestimo.getStatus());
-			stat.setLong(5, tipoMaterial);
+			stat.setLong(5, idTabelaMaterialEscolhido);
 			stat.setLong(6, emprestimo.getInformacional().getId());
 			stat.executeUpdate();
 		} catch (SQLException e) {

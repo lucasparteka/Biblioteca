@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -11,22 +13,29 @@
    <children>
       <Pane layoutX="10.0" layoutY="10.0" prefHeight="530.0" prefWidth="600.0">
          <children>
-            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="47.0" layoutY="81.0" prefHeight="38.0" prefWidth="337.0" promptText="ID" />
+            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="47.0" layoutY="81.0" prefHeight="38.0" prefWidth="101.0" promptText="ID" />
             <Button layoutX="425.0" layoutY="80.0" mnemonicParsing="false" onAction="#pesquisarMatEspecial" prefHeight="25.0" prefWidth="131.0" text="Pesquisar" />
-            <JFXTextField fx:id="campoTitulo" editable="false" labelFloat="true" layoutX="47.0" layoutY="149.0" prefHeight="38.0" prefWidth="230.0" promptText="Titulo" />
-            <JFXTextField fx:id="campoEstante" editable="false" labelFloat="true" layoutX="326.0" layoutY="149.0" prefHeight="38.0" prefWidth="230.0" promptText="Estante" />
-            <JFXTextField fx:id="campoExemplares" editable="false" labelFloat="true" layoutX="46.0" layoutY="216.0" prefHeight="38.0" prefWidth="230.0" promptText="Exemplares" />
-            <JFXTextField fx:id="campoDisponiveis" editable="false" labelFloat="true" layoutX="325.0" layoutY="216.0" prefHeight="38.0" prefWidth="230.0" promptText="Disponiveis" />
-            <JFXTextField fx:id="campoCodBarras" editable="false" labelFloat="true" layoutX="45.0" layoutY="288.0" prefHeight="38.0" prefWidth="230.0" promptText="Codigo de Barras" />
-            <JFXTextField fx:id="campoDescricao" editable="false" labelFloat="true" layoutX="324.0" layoutY="288.0" prefHeight="38.0" prefWidth="230.0" promptText="Descrição" />
-            <Button fx:id="botaoSalvar" layoutX="46.0" layoutY="369.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="150.0" text="Salvar" />
-            <Button fx:id="botaoEditar" layoutX="227.0" layoutY="369.0" mnemonicParsing="false" onAction="#editarMatEspecial" prefHeight="25.0" prefWidth="150.0" text="Editar" />
+            <JFXTextField fx:id="campoTitulo" editable="false" layoutX="175.0" layoutY="81.0" prefHeight="38.0" prefWidth="230.0" promptText="Titulo" />
+            <JFXTextField fx:id="campoEstante" editable="false" labelFloat="true" layoutX="48.0" layoutY="227.0" prefHeight="38.0" prefWidth="150.0" promptText="Estante" />
+            <JFXTextField fx:id="campoExemplares" editable="false" labelFloat="true" layoutX="229.0" layoutY="227.0" prefHeight="38.0" prefWidth="150.0" promptText="Exemplares" />
+            <JFXTextField fx:id="campoDisponiveis" editable="false" labelFloat="true" layoutX="407.0" layoutY="227.0" prefHeight="38.0" prefWidth="150.0" promptText="Disponiveis" />
+            <JFXTextField fx:id="campoCodBarras" editable="false" labelFloat="true" layoutX="416.0" layoutY="160.0" prefHeight="38.0" prefWidth="150.0" promptText="Codigo de Barras" />
+            <JFXTextField fx:id="campoDescricao" editable="false" labelFloat="true" layoutX="48.0" layoutY="160.0" prefHeight="38.0" prefWidth="347.0" promptText="Descrição" />
+            <Button fx:id="botaoSalvar" disable="true" layoutX="46.0" layoutY="369.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="150.0" text="Salvar" />
+            <Button fx:id="botaoEditar" disable="true" layoutX="227.0" layoutY="369.0" mnemonicParsing="false" onAction="#editarMatEspecial" prefHeight="25.0" prefWidth="150.0" text="Editar" />
             <Button fx:id="botaoCancelar" layoutX="405.0" layoutY="369.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="150.0" text="Fechar" />
             <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="440.0" prefHeight="26.0" prefWidth="600.0">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>
             </Label>
+            <JFXToggleButton fx:id="toggleCD" disable="true" layoutX="88.0" layoutY="295.0" prefHeight="58.0" prefWidth="157.0" text="CD" textFill="#ffff8d">
+               <toggleGroup>
+                  <ToggleGroup fx:id="grupoToggle" />
+               </toggleGroup>
+            </JFXToggleButton>
+            <JFXToggleButton fx:id="toggleDVD" disable="true" layoutX="231.0" layoutY="295.0" prefHeight="58.0" prefWidth="157.0" text="DVD" textFill="#ffff8d" toggleGroup="$grupoToggle" />
+            <JFXToggleButton fx:id="toggleFITA" disable="true" layoutX="364.0" layoutY="295.0" prefHeight="58.0" prefWidth="157.0" text="FITA" textFill="#ffff8d" toggleGroup="$grupoToggle" />
          </children>
       </Pane>
    </children>

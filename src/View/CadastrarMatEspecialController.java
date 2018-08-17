@@ -2,10 +2,10 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXTextField;
-
 import Controller.AcoesMatEspecial;
+import Model.MaterialEspecial;
+import enums.TipoMaterialEspecial;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +20,19 @@ import mask.ValidarNumeros;
 public class CadastrarMatEspecialController implements Initializable {
 
 	private AcoesMatEspecial acoesMatEspecial;
+	private MaterialEspecial materialEspecial;
+
+	public CadastrarMatEspecialController() {
+		acoesMatEspecial = new AcoesMatEspecial();
+	}
+
+	public MaterialEspecial getMaterialEspecial() {
+		return materialEspecial;
+	}
+
+	public void setMaterialEspecial(MaterialEspecial materialEspecial) {
+		this.materialEspecial = materialEspecial;
+	}
 
 	@FXML
 	private JFXTextField campoCodBarras;
@@ -57,30 +70,33 @@ public class CadastrarMatEspecialController implements Initializable {
 
 	@FXML
 	void cadastrarMatEspecial(ActionEvent event) {
-
-		int idTipoMaterial = 0;
+		materialEspecial = new MaterialEspecial();
 		ToggleButton selecionado = (ToggleButton) tipomaterial.getSelectedToggle();
-		if(selecionado.getText().equals("CD")) {
-			idTipoMaterial = 1;
-		} else if (selecionado.getText().equals("DVD")) {
-			idTipoMaterial = 2;
-		} else if (selecionado.getText().equals("FITA")) {
-			idTipoMaterial = 3;
-		}
-		
 		if (campoCodBarras.getText().isEmpty() || campoDescricao.getText().isEmpty()
 				|| campoDisponiveis.getText().isEmpty() || campoEstante.getText().isEmpty()
 				|| campoExemplares.getText().isEmpty() || selecionado.getText().isEmpty()
 				|| campoTitulo.getText().isEmpty()) {
 			labelStatus.setText("Preencha todos os campos");
 		} else {
-			int estanteInt = Integer.parseInt(campoEstante.getText());
-			int exemplaresInt = Integer.parseInt(campoExemplares.getText());
-			int disponiveisInt = Integer.parseInt(campoDisponiveis.getText());
+			if (selecionado.getText().equals("CD")) {
+				getMaterialEspecial().setIdTipo(TipoMaterialEspecial.CD.idTipoEscolhido);
+				getMaterialEspecial().setTipo(TipoMaterialEspecial.CD.nomeTipoEscolhido);
+			} else if (selecionado.getText().equals("DVD")) {
+				getMaterialEspecial().setIdTipo(TipoMaterialEspecial.DVD.idTipoEscolhido);
+				getMaterialEspecial().setTipo(TipoMaterialEspecial.DVD.nomeTipoEscolhido);
+			} else if (selecionado.getText().equals("FITA")) {
+				getMaterialEspecial().setIdTipo(TipoMaterialEspecial.FITA.idTipoEscolhido);
+				getMaterialEspecial().setTipo(TipoMaterialEspecial.FITA.nomeTipoEscolhido);
+			}
+			getMaterialEspecial().setCodigoBarras(campoCodBarras.getText());
+			getMaterialEspecial().setDescricao(campoDescricao.getText());
+			getMaterialEspecial().setDisponiveis(Integer.parseInt(campoDisponiveis.getText()));
+			getMaterialEspecial().setEstante(Integer.parseInt(campoEstante.getText()));
+			getMaterialEspecial().setExemplares(Integer.parseInt(campoExemplares.getText()));
+			getMaterialEspecial().setTitulo(campoTitulo.getText());
 
-			acoesMatEspecial.realizarCadastro(campoCodBarras.getText(), estanteInt, exemplaresInt, disponiveisInt,
-					campoTitulo.getText(), campoDescricao.getText(), idTipoMaterial);
-			labelStatus.setText("cadastrado com sucesso");
+			acoesMatEspecial.acoesMatEspecialController(materialEspecial, AcoesMatEspecial.INSERIR_CADASTRO);
+			labelStatus.setText("Cadastrado com sucesso");
 			campoCodBarras.setText("");
 			campoDescricao.setText("");
 			campoDisponiveis.setText("");

@@ -6,14 +6,7 @@ public class Pessoa {
 	private String cpf;
 	private String nome;
 	private String telefone;
-	private String sobrenome;
 	
-	public String getSobrenome() {
-		return sobrenome;
-	}
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
 	public long getId() {
 		return id;
 	}

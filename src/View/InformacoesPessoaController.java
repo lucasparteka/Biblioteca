@@ -23,6 +23,18 @@ public class InformacoesPessoaController implements Initializable {
 
 	private AcoesPessoa acoesPessoa;
 	private Pessoa pessoa;
+	
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public InformacoesPessoaController() {
+		acoesPessoa = new AcoesPessoa();
+	}
 
 	@FXML
 	private JFXTextField campoCPF;
@@ -32,9 +44,6 @@ public class InformacoesPessoaController implements Initializable {
 
 	@FXML
 	private JFXTextField campoTelefone;
-
-	@FXML
-	private JFXTextField campoID;
 
 	@FXML
 	private Button botaoEditar;
@@ -51,30 +60,26 @@ public class InformacoesPessoaController implements Initializable {
 	@FXML
 	void habilitarEdicao(ActionEvent event) {
 		botaoSalvar.setDisable(false);
-		campoID.setDisable(false);
-		campoNome.setDisable(false);
-		campoTelefone.setDisable(false);
+		campoNome.setEditable(true);
+		campoTelefone.setEditable(true);
+		campoCPF.setDisable(true);
 	}
 
 	@FXML
 	void pesquisarPessoa(ActionEvent event) {
 		if (campoCPF.getText().isEmpty()) {
-			labelStatus.setText("Digite um CPF");
+			labelStatus.setText("Primeiro digite um CPF");
 		} else {
 			labelStatus.setText("");
-			acoesPessoa = new AcoesPessoa();
 			pessoa = new Pessoa();
-			pessoa = acoesPessoa.buscarPessoa(campoCPF.getText());
+			setPessoa(acoesPessoa.buscarPessoa(campoCPF.getText()));
 			if (pessoa == null) {
 				labelStatus.setText("Cadastro não encontrado");
 			} else {
-				String idString = Long.toString(pessoa.getId());
-				campoID.setText(idString);
 				campoNome.setText(pessoa.getNome());
 				campoTelefone.setText(pessoa.getTelefone());
 				labelStatus.setText("Cadastro localizado");
 				botaoEditar.setDisable(false);
-				campoCPF.setDisable(true);
 			}
 		}
 
@@ -93,17 +98,25 @@ public class InformacoesPessoaController implements Initializable {
 
 	@FXML
 	void salvarEdicao(ActionEvent event) {
-
+		if(campoNome.getText().isEmpty() || campoTelefone.getText().isEmpty()) {
+			labelStatus.setText("Preencha todos os campos");
+		} else {
+			getPessoa().setNome(campoNome.getText());
+			getPessoa().setTelefone(campoTelefone.getText());
+			acoesPessoa.acoesPessoaController(pessoa, AcoesPessoa.ALTERAR_CADASTRO);
+			labelStatus.setText("Cadastro alterado");
+			campoCPF.setDisable(false);
+			campoCPF.setText("");
+			campoNome.setText("");
+			campoTelefone.setText("");
+			botaoSalvar.setDisable(true);
+			botaoEditar.setDisable(true);
+		}
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-
-		botaoSalvar.setDisable(true);
-		botaoEditar.setDisable(true);
-		campoNome.setDisable(true);
-		campoID.setDisable(true);
-		campoTelefone.setDisable(true);
+		
 	}
 
 }

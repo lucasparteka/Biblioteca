@@ -17,12 +17,23 @@ import dao.PeriodicoDAO;
 public class AcoesEmprestimo {
 
 	private EmprestimoDAO emprestimoDAO;
-	private LivroDAO livroDAO;
-	private PeriodicoDAO periodicoDAO;
-	private MatEspecialDAO matEspecialDAO;
-
 	public static final int EXCLUIR_EMPRESTIMO = 1;
 	public static final int DEVOLVER_EMPRESTIMO = 2;
+
+	public enum EnumTipoMaterial {
+
+		LIVRO(1L), PERIODICO(2L), MATERIAL_ESPECIAL(3L);
+
+		private Long idTabelaMaterialEscolhido;
+
+		EnumTipoMaterial(Long tipo) {
+			idTabelaMaterialEscolhido = tipo;
+		}
+
+		public Long getIdTabelaMaterialEscolhido() {
+			return idTabelaMaterialEscolhido;
+		}
+	}
 
 	public AcoesEmprestimo() {
 		emprestimoDAO = new EmprestimoDAO();
@@ -39,13 +50,13 @@ public class AcoesEmprestimo {
 		emprestimo.setStatus(status);
 
 		if (materialInformacional instanceof Livro) {
-			tipoMaterial = 1L;
+			tipoMaterial = EnumTipoMaterial.LIVRO.getIdTabelaMaterialEscolhido();
 			LivroDAO.alterarQuantidade(emprestimo.getInformacional().getId(), LivroDAO.DECREMENTAR);
 		} else if (materialInformacional instanceof Periodico) {
-			tipoMaterial = 2L;
+			tipoMaterial = EnumTipoMaterial.PERIODICO.getIdTabelaMaterialEscolhido();
 			PeriodicoDAO.alterarQuantidade(emprestimo.getInformacional().getId(), PeriodicoDAO.DECREMENTAR);
 		} else if (materialInformacional instanceof MaterialEspecial) {
-			tipoMaterial = 3L;
+			tipoMaterial = EnumTipoMaterial.MATERIAL_ESPECIAL.getIdTabelaMaterialEscolhido();
 			MatEspecialDAO.alterarQuantidade(emprestimo.getInformacional().getId(), MatEspecialDAO.DECREMENTAR);
 		}
 		emprestimoDAO.salvaremprestimo(emprestimo, tipoMaterial);

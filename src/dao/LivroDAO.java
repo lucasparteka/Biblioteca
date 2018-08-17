@@ -19,13 +19,23 @@ public class LivroDAO {
 
 	public static final int INCREMENTAR = 1;
 	public static final int DECREMENTAR = 2;
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
 
-	public void salvarLivro(Livro livro) {
+	public void acoesTabelaLivro(Livro livro, int operacao) {
 
 		connect = ConnectionFactory.getConexao();
 		PreparedStatement stat = null;
-		String sql = "insert into livro (titulo, codbarras, estante, exemplares, disponiveis, isbn, ano, volume, edicao, editora, autor)"
-				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "";
+		switch (operacao) {
+		case ALTERAR_CADASTRO:
+			sql = "update livro set titulo = ?, codbarras = ?, estante = ?, exemplares = ?, disponiveis = ?, isbn = ?, ano = ?, volume = ?, edicao = ?, editora = ?, autor = ? where id = " + livro.getId();
+			break;
+		case INSERIR_CADASTRO:
+			sql = "insert into livro (titulo, codbarras, estante, exemplares, disponiveis, isbn, ano, volume, edicao, editora, autor)"
+					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			break;
+		}
 
 		try {
 			stat = connect.prepareStatement(sql);

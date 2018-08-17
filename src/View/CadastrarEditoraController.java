@@ -1,6 +1,8 @@
 package View;
 
 import Controller.AcoesEditora;
+import Model.Editora;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -23,9 +24,18 @@ import javafx.stage.Stage;
  */
 public class CadastrarEditoraController implements Initializable {
 
-    AcoesEditora acoesEditora;
+    private AcoesEditora acoesEditora;
+    private Editora editora;
+    
+    public Editora getEditora() {
+		return editora; 
+	}
 
-    @FXML
+	public void setEditora(Editora editora) {
+		this.editora = editora;
+	}
+
+	@FXML
     private JFXTextField campoNomeEditora;
 
     @FXML
@@ -43,8 +53,12 @@ public class CadastrarEditoraController implements Initializable {
         if (campoNomeEditora.getText().isEmpty()) {
             labelStatus.setText("Preencha todos os campos");
         } else {
-            ToggleButton selecionado = (ToggleButton) nacionalidade.getSelectedToggle();
-            acoesEditora.realizarCadastro(campoNomeEditora.getText(), selecionado.getText());
+        	ToggleButton selecionado = (ToggleButton) nacionalidade.getSelectedToggle();
+        	
+            editora = new Editora();
+            getEditora().setNacionalidade(selecionado.getText());
+            getEditora().setNome(campoNomeEditora.getText());
+            acoesEditora.acoesEditoraController(editora, AcoesEditora.INSERIR_CADASTRO);
             labelStatus.setText("Cadastrado com sucesso");
             campoNomeEditora.setText("");
         }

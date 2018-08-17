@@ -13,12 +13,21 @@ public class EditoraDAO {
 	private Connection connect = null;
 	private Editora editora;
 	
-	public void salvarEditora(Editora editora) {
-		
-		connect = ConnectionFactory.getConexao();
-		String sql = "insert into public.editora (nome, nacionalidade) values (?, ?)";
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
+	
+	public void acoesTabelaEditora(Editora editora, int operacao) {
 		PreparedStatement stat = null;
-		
+		connect = ConnectionFactory.getConexao();
+		String sql = "";
+		switch(operacao) {
+		case ALTERAR_CADASTRO:
+			sql = "update editora set nome = ?, nacionalidade = ? where id = " + editora.getId();
+			break;
+		case INSERIR_CADASTRO:
+			sql = "insert into public.editora (nome, nacionalidade) values (?, ?)";
+			break;
+		}
 		try {
 			stat = connect.prepareStatement(sql);
 			stat.setString(1, editora.getNome());
@@ -29,7 +38,6 @@ public class EditoraDAO {
 		} finally {
 			ConnectionFactory.fecharConexao(connect, stat);
 		}
-	
 	}
 	
 	public Editora buscarEditora(Long idEditora) {

@@ -11,7 +11,7 @@ public class AutorDAO {
 
 	private static Connection connect = null;
 	private Autor autor;
-	private ArrayList<Autor> listAutor;
+	private ArrayList<Autor> listAutor; 
 	
 	public static final int ALTERAR_CADASTRO = 1;
 	public static final int INSERIR_CADASTRO = 2;

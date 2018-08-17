@@ -1,42 +1,40 @@
 package Controller;
 
-
 import java.util.ArrayList;
 
 import Model.MaterialEspecial;
 import dao.MatEspecialDAO;
 
 public class AcoesMatEspecial {
-	
+
 	private MatEspecialDAO matEspecialDAO;
-	
+
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
+
 	public AcoesMatEspecial() {
 		matEspecialDAO = new MatEspecialDAO();
 	}
 
-	public void realizarCadastro(String codigoBarras, int estante, int exemplares, int disponiveis,
-			String titulo, String descricao, int idTipoMaterial) {
-
-			MaterialEspecial matEspecial = new MaterialEspecial();
-			matEspecial.setCodigoBarras(codigoBarras);
-			matEspecial.setDescricao(descricao);
-			matEspecial.setDisponiveis(disponiveis);
-			matEspecial.setEstante(estante);
-			matEspecial.setExemplares(exemplares);
-			matEspecial.setIdTipo(idTipoMaterial);
-			matEspecial.setTitulo(titulo);
-			
-			matEspecialDAO.salvarMaterialEspecial(matEspecial);
+	public void acoesMatEspecialController(MaterialEspecial materialEspecial, int operacao) {
+		switch (operacao) {
+		case ALTERAR_CADASTRO:
+			matEspecialDAO.salvarMaterialEspecial(materialEspecial, MatEspecialDAO.ALTERAR_CADASTRO);
+			break;
+		case INSERIR_CADASTRO:
+			matEspecialDAO.salvarMaterialEspecial(materialEspecial, MatEspecialDAO.INSERIR_CADASTRO);
+			break;
 		}
-	
+	}
+
 	public MaterialEspecial buscarMatEspecial(Long id) {
 		return matEspecialDAO.buscarMatEspecial(id);
 	}
-	
-	public ArrayList<MaterialEspecial> retornaMatEspeciais(int pageIndex){
-		return matEspecialDAO .retornaMatEspeciais(pageIndex * 3);
+
+	public ArrayList<MaterialEspecial> retornaMatEspeciais(int pageIndex) {
+		return matEspecialDAO.retornaMatEspeciais(pageIndex * 3);
 	}
-	
+
 	public int retornaQuantidade() {
 		return matEspecialDAO.retornaQuantidade();
 	}

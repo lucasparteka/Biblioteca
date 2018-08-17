@@ -8,24 +8,24 @@ public class AcoesPeriodico {
 
 	private PeriodicoDAO periodicoDAO;
 
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
+	
 	public AcoesPeriodico() {
 		periodicoDAO = new PeriodicoDAO();
 	}
 
-	public void realizarCadastro(String codigoBarras, int estante, int exemplares, int disponiveis, String titulo,
-			int issn, int ano, int volume) {
+	public void acoesPeriodicoController(Periodico periodico, int operacao) {
 
-		Periodico periodico = new Periodico();
-		periodico.setAno(ano);
-		periodico.setCodigoBarras(codigoBarras);
-		periodico.setDisponiveis(disponiveis);
-		periodico.setEstante(estante);
-		periodico.setExemplares(exemplares);
-		periodico.setIssn(issn);
-		periodico.setTitulo(titulo);
-		periodico.setVolume(volume);
-
-		periodicoDAO.salvarPeriodico(periodico);
+		switch (operacao) {
+		case ALTERAR_CADASTRO:
+			periodicoDAO.salvarPeriodico(periodico, PeriodicoDAO.ALTERAR_CADASTRO);
+			break;
+		case INSERIR_CADASTRO:
+			periodicoDAO.salvarPeriodico(periodico, PeriodicoDAO.INSERIR_CADASTRO);
+			break;
+			
+		}
 	}
 
 	public Periodico pesquisarPeriodico(Long id) {

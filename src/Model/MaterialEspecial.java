@@ -6,7 +6,7 @@ public class MaterialEspecial extends AbstractInformacional{
     private String tipo;
     private int idTipo;
     
-    public int getIdTipo() {
+	public int getIdTipo() {
 		return idTipo;
 	}
 

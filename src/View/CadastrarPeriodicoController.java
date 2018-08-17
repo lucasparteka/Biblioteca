@@ -2,11 +2,10 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
-
 import Controller.AcoesPeriodico;
+import Model.Periodico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +23,15 @@ import mask.ValidarNumeros;
 public class CadastrarPeriodicoController implements Initializable {
 
 	private AcoesPeriodico acoesPeriodico;
+	private Periodico periodico;
+
+	public Periodico getPeriodico() {
+		return periodico;
+	}
+
+	public void setPeriodico(Periodico periodico) {
+		this.periodico = periodico;
+	}
 
 	@FXML
 	private JFXTextField campoCodBarras;
@@ -67,22 +75,26 @@ public class CadastrarPeriodicoController implements Initializable {
 	@FXML
 	void cadastrarPeriodico(ActionEvent event) {
 
+		periodico = new Periodico();
+		acoesPeriodico = new AcoesPeriodico();
 		if (campoCodBarras.getText().isEmpty() || campoDisponiveis.getText().isEmpty()
 				|| campoEstante.getText().isEmpty() || campoExemplares.getText().isEmpty()
 				|| campoISSN.getText().isEmpty() || campoTitulo.getText().isEmpty()
 				|| campoVolume.getText().isEmpty()) {
 			labelStatus.setText("Preencha todos os campos");
 		} else {
-			int estanteInt = Integer.parseInt(campoEstante.getText());
-			int exemplaresInt = Integer.parseInt(campoExemplares.getText());
-			int disponiveisInt = Integer.parseInt(campoDisponiveis.getText());
-			int issnInt = Integer.parseInt(campoISSN.getText());
-			int volumeInt = Integer.parseInt(campoVolume.getText());
 			double x = campoAno.getValue();
 			int anoInt = (int) x;
-
-			acoesPeriodico.realizarCadastro(campoCodBarras.getText(), estanteInt, exemplaresInt, disponiveisInt,
-					campoTitulo.getText(), issnInt, anoInt, volumeInt);
+			getPeriodico().setAno(anoInt);
+			getPeriodico().setCodigoBarras(campoCodBarras.getText());
+			getPeriodico().setDisponiveis(Integer.parseInt(campoDisponiveis.getText()));
+			getPeriodico().setEstante(Integer.parseInt(campoEstante.getText()));
+			getPeriodico().setExemplares(Integer.parseInt(campoExemplares.getText()));
+			getPeriodico().setIssn(Integer.parseInt(campoISSN.getText()));
+			getPeriodico().setTitulo(campoTitulo.getText());
+			getPeriodico().setVolume(Integer.parseInt(campoVolume.getText()));
+			
+			acoesPeriodico.acoesPeriodicoController(getPeriodico(), AcoesPeriodico.INSERIR_CADASTRO);
 
 			labelStatus.setText("Cadastrado com sucesso");
 			campoCodBarras.setText("");

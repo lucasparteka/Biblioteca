@@ -9,23 +9,25 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.InformacoesLivroController">
    <children>
-      <Pane layoutX="2.0" layoutY="2.0" prefHeight="600.0" prefWidth="700.0">
+      <Pane layoutX="1.0" layoutY="1.0" prefHeight="600.0" prefWidth="700.0">
          <children>
-            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="118.0" layoutY="77.0" prefHeight="38.0" prefWidth="309.0" promptText="ID" unFocusColor="#4d4d4d" />
-            <Button layoutX="465.0" layoutY="76.0" mnemonicParsing="false" onAction="#pesquisarLivro" prefHeight="25.0" prefWidth="150.0" text="Pesquisar" />
+            <JFXTextField fx:id="campoID" labelFloat="true" layoutX="119.0" layoutY="71.0" prefHeight="38.0" prefWidth="309.0" promptText="ID" />
+            <Button layoutX="466.0" layoutY="70.0" mnemonicParsing="false" onAction="#pesquisarLivro" prefHeight="25.0" prefWidth="150.0" text="Pesquisar" />
             <JFXTextField fx:id="campoTitulo" editable="false" labelFloat="true" layoutX="118.0" layoutY="140.0" prefHeight="38.0" prefWidth="235.0" promptText="Titulo" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoAutor" editable="false" labelFloat="true" layoutX="380.0" layoutY="140.0" prefHeight="38.0" prefWidth="235.0" promptText="Autor" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoEditora" editable="false" labelFloat="true" layoutX="118.0" layoutY="205.0" prefHeight="38.0" prefWidth="235.0" promptText="Editora" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoAno" editable="false" labelFloat="true" layoutX="380.0" layoutY="205.0" prefHeight="38.0" prefWidth="235.0" promptText="Ano" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoExemplares" editable="false" labelFloat="true" layoutX="118.0" layoutY="270.0" prefHeight="38.0" prefWidth="150.0" promptText="Exemplares" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoEstante" editable="false" labelFloat="true" layoutX="465.0" layoutY="270.0" prefHeight="38.0" prefWidth="150.0" promptText="Estante" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoDisponiveis" editable="false" labelFloat="true" layoutX="292.0" layoutY="270.0" prefHeight="38.0" prefWidth="150.0" promptText="Disponiveis" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoEdicao" editable="false" labelFloat="true" layoutX="118.0" layoutY="330.0" prefHeight="38.0" prefWidth="235.0" promptText="Edição" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoVolume" editable="false" labelFloat="true" layoutX="380.0" layoutY="330.0" prefHeight="38.0" prefWidth="235.0" promptText="Volume" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoCodBarras" editable="false" labelFloat="true" layoutX="118.0" layoutY="392.0" prefHeight="38.0" prefWidth="235.0" promptText="Codigo de Barras" unFocusColor="#4d4d4d" />
-            <JFXTextField fx:id="campoISBN" editable="false" labelFloat="true" layoutX="380.0" layoutY="392.0" prefHeight="38.0" prefWidth="235.0" promptText="ISBN" unFocusColor="#4d4d4d" />
-            <Button fx:id="botaoSalvar" layoutX="118.0" layoutY="475.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="40.0" prefWidth="150.0" text="Salvar" />
-            <Button fx:id="botaoEditar" layoutX="292.0" layoutY="475.0" mnemonicParsing="false" onAction="#editarLivro" prefHeight="25.0" prefWidth="150.0" text="Editar" />
+            <JFXTextField fx:id="campoISBN" editable="false" labelFloat="true" layoutX="380.0" layoutY="140.0" prefHeight="38.0" prefWidth="113.0" promptText="ISBN" unFocusColor="#4d4d4d" />
+            <JFXTextField fx:id="campoAno" editable="false" labelFloat="true" layoutX="521.0" layoutY="140.0" prefHeight="38.0" prefWidth="94.0" promptText="Ano" unFocusColor="#4d4d4d" />
+            <JFXTextField fx:id="campoEditora" editable="false" labelFloat="true" layoutX="118.0" layoutY="205.0" prefHeight="38.0" prefWidth="309.0" promptText="Editora" unFocusColor="#4d4d4d" />
+            <Button fx:id="botaoAlterarEditora" disable="true" layoutX="465.0" layoutY="204.0" mnemonicParsing="false" onAction="#localizarEditora" prefHeight="25.0" prefWidth="150.0" text="Alterar" />
+            <JFXTextField fx:id="campoAutor" editable="false" labelFloat="true" layoutX="118.0" layoutY="271.0" prefHeight="38.0" prefWidth="309.0" promptText="Autor" unFocusColor="#4d4d4d" />
+            <Button fx:id="botaoAlterarAutor" disable="true" layoutX="467.0" layoutY="270.0" mnemonicParsing="false" onAction="#localizarAutor" prefHeight="25.0" prefWidth="150.0" text="Alterar" />
+            <JFXTextField fx:id="campoExemplares" editable="false" labelFloat="true" layoutX="119.0" layoutY="339.0" prefHeight="38.0" prefWidth="150.0" promptText="Exemplares" unFocusColor="#4d4d4d" />
+            <JFXTextField fx:id="campoDisponiveis" editable="false" labelFloat="true" layoutX="293.0" layoutY="339.0" prefHeight="38.0" prefWidth="150.0" promptText="Disponiveis" unFocusColor="#4d4d4d" />
+            <JFXTextField fx:id="campoEstante" editable="false" labelFloat="true" layoutX="466.0" layoutY="339.0" prefHeight="38.0" prefWidth="150.0" promptText="Estante" unFocusColor="#4d4d4d" />
+            <JFXTextField fx:id="campoEdicao" editable="false" labelFloat="true" layoutX="119.0" layoutY="407.0" prefHeight="38.0" prefWidth="150.0" promptText="Edição" unFocusColor="#4d4d4d" />
+            <JFXTextField fx:id="campoVolume" editable="false" labelFloat="true" layoutX="293.0" layoutY="407.0" prefHeight="38.0" prefWidth="150.0" promptText="Volume" unFocusColor="#4d4d4d" />
+            <JFXTextField fx:id="campoCodBarras" editable="false" labelFloat="true" layoutX="466.0" layoutY="407.0" prefHeight="38.0" prefWidth="150.0" promptText="Codigo de Barras" unFocusColor="#4d4d4d" />
+            <Button fx:id="botaoSalvar" disable="true" layoutX="118.0" layoutY="475.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="40.0" prefWidth="150.0" text="Salvar" />
+            <Button fx:id="botaoEditar" disable="true" layoutX="292.0" layoutY="475.0" mnemonicParsing="false" onAction="#editarLivro" prefHeight="25.0" prefWidth="150.0" text="Editar" />
             <Button fx:id="botaoCancelar" layoutX="467.0" layoutY="475.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="150.0" text="Fechar" />
             <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="536.0" prefHeight="25.0" prefWidth="700.0">
                <font>

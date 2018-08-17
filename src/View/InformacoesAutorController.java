@@ -22,7 +22,6 @@ public class InformacoesAutorController implements Initializable {
 
 	public InformacoesAutorController() {
 		acoesAutor = new AcoesAutor();
-		autor = new Autor();
 	}
 
 	public Autor getAutor() {
@@ -74,14 +73,16 @@ public class InformacoesAutorController implements Initializable {
 			labelStatus.setText("Digite um id");
 		} else {
 			labelStatus.setText("");
+			autor = new Autor();
 			this.setAutor(acoesAutor.pesquisarAutor(Long.parseLong(campoID.getText())));
-			if (this.getAutor() == null) {
+			if (this.getAutor() == null) { 
 				labelStatus.setText("Autor não encontrado!");
 			} else {
 				labelStatus.setText("");
 				campoNome.setText(this.getAutor().getNome());
 				campoSobrenome.setText(this.getAutor().getSobreNome());
 				botaoEditar.setDisable(false);
+				labelStatus.setText("Cadastro localizado");
 			}
 		}
 	}

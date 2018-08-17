@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXTextField;
 
 import Controller.AcoesPessoa;
+import Model.Pessoa;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,28 +15,37 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import mask.ValidarNumeros;
+import mask.ValidarCPF;
 import mask.ValidarNome;
 
-/**
- * FXML Controller class
- *
- * @author lparteka
- */
 public class CadastrarPessoaController implements Initializable {
 
 	private AcoesPessoa acoesPessoa;
+	private Pessoa pessoa;
+
+	public CadastrarPessoaController() {
+		acoesPessoa = new AcoesPessoa();
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
 
 	@FXML
-	private JFXTextField CampoNome;
+	private JFXTextField campoNome;
 
 	@FXML
-	private JFXTextField CampoCPF;
+	private JFXTextField campoCPF;
 
 	@FXML
-	private JFXTextField CampoTelefone;
+	private JFXTextField campoTelefone;
 
 	@FXML
-	private JFXTextField CampoSobrenome;
+	private JFXTextField campoSobrenome;
 
 	@FXML
 	private Label labelStatus;
@@ -45,45 +55,55 @@ public class CadastrarPessoaController implements Initializable {
 
 	@FXML
 	public void validarNumeros(KeyEvent event) {
-		ValidarNumeros.validarCpf(CampoCPF);
-		ValidarNumeros.validarTelefone(CampoTelefone);
+		ValidarNumeros.validarCpf(campoCPF);
+		ValidarNumeros.validarTelefone(campoTelefone);
 	}
 
 	@FXML
 	public void validarLetras(KeyEvent keyEvent) {
-		ValidarNome validaNome = new ValidarNome();
-		validaNome.validarNome(CampoNome);
-		validaNome.validarNome(CampoSobrenome);
+		ValidarNome.validarTamanhoCampo(campoNome);
+		ValidarNome.validarTamanhoCampo(campoSobrenome);
 	}
 
 	@FXML
 	void cadastrarPessoa(ActionEvent event) {
+		ValidarCPF validar = new ValidarCPF();
 
-		if (CampoCPF.getText().isEmpty() || CampoSobrenome.getText().isEmpty() || CampoNome.getText().isEmpty()
-				|| CampoTelefone.getText().isEmpty()) {
+		if (campoCPF.getText().isEmpty() || campoSobrenome.getText().isEmpty() || campoNome.getText().isEmpty()
+				|| campoTelefone.getText().isEmpty()) {
 			labelStatus.setText("Preencha todos os campos");
 		} else {
-			String cpfString = CampoCPF.getText();
-			int qtdCaracteres = cpfString.length();
-			if (qtdCaracteres < 14) {
-				CampoCPF.getStylesheets()
-						.add(CadastrarPessoaController.class.getResource("/style/edit_TextField.css").toExternalForm());
+			if (validar.isCPF(campoCPF.getText()) == false) {
+				campoCPF.getStylesheets().add(
+						CadastrarPessoaController.class.getResource("/style/destacaTextField.css").toExternalForm());
 				labelStatus.setText("Preencha os campos corretamente");
 			} else {
-				CampoCPF.getStylesheets().add(
-						CadastrarPessoaController.class.getResource("/style/edit_TextField_1.css").toExternalForm());
-				acoesPessoa = new AcoesPessoa();
-				if (acoesPessoa.verificarCadastro(CampoCPF.getText()) == false) {
-					acoesPessoa.realizarCadastro(CampoNome.getText(), CampoSobrenome.getText(), CampoTelefone.getText(),
-							CampoCPF.getText());
-					labelStatus.setText("Cadastrado com sucesso");
-					CampoCPF.setText("");
-					CampoSobrenome.setText("");
-					CampoNome.setText("");
-					CampoTelefone.setText("");
+				campoCPF.getStylesheets().add(CadastrarPessoaController.class
+						.getResource("/style/normalizaTextField.css").toExternalForm());
+				if (campoTelefone.getText().length() < 13) {
+					campoTelefone.getStylesheets().add(CadastrarPessoaController.class
+							.getResource("/style/destacaTextField.css").toExternalForm());
+					labelStatus.setText("Preencha os campos corretamente");
 				} else {
-					labelStatus.setText("Usuario ja cadastrado");
+					campoTelefone.getStylesheets().add(CadastrarPessoaController.class
+							.getResource("/style/normalizaTextField.css").toExternalForm());
+					acoesPessoa = new AcoesPessoa();
+					if (acoesPessoa.verificarCadastro(campoCPF.getText()) == false) {
+						pessoa = new Pessoa();
+						getPessoa().setCpf(campoCPF.getText());
+						getPessoa().setNome(campoNome.getText() + " " + campoSobrenome.getText());
+						getPessoa().setTelefone(campoTelefone.getText());
+						acoesPessoa.acoesPessoaController(pessoa, AcoesPessoa.INSERIR_CADASTRO);
+						labelStatus.setText("Cadastrado com sucesso");
+						campoCPF.setText("");
+						campoSobrenome.setText("");
+						campoNome.setText("");
+						campoTelefone.setText("");
+					} else {
+						labelStatus.setText("Usuario ja cadastrado");
+					}
 				}
+
 			}
 		}
 	}
@@ -96,7 +116,7 @@ public class CadastrarPessoaController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		acoesPessoa = new AcoesPessoa();
+
 	}
 
 }

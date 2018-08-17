@@ -14,12 +14,22 @@ public class PeriodicoDAO {
 
 	public static final int INCREMENTAR = 1;
 	public static final int DECREMENTAR = 2;
+	public static final int ALTERAR_CADASTRO = 1;
+	public static final int INSERIR_CADASTRO = 2;
 
-	public void salvarPeriodico(Periodico periodico) {
+	public void salvarPeriodico(Periodico periodico, int operacao) {
 
 		connect = ConnectionFactory.getConexao();
-		String sql = "insert into periodicos (titulo, codbarras, estante, exemplares, disponiveis, issn, volume, ano) values (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "";
 		PreparedStatement stat = null;
+		switch (operacao) {
+		case ALTERAR_CADASTRO:
+			sql = "update periodicos set titulo = ?, codbarras = ?, estante = ?, exemplares = ?, disponiveis = ?, issn = ?, volume = ?, ano = ? where id = " + periodico.getId();
+			break;
+		case INSERIR_CADASTRO:
+			sql = "insert into periodicos (titulo, codbarras, estante, exemplares, disponiveis, issn, volume, ano) values (?, ?, ?, ?, ?, ?, ?, ?)";
+			break;
+		}
 
 		try {
 			stat = connect.prepareStatement(sql);

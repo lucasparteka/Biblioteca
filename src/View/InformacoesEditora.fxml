@@ -13,11 +13,11 @@
          <children>
             <JFXTextField fx:id="campoID" labelFloat="true" layoutX="100.0" layoutY="95.0" prefHeight="38.0" prefWidth="277.0" promptText="ID" />
             <Button layoutX="405.0" layoutY="94.0" mnemonicParsing="false" onAction="#pesquisarEditora" prefHeight="25.0" prefWidth="123.0" text="Pesquisar" />
-            <JFXTextField fx:id="campoNomeEditora" labelFloat="true" layoutX="100.0" layoutY="162.0" prefHeight="38.0" prefWidth="200.0" promptText="Nome" />
+            <JFXTextField fx:id="campoNomeEditora" editable="false" labelFloat="true" layoutX="100.0" layoutY="162.0" prefHeight="38.0" prefWidth="200.0" promptText="Nome" />
             <JFXTextField fx:id="campoNacionalidade" editable="false" labelFloat="true" layoutX="328.0" layoutY="162.0" prefHeight="38.0" prefWidth="200.0" promptText="Nacionalidade" />
-            <Button fx:id="botaoSalvar" layoutX="100.0" layoutY="246.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="123.0" text="Salvar" />
-            <Button fx:id="botaoEditar" layoutX="253.0" layoutY="246.0" mnemonicParsing="false" onAction="#editarDados" prefHeight="25.0" prefWidth="123.0" text="Editar" />
-            <Button layoutX="405.0" layoutY="246.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="123.0" text="Fechar" />
+            <Button fx:id="botaoSalvar" disable="true" layoutX="100.0" layoutY="246.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="25.0" prefWidth="123.0" text="Salvar" />
+            <Button fx:id="botaoEditar" disable="true" layoutX="253.0" layoutY="246.0" mnemonicParsing="false" onAction="#editarDados" prefHeight="25.0" prefWidth="123.0" text="Editar" />
+            <Button fx:id="botaoCancelar" layoutX="405.0" layoutY="246.0" mnemonicParsing="false" onAction="#cancelarAcao" prefHeight="25.0" prefWidth="123.0" text="Fechar" />
             <Label fx:id="labelStatus" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" prefHeight="26.0" prefWidth="600.0" textAlignment="CENTER">
                <font>
                   <Font name="System Italic" size="16.0" />
