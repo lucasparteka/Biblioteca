@@ -13,6 +13,7 @@ import dao.EmprestimoDAO;
 import dao.LivroDAO;
 import dao.MatEspecialDAO;
 import dao.PeriodicoDAO;
+import enums.EnumTipoMaterial;
 
 public class AcoesEmprestimo {
 
@@ -20,20 +21,7 @@ public class AcoesEmprestimo {
 	public static final int EXCLUIR_EMPRESTIMO = 1;
 	public static final int DEVOLVER_EMPRESTIMO = 2;
 
-	public enum EnumTipoMaterial {
-
-		LIVRO(1L), PERIODICO(2L), MATERIAL_ESPECIAL(3L);
-
-		private Long idTabelaMaterialEscolhido;
-
-		EnumTipoMaterial(Long tipo) {
-			idTabelaMaterialEscolhido = tipo;
-		}
-
-		public Long getIdTabelaMaterialEscolhido() {
-			return idTabelaMaterialEscolhido;
-		}
-	}
+	
 
 	public AcoesEmprestimo() {
 		emprestimoDAO = new EmprestimoDAO();

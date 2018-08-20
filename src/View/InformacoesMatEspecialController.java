@@ -6,7 +6,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import Controller.AcoesMatEspecial;
 import Model.MaterialEspecial;
-import enums.TipoMaterialEspecial;
+import enums.EnumTipoMatEspecial;
+//import enums.TipoMaterialEspecial;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -139,14 +140,14 @@ public class InformacoesMatEspecialController implements Initializable {
 		getMaterialEspecial().setExemplares(Integer.parseInt(campoExemplares.getText()));
 		getMaterialEspecial().setTitulo(campoTitulo.getText());
 		if (selecionado.getText().equals("CD")) {
-			getMaterialEspecial().setIdTipo(TipoMaterialEspecial.CD.idTipoEscolhido);
-			getMaterialEspecial().setTipo(TipoMaterialEspecial.CD.nomeTipoEscolhido);
+			getMaterialEspecial().setIdTipo(EnumTipoMatEspecial.CD.getIdTabelaMaterialEscolhido());
+			getMaterialEspecial().setTipo(EnumTipoMatEspecial.CD.getTipoMaterialEscolhido());
 		} else if (selecionado.getText().equals("DVD")) {
-			getMaterialEspecial().setIdTipo(TipoMaterialEspecial.DVD.idTipoEscolhido);
-			getMaterialEspecial().setTipo(TipoMaterialEspecial.DVD.nomeTipoEscolhido);
+			getMaterialEspecial().setIdTipo(EnumTipoMatEspecial.DVD.getIdTabelaMaterialEscolhido());
+			getMaterialEspecial().setTipo(EnumTipoMatEspecial.DVD.getTipoMaterialEscolhido());
 		} else if (selecionado.getText().equals("FITA")) {
-			getMaterialEspecial().setIdTipo(TipoMaterialEspecial.FITA.idTipoEscolhido);
-			getMaterialEspecial().setTipo(TipoMaterialEspecial.FITA.nomeTipoEscolhido);
+			getMaterialEspecial().setIdTipo(EnumTipoMatEspecial.FITA.getIdTabelaMaterialEscolhido());
+			getMaterialEspecial().setTipo(EnumTipoMatEspecial.FITA.getTipoMaterialEscolhido());
 		}
 		
 		labelStatus.setText("Alterado com sucesso");

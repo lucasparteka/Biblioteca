@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXTextField;
 import Controller.AcoesMatEspecial;
 import Model.MaterialEspecial;
-import enums.TipoMaterialEspecial;
+import enums.EnumTipoMatEspecial;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -79,14 +79,14 @@ public class CadastrarMatEspecialController implements Initializable {
 			labelStatus.setText("Preencha todos os campos");
 		} else {
 			if (selecionado.getText().equals("CD")) {
-				getMaterialEspecial().setIdTipo(TipoMaterialEspecial.CD.idTipoEscolhido);
-				getMaterialEspecial().setTipo(TipoMaterialEspecial.CD.nomeTipoEscolhido);
+				getMaterialEspecial().setIdTipo(EnumTipoMatEspecial.CD.getIdTabelaMaterialEscolhido());
+				getMaterialEspecial().setTipo(EnumTipoMatEspecial.CD.getTipoMaterialEscolhido());
 			} else if (selecionado.getText().equals("DVD")) {
-				getMaterialEspecial().setIdTipo(TipoMaterialEspecial.DVD.idTipoEscolhido);
-				getMaterialEspecial().setTipo(TipoMaterialEspecial.DVD.nomeTipoEscolhido);
+				getMaterialEspecial().setIdTipo(EnumTipoMatEspecial.DVD.getIdTabelaMaterialEscolhido());
+				getMaterialEspecial().setTipo(EnumTipoMatEspecial.DVD.getTipoMaterialEscolhido());
 			} else if (selecionado.getText().equals("FITA")) {
-				getMaterialEspecial().setIdTipo(TipoMaterialEspecial.FITA.idTipoEscolhido);
-				getMaterialEspecial().setTipo(TipoMaterialEspecial.FITA.nomeTipoEscolhido);
+				getMaterialEspecial().setIdTipo(EnumTipoMatEspecial.FITA.getIdTabelaMaterialEscolhido());
+				getMaterialEspecial().setTipo(EnumTipoMatEspecial.FITA.getTipoMaterialEscolhido());
 			}
 			getMaterialEspecial().setCodigoBarras(campoCodBarras.getText());
 			getMaterialEspecial().setDescricao(campoDescricao.getText());
